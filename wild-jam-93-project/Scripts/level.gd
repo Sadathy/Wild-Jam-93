@@ -12,7 +12,7 @@ var player_ship: Node2D = null
 
 func _ready() -> void:
 	player_ship = SHIP.instantiate()
-	player_ship.position = Vector2.ZERO
+	player_ship.position = Vector2.ZERO 
 	add_sibling(player_ship)
 	
 	Global.turn_started.connect(see_turn_started)

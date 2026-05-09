@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var camera: Camera2D = %Camera
+@onready var active_indicator: Node2D = null
+@onready var active_line: Line2D = null
 
 
 const TARGET_INDICATOR = preload("res://Scenes/UI/target_indicator.tscn")
@@ -16,6 +18,15 @@ var orders: Dictionary = {}
 
 func _ready() -> void:
 	camera.make_current()
+	Global.turn_ended.connect(on_turn_end)
+	Global.turn_started.connect(on_turn_start)
+	
+	active_indicator = TARGET_INDICATOR.instantiate()
+	add_sibling(active_indicator)
+	active_line = TARGET_LINE.instantiate()
+	active_line.add_point(Vector2.ZERO, 0)
+	active_line.add_point(Vector2.ZERO, 1)
+	add_sibling(active_line)
 
 func _physics_process(_delta: float) -> void:
 	# We should only process physics during the environment turn, not the player's planning turn
@@ -46,12 +57,20 @@ func _process(delta: float) -> void:
 	# We should only process here if we're in our planning turn
 	if Global.player_turn == false:
 		return
+	# Move the turn planner so we can see where we're planning our turn from
+	active_indicator.position = get_global_mouse_position()
+	active_line.set_point_position(1, active_indicator.position)
+	if orders.size() == 0:
+		active_line.set_point_position(0, position)
+	else:
+		active_line.set_point_position(0, orders[orders.size()]["target"])
+		print("Orders size is: ", orders.size())
 	if plot_cooldown > 0:
 		plot_cooldown -= delta
 	if Input.is_action_just_pressed("plot") and plot_cooldown <= 0:
 		plot_cooldown = DEFAULT_PLOT_COOLDOWN
 		# Run the plot order method
-		plot_order(get_global_mouse_position())
+		plot_order(active_indicator.position)
 	if Input.is_action_just_pressed("cancel") and plot_cooldown <= 0:
 		plot_cooldown = DEFAULT_PLOT_COOLDOWN
 		remove_last_order()
@@ -112,3 +131,11 @@ func plot_order(order_target: Vector2) -> int:
 	print("Created order with ID: ", order_id)
 	
 	return order_id	
+	
+func on_turn_end() -> void:
+	active_indicator.hide()
+	active_line.hide()
+	
+func on_turn_start() -> void:
+	active_indicator.show()
+	active_line.show()

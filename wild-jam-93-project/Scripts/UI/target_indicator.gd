@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var rotation_speed: float = 25.0
-@export var label: String = "ID: "
+@export var label: String = "Move"
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var label_order: Label = %LabelOrder
