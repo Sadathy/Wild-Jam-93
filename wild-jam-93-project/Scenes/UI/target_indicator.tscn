@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dsbyr6xn56eg4"]
+
+[ext_resource type="Texture2D" uid="uid://bi8lajpxbnwln" path="res://Assets/target_indicator.png" id="1_he4w7"]
+[ext_resource type="Script" uid="uid://cq7vw8fvsw5cq" path="res://Scripts/UI/target_indicator.gd" id="1_itg3d"]
+
+[node name="TargetIndicator" type="Node2D" unique_id=943005867]
+script = ExtResource("1_itg3d")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1817974061]
+unique_name_in_owner = true
+scale = Vector2(3, 3)
+texture = ExtResource("1_he4w7")

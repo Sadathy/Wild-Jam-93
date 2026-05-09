@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c68eu6qksr8n5"]
+
+[ext_resource type="Texture2D" uid="uid://muvq70ljaj3x" path="res://Assets/target_line.png" id="1_rskg4"]
+
+[node name="TargetLine" type="Line2D" unique_id=732587031]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("1_rskg4")
+texture_mode = 1
+sharp_limit = 0.0
