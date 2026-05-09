@@ -19,6 +19,7 @@ shape = SubResource("CircleShape2D_6buvt")
 [node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
 texture_filter = 1
 texture_repeat = 2
+points = PackedVector2Array(0, 0)
 width = 28.0
 texture = ExtResource("2_nhepu")
 texture_mode = 1
