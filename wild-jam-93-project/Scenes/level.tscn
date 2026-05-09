@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://clapjpkbdbn3e"]
+
+[ext_resource type="Script" uid="uid://86xmyjd00d16" path="res://Scripts/level.gd" id="1_tumq0"]
+
+[node name="Level" type="CanvasLayer" unique_id=2138037284]
+script = ExtResource("1_tumq0")
+
+[node name="LabelTurn" type="Label" parent="." unique_id=184089025]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Your turn (Space to end)"
