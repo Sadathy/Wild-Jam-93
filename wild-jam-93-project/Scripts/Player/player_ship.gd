@@ -41,6 +41,9 @@ func _physics_process(delta: float) -> void:
 	position.x = move_toward(position.x, current_target.x, speed * dir_normal.x * delta)
 	position.y = move_toward(position.y, current_target.y, speed * dir_normal.y * delta)
 	
+	# Face towards next target
+	look_at_interpolated(current_target, 0.1)
+	
 	# Redraw order line
 	orders[1]["line"].set_point_position(0, position)
 	
@@ -165,4 +168,6 @@ func on_turn_start() -> void:
 			var order_origin = orders[key]["origin"]
 			var order_target = orders[key]["target"]
 			fuel -= order_origin.distance_to(order_target)
-		
+
+func look_at_interpolated(position : Vector2, weight : float = 0.1):
+	rotation = lerpf(rotation, rotation + get_angle_to(position), weight)
