@@ -1,63 +1,108 @@
 extends Node2D
 
-@export var speed: float = 1.0
+@export var speed: float = 5.0
+@export var DEFAULT_PLOT_COOLDOWN: float = 0.15
 
 @onready var sprite: Sprite2D = $Sprite
 
 const TARGET_INDICATOR = preload("res://Scenes/UI/target_indicator.tscn")
 const TARGET_LINE = preload("res://Scenes/UI/target_line.tscn")
 
-var target_pos: Vector2 = Vector2.ZERO
-var move_normal: Vector2 = Vector2.ZERO
-var indicators: Dictionary = {}
+var plot_cooldown = 0
 
-func _ready() -> void:
-	Global.turn_ended.connect(set_move_target)
-	indicators[1] = {
-		"indicator": TARGET_INDICATOR.instantiate(),
-		"line": TARGET_LINE.instantiate()
-		}
-	indicators[1]["line"].add_point(position, 0)
-	indicators[1]["line"].add_point(get_viewport().get_mouse_position(), 1)
-	add_sibling(indicators[1]["indicator"])
-	add_sibling(indicators[1]["line"])
-	
+var orders: Dictionary = {}
 
 func _physics_process(_delta: float) -> void:
-	if Global.player_turn == true:
-		indicators[1]["indicator"].position = get_viewport().get_mouse_position()
-		
-		indicators[1]["line"].set_point_position(0, position)
-		indicators[1]["line"].set_point_position(1, indicators[1]["indicator"].position)
+	# We should only process physics during the environment turn, not the player's planning turn
+	if Global.player_turn == true or !orders.has(1):
 		return
+	var current_target = orders[1]["target"]
+	var current_origin = orders[1]["origin"]
 	
-	indicators[1]["indicator"].position = target_pos
-	indicators[1]["line"].set_point_position(0, position)
-	indicators[1]["line"].set_point_position(1, indicators[1]["indicator"].position)
+	# Face our order target
+	sprite.look_at(current_target)
 	
-	position.x = move_toward(position.x, target_pos.x, speed * move_normal.x)
-	position.y = move_toward(position.y, target_pos.y, speed * move_normal.y)
+	# Move based on our speed towards order ID 1
+	var dir_normal = abs((current_target - current_origin).normalized())
+	print("dir_normal is: ", dir_normal)
+	position.x = move_toward(position.x, current_target.x, speed * dir_normal.x)
+	position.y = move_toward(position.y, current_target.y, speed * dir_normal.y)
 	
-	# If we reached our destination, end the turn early
-	if position == target_pos:
-		Global.turn_timer -= Global.DEFAULT_TURN_DURATION
+	# Redraw order line
+	orders[1]["line"].set_point_position(0, position)
 	
-func set_move_target() -> void:
-	target_pos = get_viewport().get_mouse_position()
-	# We just make this normal so we can scale our movement in x / y relative to the angle.
-	move_normal = abs((target_pos - position).normalized())
-	
-	if target_pos.x > position.x:
-		sprite.look_at(target_pos)
-	else:
-		# Find vector from ship to mouse
-		var dir = target_pos - position
-		# Find vector from ship to new position
-		dir *= -1
-		# Find vector from origin to new position (A -> B = B - A, so our new dir is what we woudl get if we subtracted vector we want from origin -> ship
-		dir = dir + position
-		sprite.look_at(dir)
+	# If we have reached order ID 1's target, remove it from the stack of order
+	if position == current_target:
+		remove_first_order()
 		
-	# Clamp rotation a little so we don't look silly
-	sprite.rotation = clamp(sprite.rotation, deg_to_rad(-45), deg_to_rad(45))
 	
+func _process(delta: float) -> void:
+	# We should only process here if we're in our planning turn
+	if Global.player_turn == false:
+		return
+	if plot_cooldown > 0:
+		plot_cooldown -= delta
+	if Input.is_action_just_pressed("plot") and plot_cooldown <= 0:
+		plot_cooldown = DEFAULT_PLOT_COOLDOWN
+		# Run the plot order method
+		plot_order(get_viewport().get_mouse_position())
+	if Input.is_action_just_pressed("cancel") and plot_cooldown <= 0:
+		plot_cooldown = DEFAULT_PLOT_COOLDOWN
+		remove_last_order()
+
+func remove_first_order() -> void:
+	# Destroy graphics for our first order
+	orders[1]["indicator"].queue_free()
+	orders[1]["line"].queue_free()
+	# Loop through and shift orders down one slot
+	for key in orders:
+		if key != orders.size():
+			orders[key] = orders[key + 1]
+			# Also update this order's label
+			orders[key]["indicator"].label_order.text = str(key)
+	# Erase the order at the end, because it's a duplicate of the one before it
+	orders.erase(orders.size())
+	
+func remove_last_order() -> void:
+	if orders.size() == 0:
+		return
+	var current_id = orders.size()
+	orders[current_id]["indicator"].queue_free()
+	orders[current_id]["line"].queue_free()
+	orders.erase(current_id)
+
+# Takes a target point, creates an order to that target point then returns the new order's ID
+func plot_order(order_target: Vector2) -> int:
+	var order_id = orders.size() + 1
+	var order_origin = Vector2.ZERO
+	var new_indicator: Node2D = TARGET_INDICATOR.instantiate()
+	var new_line: Line2D = TARGET_LINE.instantiate()
+	
+	# If this is the first order, we plot it from the origin, otherwise we plot it from the last order's target
+	if order_id == 1:
+		order_origin = position
+	else:
+		order_origin = orders[order_id - 1]["target"]
+	
+	#plot the points for this order line
+	new_line.add_point(order_origin, 0)
+	new_line.add_point(order_target, 1)
+	
+	#position this order indicator
+	new_indicator.position = order_target
+	new_indicator.label = str(order_id)
+	
+	# Add the order to our dictionary
+	orders[order_id] = {
+		"origin": order_origin,
+		"target": order_target,
+		"indicator": new_indicator,
+		"line": new_line
+	}
+	
+	add_sibling(new_indicator)
+	add_sibling(new_line)
+	
+	print("Created order with ID: ", order_id)
+	
+	return order_id	
