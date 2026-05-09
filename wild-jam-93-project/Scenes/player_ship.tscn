@@ -21,3 +21,11 @@ shape = SubResource("RectangleShape2D_6s7s7")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
 unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484873603]
+
+[node name="LabelTurn" type="Label" parent="CanvasLayer" unique_id=1571525818]
+unique_name_in_owner = true
+offset_right = 188.0
+offset_bottom = 23.0
+text = "Your turn (Space to end)"

@@ -32,7 +32,7 @@ func _ready() -> void:
 func start_pressed() -> void:
 	var new_level = LEVEL.instantiate()
 	get_tree().get_root().add_child(new_level)
-	queue_free()
+	hide()
 	
 func options_pressed() -> void:
 	button_return.show()
