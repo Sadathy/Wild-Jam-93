@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c57jco7jckh6e"
-path="res://.godot/imported/asteroid_line.png-85ded9b30277adf24b7b135b45bfb348.ctex"
+uid="uid://muvq70ljaj3x"
+path="res://.godot/imported/target_line.png-793d6f1eb0d3f1b4b132816adaa33b4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/asteroid_line.png"
-dest_files=["res://.godot/imported/asteroid_line.png-85ded9b30277adf24b7b135b45bfb348.ctex"]
+source_file="res://Assets/Textures/target_line.png"
+dest_files=["res://.godot/imported/target_line.png-793d6f1eb0d3f1b4b132816adaa33b4a.ctex"]
 
 [params]
 

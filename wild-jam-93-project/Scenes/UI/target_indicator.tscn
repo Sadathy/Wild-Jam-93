@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsbyr6xn56eg4"]
 
-[ext_resource type="Texture2D" uid="uid://bi8lajpxbnwln" path="res://Assets/target_indicator.png" id="1_he4w7"]
+[ext_resource type="Texture2D" uid="uid://bi8lajpxbnwln" path="res://Assets/Textures/target_indicator.png" id="1_he4w7"]
 [ext_resource type="Script" uid="uid://cq7vw8fvsw5cq" path="res://Scripts/UI/target_indicator.gd" id="1_itg3d"]
 
 [node name="TargetIndicator" type="Node2D" unique_id=943005867]

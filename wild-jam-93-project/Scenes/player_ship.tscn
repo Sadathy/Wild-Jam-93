@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://cax3vk1gvhxex"]
 
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
-[ext_resource type="Texture2D" uid="uid://cp2yl4j5nihyb" path="res://Assets/player_ship.png" id="2_6s7s7"]
+[ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
+[ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
+[ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
+[ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
+[ext_resource type="Texture2D" uid="uid://cfdtqk6xi431m" path="res://Assets/Textures/PlayerShip/lit-from-left.png" id="6_wfgbg"]
+[ext_resource type="Texture2D" uid="uid://dphha8bwvfruu" path="res://Assets/Textures/PlayerShip/lit-from-right.png" id="7_o3pyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
-size = Vector2(45, 12)
+size = Vector2(103.01299, 40.245422)
 
 [node name="Player Ship" type="CharacterBody2D" unique_id=984119636]
 collision_layer = 0
@@ -12,11 +17,13 @@ script = ExtResource("1_6s7s7")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=411507298]
 unique_name_in_owner = true
-scale = Vector2(2, 2)
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("2_6s7s7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966913274]
-position = Vector2(0, -6)
+position = Vector2(-0.5000001, -0.3658613)
+scale = Vector2(0.61157334, 0.5648275)
 shape = SubResource("RectangleShape2D_6s7s7")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
@@ -29,3 +36,31 @@ unique_name_in_owner = true
 offset_right = 188.0
 offset_bottom = 23.0
 text = "Your turn (Space to end)"
+
+[node name="Shadows" type="Node2D" parent="." unique_id=1977834336]
+script = ExtResource("3_n4oq7")
+lighting_angle_offset = 45
+
+[node name="LitFromBack" type="Sprite2D" parent="Shadows" unique_id=1941087890]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("4_0gljw")
+
+[node name="LitFromFront" type="Sprite2D" parent="Shadows" unique_id=12139891]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("5_xljp0")
+
+[node name="LitFromLeft" type="Sprite2D" parent="Shadows" unique_id=961777531]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("6_wfgbg")
+
+[node name="LitFromRight" type="Sprite2D" parent="Shadows" unique_id=1921144366]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("7_o3pyb")
