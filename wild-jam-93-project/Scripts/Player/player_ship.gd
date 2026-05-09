@@ -1,9 +1,11 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var speed: float = 5.0
 @export var DEFAULT_PLOT_COOLDOWN: float = 0.15
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: Sprite2D = %Sprite
+@onready var camera: Camera2D = %Camera
+
 
 const TARGET_INDICATOR = preload("res://Scenes/UI/target_indicator.tscn")
 const TARGET_LINE = preload("res://Scenes/UI/target_line.tscn")
@@ -12,15 +14,15 @@ var plot_cooldown = 0
 
 var orders: Dictionary = {}
 
+func _ready() -> void:
+	camera.make_current()
+
 func _physics_process(_delta: float) -> void:
 	# We should only process physics during the environment turn, not the player's planning turn
 	if Global.player_turn == true or !orders.has(1):
 		return
 	var current_target = orders[1]["target"]
 	var current_origin = orders[1]["origin"]
-	
-	# Face our order target
-	sprite.look_at(current_target)
 	
 	# Move based on our speed towards order ID 1
 	var dir_normal = abs((current_target - current_origin).normalized())
@@ -34,6 +36,10 @@ func _physics_process(_delta: float) -> void:
 	# If we have reached order ID 1's target, remove it from the stack of order
 	if position == current_target:
 		remove_first_order()
+	
+	# If we have no more orders, go to a new turn
+	if orders.size() == 0:
+		Global.turn_timer -= Global.DEFAULT_TURN_DURATION
 		
 	
 func _process(delta: float) -> void:
@@ -45,7 +51,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("plot") and plot_cooldown <= 0:
 		plot_cooldown = DEFAULT_PLOT_COOLDOWN
 		# Run the plot order method
-		plot_order(get_viewport().get_mouse_position())
+		plot_order(get_global_mouse_position())
 	if Input.is_action_just_pressed("cancel") and plot_cooldown <= 0:
 		plot_cooldown = DEFAULT_PLOT_COOLDOWN
 		remove_last_order()

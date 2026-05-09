@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ctc7rs0xwmvya"]
+
+[ext_resource type="Texture2D" uid="uid://b1yx5523ydvba" path="res://Assets/asteroid.png" id="1_6buvt"]
+[ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/asteroid_line.png" id="2_nhepu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
+radius = 14.0
+
+[node name="Asteroid" type="StaticBody2D" unique_id=1627439847]
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751337253]
+scale = Vector2(2, 2)
+texture = ExtResource("1_6buvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421303482]
+shape = SubResource("CircleShape2D_6buvt")
+
+[node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
+texture_filter = 1
+texture_repeat = 2
+width = 28.0
+texture = ExtResource("2_nhepu")
+texture_mode = 1

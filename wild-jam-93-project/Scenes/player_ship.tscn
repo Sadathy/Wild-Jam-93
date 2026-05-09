@@ -3,9 +3,21 @@
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
 [ext_resource type="Texture2D" uid="uid://cp2yl4j5nihyb" path="res://Assets/player_ship.png" id="2_6s7s7"]
 
-[node name="Player Ship" type="Node2D" unique_id=1372063348]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
+size = Vector2(45, 12)
+
+[node name="Player Ship" type="CharacterBody2D" unique_id=984119636]
+collision_layer = 0
 script = ExtResource("1_6s7s7")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=411507298]
+unique_name_in_owner = true
 scale = Vector2(2, 2)
 texture = ExtResource("2_6s7s7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966913274]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_6s7s7")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
+unique_name_in_owner = true
