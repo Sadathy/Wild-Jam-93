@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi8lajpxbnwln"
-path="res://.godot/imported/target_indicator.png-4208b45eb5d46f7e33a9ff37c15668a6.ctex"
+uid="uid://cvi2lqa1cl4ee"
+path="res://.godot/imported/lit-from-front.png-0b8b0a5587e01d03aa9e8e35a61d919c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/target_indicator.png"
-dest_files=["res://.godot/imported/target_indicator.png-4208b45eb5d46f7e33a9ff37c15668a6.ctex"]
+source_file="res://Assets/Textures/PlayerShip/lit-from-front.png"
+dest_files=["res://.godot/imported/lit-from-front.png-0b8b0a5587e01d03aa9e8e35a61d919c.ctex"]
 
 [params]
 

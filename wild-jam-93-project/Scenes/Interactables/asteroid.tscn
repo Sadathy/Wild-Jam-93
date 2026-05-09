@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctc7rs0xwmvya"]
 
-[ext_resource type="Texture2D" uid="uid://b1yx5523ydvba" path="res://Assets/asteroid.png" id="1_6buvt"]
-[ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/asteroid_line.png" id="2_nhepu"]
+[ext_resource type="Texture2D" uid="uid://b1yx5523ydvba" path="res://Assets/Textures/asteroid.png" id="1_6buvt"]
+[ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/Textures/asteroid_line.png" id="2_nhepu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
 radius = 14.0

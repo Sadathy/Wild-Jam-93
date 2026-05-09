@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c68eu6qksr8n5"]
 
-[ext_resource type="Texture2D" uid="uid://muvq70ljaj3x" path="res://Assets/target_line.png" id="1_rskg4"]
+[ext_resource type="Texture2D" uid="uid://muvq70ljaj3x" path="res://Assets/Textures/target_line.png" id="1_rskg4"]
 
 [node name="TargetLine" type="Line2D" unique_id=732587031]
 texture_filter = 1
