@@ -11,8 +11,8 @@ func _ready() -> void:
 	difficulty_slider.value = Global.difficulty
 	volume_slider.value = Global.volume
 	
-func difficulty_changed() -> void:
-	Global.difficulty = difficulty_slider.value
+func difficulty_changed(value: float) -> void:
+	Global.difficulty = value
 	
-func volume_changed() -> void:
-	Global.volume = volume_slider.value
+func volume_changed(value: float) -> void:
+	Global.volume = value
