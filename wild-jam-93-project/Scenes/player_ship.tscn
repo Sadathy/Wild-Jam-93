@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
 [ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
+[ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scenes/player_label_turn.gd" id="3_0gljw"]
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
 [ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
@@ -36,6 +37,7 @@ unique_name_in_owner = true
 offset_right = 188.0
 offset_bottom = 23.0
 text = "Your turn (Space to end)"
+script = ExtResource("3_0gljw")
 
 [node name="Shadows" type="Node2D" parent="." unique_id=1977834336]
 script = ExtResource("3_n4oq7")

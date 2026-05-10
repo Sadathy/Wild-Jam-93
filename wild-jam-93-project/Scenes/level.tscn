@@ -6,14 +6,6 @@
 [node name="Level" type="Node2D" unique_id=849871524]
 script = ExtResource("1_tumq0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2048593911]
-
-[node name="LabelTurn" type="Label" parent="CanvasLayer" unique_id=184089025]
-unique_name_in_owner = true
-offset_right = 188.0
-offset_bottom = 23.0
-text = "Your turn (Space to end)"
-
 [node name="Background" type="TextureRect" parent="." unique_id=901723982]
 unique_name_in_owner = true
 anchors_preset = 8

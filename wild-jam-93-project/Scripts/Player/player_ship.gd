@@ -19,6 +19,7 @@ var fuel: float = 0
 
 func _ready() -> void:
 	camera.make_current()
+	fuel = speed * Global.DEFAULT_TURN_DURATION
 	Global.turn_ended.connect(on_turn_end)
 	Global.turn_started.connect(on_turn_start)
 	
