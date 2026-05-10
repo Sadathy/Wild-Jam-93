@@ -202,6 +202,8 @@ func die() -> void:
 	Global.turn_timer -= Global.DEFAULT_TURN_DURATION
 	menu_fail.show()
 	sprite.hide()
+	active_line.hide()
+	active_indicator.hide()
 	
 	
 	
