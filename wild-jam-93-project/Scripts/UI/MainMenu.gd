@@ -29,10 +29,10 @@ func _ready() -> void:
 	button_quit.pressed.connect(quit_pressed)
 	button_return.pressed.connect(return_pressed)
 	
+	Global.main_menu = self
+	
 func start_pressed() -> void:
-	var new_level = LEVEL.instantiate()
-	Global.level = new_level
-	get_tree().get_root().add_child(new_level)
+	Global.new_level()
 	hide()
 	
 func options_pressed() -> void:

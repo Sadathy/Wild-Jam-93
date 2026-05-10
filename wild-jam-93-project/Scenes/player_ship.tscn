@@ -6,15 +6,18 @@
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
 [ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scenes/camera.gd" id="3_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
+[ext_resource type="Texture2D" uid="uid://6fefxhai76cq" path="res://Assets/Textures/hp_bar_under.png" id="5_bp4n6"]
 [ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
+[ext_resource type="Texture2D" uid="uid://c4j1kor8m85lt" path="res://Assets/Textures/hp_bar_over.png" id="6_q2j26"]
 [ext_resource type="Texture2D" uid="uid://cfdtqk6xi431m" path="res://Assets/Textures/PlayerShip/lit-from-left.png" id="6_wfgbg"]
+[ext_resource type="Texture2D" uid="uid://g5g025110qqd" path="res://Assets/Textures/hp_bar_fill.png" id="7_lxxy7"]
 [ext_resource type="Texture2D" uid="uid://dphha8bwvfruu" path="res://Assets/Textures/PlayerShip/lit-from-right.png" id="7_o3pyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
-size = Vector2(103.01299, 40.245422)
+size = Vector2(117.729126, 67.277176)
 
 [node name="Player Ship" type="CharacterBody2D" unique_id=984119636]
-collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_6s7s7")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=411507298]
@@ -24,7 +27,7 @@ scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("2_6s7s7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966913274]
-position = Vector2(-0.5000001, -0.3658613)
+position = Vector2(0.99999857, 3.5762787e-07)
 scale = Vector2(0.61157334, 0.5648275)
 shape = SubResource("RectangleShape2D_6s7s7")
 
@@ -39,6 +42,75 @@ offset_right = 188.0
 offset_bottom = 23.0
 text = "Your turn (Space to end)"
 script = ExtResource("3_0gljw")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1572226323]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=320466442]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=1729353193]
+layout_mode = 2
+
+[node name="LabelHull" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=394530523]
+layout_mode = 2
+text = "Hull: "
+
+[node name="BarHealth" type="TextureProgressBar" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=599424559]
+unique_name_in_owner = true
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("5_bp4n6")
+texture_over = ExtResource("6_q2j26")
+texture_progress = ExtResource("7_lxxy7")
+
+[node name="MenuFail" type="PanelContainer" parent="CanvasLayer" unique_id=276890437]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuFail" unique_id=159386915]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuFail/MarginContainer" unique_id=1482428453]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=2041313147]
+layout_mode = 2
+text = "Your ship was destroyed!"
+
+[node name="ButtonRetry" type="Button" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=2030124001]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retry"
+
+[node name="ButtonMainMenu" type="Button" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=1256851716]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
 
 [node name="Shadows" type="Node2D" parent="." unique_id=1977834336]
 script = ExtResource("3_n4oq7")

@@ -2,10 +2,15 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 @export var DEFAULT_PLOT_COOLDOWN: float = 0.15
+@export var DEFAULT_MAX_HP: float = 100
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var active_indicator: Node2D = null
 @onready var active_line: Line2D = null
+@onready var bar_health: TextureProgressBar = %BarHealth
+@onready var button_retry: Button = %ButtonRetry
+@onready var button_main_menu: Button = %ButtonMainMenu
+@onready var menu_fail: PanelContainer = %MenuFail
 
 
 const TARGET_INDICATOR = preload("res://Scenes/UI/target_indicator.tscn")
@@ -16,7 +21,14 @@ var plot_cooldown = 0
 var orders: Dictionary = {}
 var fuel: float = 0
 
+var alive = true
+var max_hp: float
+var hp: float
+
 func _ready() -> void:
+	max_hp = DEFAULT_MAX_HP
+	hp = max_hp
+	
 	fuel = speed * Global.DEFAULT_TURN_DURATION
 	Global.turn_ended.connect(on_turn_end)
 	Global.turn_started.connect(on_turn_start)
@@ -27,10 +39,14 @@ func _ready() -> void:
 	active_line.add_point(Vector2.ZERO, 0)
 	active_line.add_point(Vector2.ZERO, 1)
 	add_sibling(active_line)
+	
+	#Connect ui buttons
+	button_retry.pressed.connect(Global.pressed_retry)
+	button_main_menu.pressed.connect(Global.pressed_main_menu)
 
 func _physics_process(delta: float) -> void:
 	# We should only process physics during the environment turn, not the player's planning turn
-	if Global.player_turn == true or !orders.has(1):
+	if Global.player_turn == true or !orders.has(1) or alive == false:
 		return
 	var current_target = orders[1]["target"]
 	var current_origin = orders[1]["origin"]
@@ -57,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	
 func _process(delta: float) -> void:
 	# We should only process here if we're in our planning turn
-	if Global.player_turn == false:
+	if Global.player_turn == false or alive == false:
 		return
 	
 	# Move the turn planner so we can see where we're planning our turn from
@@ -170,3 +186,22 @@ func on_turn_start() -> void:
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 	rotation = lerpf(rotation, rotation + get_angle_to(t_pos), weight)
+	
+#-----------------------------------#
+#----------DAMAGE HANDLING----------#
+#-----------------------------------#
+
+func take_damage(incoming_damage: float) -> void:
+	hp -= incoming_damage
+	bar_health.value = hp
+	if hp <= 0:
+		die()
+	
+func die() -> void:
+	alive = false
+	Global.turn_timer -= Global.DEFAULT_TURN_DURATION
+	menu_fail.show()
+	sprite.hide()
+	
+	
+	
