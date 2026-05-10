@@ -31,6 +31,7 @@ func _ready() -> void:
 	
 func start_pressed() -> void:
 	var new_level = LEVEL.instantiate()
+	Global.level = new_level
 	get_tree().get_root().add_child(new_level)
 	hide()
 	

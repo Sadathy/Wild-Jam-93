@@ -168,7 +168,6 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 1
 step = 5.0
-value = 1.0
 scrollable = false
 tick_count = 10
 ticks_position = 3

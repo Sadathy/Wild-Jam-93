@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Modulation for "Lit From Back"
 	lit_from_back.modulate.a = -cos(global_rotation + deg_to_rad(lighting_angle_offset))
 	# Modulation for "Lit From Front"

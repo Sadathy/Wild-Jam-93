@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var DEFAULT_PLOT_COOLDOWN: float = 0.15
 
 @onready var sprite: Sprite2D = %Sprite
-@onready var camera: Camera2D = %Camera
 @onready var active_indicator: Node2D = null
 @onready var active_line: Line2D = null
 
@@ -18,7 +17,6 @@ var orders: Dictionary = {}
 var fuel: float = 0
 
 func _ready() -> void:
-	camera.make_current()
 	fuel = speed * Global.DEFAULT_TURN_DURATION
 	Global.turn_ended.connect(on_turn_end)
 	Global.turn_started.connect(on_turn_start)
@@ -170,5 +168,5 @@ func on_turn_start() -> void:
 			var order_target = orders[key]["target"]
 			fuel -= order_origin.distance_to(order_target)
 
-func look_at_interpolated(position : Vector2, weight : float = 0.1):
-	rotation = lerpf(rotation, rotation + get_angle_to(position), weight)
+func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
+	rotation = lerpf(rotation, rotation + get_angle_to(t_pos), weight)

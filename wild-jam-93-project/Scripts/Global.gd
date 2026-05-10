@@ -12,7 +12,14 @@ signal turn_started
 var player_turn: bool = true
 var turn_timer: float = 0.0
 
+# Keep track of what level we're on
+var level: Node2D = null
+
 func _process(delta: float) -> void:
+	# Only do turn processing if we are in a level
+	if level == null:
+		return
+	
 	if Input.is_action_just_pressed("next_turn") and player_turn == true:
 		player_turn = false
 		turn_timer = DEFAULT_TURN_DURATION

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
 [ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scenes/player_label_turn.gd" id="3_0gljw"]
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
+[ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scenes/camera.gd" id="3_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
 [ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
 [ext_resource type="Texture2D" uid="uid://cfdtqk6xi431m" path="res://Assets/Textures/PlayerShip/lit-from-left.png" id="6_wfgbg"]
@@ -28,7 +29,7 @@ scale = Vector2(0.61157334, 0.5648275)
 shape = SubResource("RectangleShape2D_6s7s7")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
-unique_name_in_owner = true
+script = ExtResource("3_xljp0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484873603]
 
