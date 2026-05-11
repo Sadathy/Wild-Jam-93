@@ -35,8 +35,9 @@ func _ready() -> void:
 	Global.turn_started.connect(on_new_turn)
 
 func on_new_turn() -> void:
-	var asteroid_count = Global.difficulty + 1
-	
+	var asteroid_count = Global.difficulty + randi_range(-2, 1)
+	if asteroid_count <= 0:
+		return
 	# Loop through and generate a bunch of asteroids
 	for i in asteroid_count:
 		var new_speed = 450 #Giving asteroids constant speed for now
