@@ -55,6 +55,6 @@ func pressed_main_menu() -> void:
 	main_menu.show()
 
 func new_level() -> void:
-	var new_level = LEVEL.instantiate()
-	level = new_level
-	get_tree().get_root().add_child(new_level)
+	var new_level_instance = LEVEL.instantiate()
+	level = new_level_instance
+	get_tree().get_root().add_child(new_level_instance)

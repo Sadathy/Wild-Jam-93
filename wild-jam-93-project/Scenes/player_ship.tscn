@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
 [ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
-[ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scenes/player_label_turn.gd" id="3_0gljw"]
+[ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scripts/Player/player_label_turn.gd" id="3_0gljw"]
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
-[ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scenes/camera.gd" id="3_xljp0"]
+[ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scripts/Player/camera.gd" id="3_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
 [ext_resource type="Texture2D" uid="uid://6fefxhai76cq" path="res://Assets/Textures/hp_bar_under.png" id="5_bp4n6"]
 [ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
@@ -12,6 +12,20 @@
 [ext_resource type="Texture2D" uid="uid://cfdtqk6xi431m" path="res://Assets/Textures/PlayerShip/lit-from-left.png" id="6_wfgbg"]
 [ext_resource type="Texture2D" uid="uid://g5g025110qqd" path="res://Assets/Textures/hp_bar_fill.png" id="7_lxxy7"]
 [ext_resource type="Texture2D" uid="uid://dphha8bwvfruu" path="res://Assets/Textures/PlayerShip/lit-from-right.png" id="7_o3pyb"]
+[ext_resource type="Texture2D" uid="uid://prktvu2e1n0g" path="res://Assets/Textures/time_bar_under.png" id="8_05dn2"]
+[ext_resource type="Texture2D" uid="uid://mohripua3sa5" path="res://Assets/Textures/time_bar_over.png" id="9_awjoh"]
+[ext_resource type="Texture2D" uid="uid://bjrhhnvabhj2m" path="res://Assets/Textures/time_bar_process.png" id="10_2vuj5"]
+[ext_resource type="Script" uid="uid://t7hq2ga2bu2u" path="res://Scripts/States/player_superstate.gd" id="13_q2j26"]
+[ext_resource type="Script" uid="uid://dcp1plpavqaae" path="res://Scripts/States/super_state_plotting.gd" id="14_lxxy7"]
+[ext_resource type="Script" uid="uid://c4ywa02hxihd5" path="res://Scripts/States/super_state_menu.gd" id="15_5hof5"]
+[ext_resource type="Script" uid="uid://cax0eaotk2tky" path="res://Scripts/States/state_noplot.gd" id="15_dpfuu"]
+[ext_resource type="Script" uid="uid://cdn32cf11pdkj" path="res://Scripts/States/super_state_executing.gd" id="16_ykbcd"]
+[ext_resource type="Script" uid="uid://3nk15dyi376c" path="res://Scripts/States/state_dead.gd" id="17_opdlr"]
+[ext_resource type="Script" uid="uid://b3q5e4djg78r3" path="res://Scenes/state_move_plot.gd" id="19_2vuj5"]
+[ext_resource type="Script" uid="uid://c2gt2pln646en" path="res://Scripts/States/state_no_orders.gd" id="19_kcay0"]
+[ext_resource type="Script" uid="uid://pmfulsr2mpri" path="res://Scenes/state_attack_plot.gd" id="20_8ex22"]
+[ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scenes/state_move.gd" id="20_t3c3c"]
+[ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scenes/state_attack.gd" id="21_etcwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
 size = Vector2(117.729126, 67.277176)
@@ -22,6 +36,7 @@ script = ExtResource("1_6s7s7")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=411507298]
 unique_name_in_owner = true
+z_index = 1
 rotation = -1.5707964
 scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("2_6s7s7")
@@ -36,36 +51,47 @@ script = ExtResource("3_xljp0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484873603]
 
-[node name="LabelTurn" type="Label" parent="CanvasLayer" unique_id=1571525818]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=660060259]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LabelTurn" type="Label" parent="CanvasLayer/Control" unique_id=1571525818]
 unique_name_in_owner = true
+layout_mode = 0
 offset_right = 188.0
 offset_bottom = 23.0
 text = "Your turn (Space to end)"
 script = ExtResource("3_0gljw")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1572226323]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1572226323]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -90.0
+offset_right = 384.0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=320466442]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer" unique_id=320466442]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=1729353193]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer/MarginContainer" unique_id=1729353193]
 layout_mode = 2
 
-[node name="LabelHull" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=394530523]
+[node name="LabelHull" type="Label" parent="CanvasLayer/Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=394530523]
 layout_mode = 2
 text = "Hull: "
 
-[node name="BarHealth" type="TextureProgressBar" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=599424559]
+[node name="BarHealth" type="TextureProgressBar" parent="CanvasLayer/Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=599424559]
 unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
@@ -73,44 +99,110 @@ texture_under = ExtResource("5_bp4n6")
 texture_over = ExtResource("6_q2j26")
 texture_progress = ExtResource("7_lxxy7")
 
-[node name="MenuFail" type="PanelContainer" parent="CanvasLayer" unique_id=276890437]
+[node name="MenuGame" type="PanelContainer" parent="CanvasLayer/Control" unique_id=276890437]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -117.0
+offset_top = -66.5
+offset_right = 117.0
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuFail" unique_id=159386915]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MenuGame" unique_id=159386915]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuFail/MarginContainer" unique_id=1482428453]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MenuGame/MarginContainer" unique_id=1482428453]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=2041313147]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuGame/MarginContainer/VBoxContainer" unique_id=2041313147]
 layout_mode = 2
 text = "Your ship was destroyed!"
 
-[node name="ButtonRetry" type="Button" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=2030124001]
+[node name="ButtonRetry" type="Button" parent="CanvasLayer/Control/MenuGame/MarginContainer/VBoxContainer" unique_id=2030124001]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Retry"
 
-[node name="ButtonMainMenu" type="Button" parent="CanvasLayer/MenuFail/MarginContainer/VBoxContainer" unique_id=1256851716]
+[node name="ButtonMainMenu" type="Button" parent="CanvasLayer/Control/MenuGame/MarginContainer/VBoxContainer" unique_id=1256851716]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
+
+[node name="OrderUI" type="PanelContainer" parent="CanvasLayer/Control" unique_id=250804074]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -170.0
+offset_bottom = 170.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/OrderUI" unique_id=1327209950]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer" unique_id=903619004]
+layout_mode = 2
+
+[node name="OrderButtons" type="VBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer" unique_id=105373004]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LabelOrders" type="Label" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=671542957]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Orders"
+
+[node name="ButtonMove" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=766462498]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[M]ove"
+
+[node name="ButtonAttack" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=567884085]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[A]ttack"
+
+[node name="ButtonUndo" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=1971285062]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "[U]ndo"
+
+[node name="ButtonCancel" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=1764089397]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+disabled = true
+text = "[C]ancel"
+
+[node name="BarFuel" type="TextureProgressBar" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer" unique_id=1600696103]
+unique_name_in_owner = true
+layout_direction = 3
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("8_05dn2")
+texture_over = ExtResource("9_awjoh")
+texture_progress = ExtResource("10_2vuj5")
 
 [node name="Shadows" type="Node2D" parent="." unique_id=1977834336]
 script = ExtResource("3_n4oq7")
@@ -139,3 +231,61 @@ unique_name_in_owner = true
 rotation = -1.5707964
 scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("7_o3pyb")
+
+[node name="SuperStateController" type="Node2D" parent="." unique_id=1236676132 node_paths=PackedStringArray("DEFAULT_STATE")]
+script = ExtResource("13_q2j26")
+DEFAULT_STATE = NodePath("SuperStatePlotting")
+
+[node name="SuperStatePlotting" type="Node2D" parent="SuperStateController" unique_id=1835828116 node_paths=PackedStringArray("DEFAULT_STATE", "SUPER_STATE_EXECUTING", "SUPER_STATE_MENU", "STATE_NO_PLOT", "STATE_MOVE_PLOT", "STATE_ATTACK_PLOT", "CONTROLLER")]
+script = ExtResource("14_lxxy7")
+DEFAULT_STATE = NodePath("StateNoPlot")
+SUPER_STATE_EXECUTING = NodePath("../SuperStateExecuting")
+SUPER_STATE_MENU = NodePath("../SuperStateMenu")
+STATE_NO_PLOT = NodePath("StateNoPlot")
+STATE_MOVE_PLOT = NodePath("StateMovePlot")
+STATE_ATTACK_PLOT = NodePath("StateAttackPlot")
+CONTROLLER = NodePath("..")
+
+[node name="StateNoPlot" type="Node2D" parent="SuperStateController/SuperStatePlotting" unique_id=1653470785 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("15_dpfuu")
+CONTROLLER = NodePath("..")
+
+[node name="StateMovePlot" type="Node2D" parent="SuperStateController/SuperStatePlotting" unique_id=3970396 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("19_2vuj5")
+CONTROLLER = NodePath("..")
+
+[node name="StateAttackPlot" type="Node2D" parent="SuperStateController/SuperStatePlotting" unique_id=1541125050 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("20_8ex22")
+CONTROLLER = NodePath("..")
+
+[node name="SuperStateMenu" type="Node2D" parent="SuperStateController" unique_id=1281026304 node_paths=PackedStringArray("DEFAULT_STATE", "STATE_DEAD", "CONTROLLER")]
+script = ExtResource("15_5hof5")
+DEFAULT_STATE = NodePath("StateDead")
+STATE_DEAD = NodePath("StateDead")
+CONTROLLER = NodePath("..")
+
+[node name="StateDead" type="Node2D" parent="SuperStateController/SuperStateMenu" unique_id=386602788 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("17_opdlr")
+CONTROLLER = NodePath("..")
+
+[node name="SuperStateExecuting" type="Node2D" parent="SuperStateController" unique_id=1507986648 node_paths=PackedStringArray("DEFAULT_STATE", "SUPER_STATE_PLOTTING", "SUPER_STATE_MENU", "STATE_NO_ORDERS", "STATE_ATTACK", "STATE_MOVE", "CONTROLLER")]
+script = ExtResource("16_ykbcd")
+DEFAULT_STATE = NodePath("StateNoOrders")
+SUPER_STATE_PLOTTING = NodePath("../SuperStatePlotting")
+SUPER_STATE_MENU = NodePath("../SuperStateMenu")
+STATE_NO_ORDERS = NodePath("StateNoOrders")
+STATE_ATTACK = NodePath("StateAttack")
+STATE_MOVE = NodePath("StateMove")
+CONTROLLER = NodePath("..")
+
+[node name="StateNoOrders" type="Node2D" parent="SuperStateController/SuperStateExecuting" unique_id=1372764772 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("19_kcay0")
+CONTROLLER = NodePath("..")
+
+[node name="StateMove" type="Node2D" parent="SuperStateController/SuperStateExecuting" unique_id=985443106 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("20_t3c3c")
+CONTROLLER = NodePath("..")
+
+[node name="StateAttack" type="Node2D" parent="SuperStateController/SuperStateExecuting" unique_id=1612156148 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("21_etcwo")
+CONTROLLER = NodePath("..")
