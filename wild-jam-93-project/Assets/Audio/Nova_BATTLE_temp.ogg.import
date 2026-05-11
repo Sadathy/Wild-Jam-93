@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Nova_BATTLE_temp.ogg-94a17af7bbcb9b1eacc382c3
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
