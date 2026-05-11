@@ -1,0 +1,208 @@
+extends Node
+
+# AudioManager
+# ------------
+#
+# Music is handled as pairs of synced tracks (TRACK_AMBIENT and TRACK_BATTLE).
+# Both tracks loop simulataneously and we crossfade between them.
+#
+# Sound Effects (SFX) can be "one-shot" or looped until stopped.
+# The maximum number of SFX played at once is controlled by CHANNELS.
+#
+# Setup:
+# 	AudioManager.load_music(preload("res://Assets/Audio/track_ambient.ogg",
+#							preload("res://Assets/Audio/track_battle.ogg"))
+#
+# Usage:
+#	AudioManager.play(preload("res://Assets/Audio/sfx.ogg:))
+#	AudioManager.play_looping(preload("res://Assets/Audio/loop.ogg"), "engine")
+#	AudioManager.stop_looping("engine")
+#	AudioManager.set_music(AudioManager.TRACK_BATTLE)
+#
+
+
+# Configuration
+# -------------
+const CHANNELS := 16
+const DEFAULT_CROSSFADE_DURATION := 1.5
+
+var volume_sfx 	:= 1.0
+var volume_music := 1.0
+
+
+# Internal state tracking
+# -----------------------
+var _sfx_pool: Array[AudioStreamPlayer] = []
+var _sfx_pool_idx: int = 0
+
+var _looping: Dictionary = {}
+
+var _music_tracks: Array[AudioStreamPlayer] = []
+var _active_track: int = 0
+enum {TRACK_AMBIENT, TRACK_BATTLE}
+
+var _crossfade_tween: Tween
+
+
+
+func _ready() -> void:
+	_build_sfx_pool()
+	_build_music_players()
+
+
+
+# Music
+# -----
+
+# Load ambient / battle music for a level and begin playing them in sync.
+# Stream A will begin playing at full volume, while stream B will be silent.
+func load_music(stream_a: AudioStream, stream_b: AudioStream) -> void:
+	if _crossfade_tween:
+		_crossfade_tween.kill()
+	
+	_music_tracks[0].stream = stream_a
+	_music_tracks[1].stream = stream_b
+	
+	_music_tracks[0].play()
+	_music_tracks[1].play()
+	
+	_music_tracks[0].volume_db = linear_to_db(volume_music)
+	_music_tracks[1].volume_db = -80.0
+	
+	_active_track = 0
+
+
+# Crossfade to the given track over duration (seconds).
+func set_music(track_index: int, duration: float = DEFAULT_CROSSFADE_DURATION) -> void:
+	if track_index == _active_track or (track_index < TRACK_AMBIENT or track_index > TRACK_BATTLE):
+		# ugly error checking - do nothing if we select the currently playing track
+		# and ignore anything else.
+		return
+	
+	var incoming := _music_tracks[track_index]
+	var outgoing := _music_tracks[_active_track]
+	
+	if _crossfade_tween:
+		_crossfade_tween.kill()
+	
+	# Use a tween for crossfading audio since it handles doing things over time nicely.
+	_crossfade_tween = create_tween()
+	_crossfade_tween.set_parallel(true)
+	
+	# Custom crossfade curve that should match perceived loudness over time.
+	_crossfade_tween.tween_method(
+		func(t: float):
+			outgoing.volume_db = linear_to_db(cos(t * PI / 2) * volume_music)
+			incoming.volume_db = linear_to_db(sin(t * PI / 2) * volume_music),
+		0.0, 1.0, duration
+	)
+	
+	# Set the new active track once the tween has finished.
+	_crossfade_tween.finished.connect(func(): _active_track = track_index)
+
+
+# Pause both music tracks.
+func pause_music() -> void:
+	for track in _music_tracks:
+		track.stream_paused = true
+
+
+# Resume both music tracks.
+func resume_music() -> void:
+	for track in _music_tracks:
+		track.stream_paused = false
+
+
+# Stop both music tracks immediately (no fade).
+func stop_music() -> void:
+	if _crossfade_tween:
+		_crossfade_tween.kill()
+	
+	for track in _music_tracks:
+		track.stop()
+
+
+
+# SFX
+# ---
+
+# Play a "one-shot" sound (effects, UI sound, etc.).
+# Returns the AudioStreamPlayer.
+func play(stream: AudioStream, volume_db: float = 1.0) -> AudioStreamPlayer:
+	var player := _sfx_pool[_sfx_pool_idx]
+	_sfx_pool_idx = (_sfx_pool_idx + 1) % CHANNELS
+	
+	player.stream = stream
+	player.volume_db = volume_db * linear_to_db(volume_sfx)
+	player.play()
+	return player
+
+
+# Play a looping sound with string identifier. Use for sounds that should loop until stopped.
+# Calling this again with the same key will restart the sound.
+# Returns the AudioStreamPlayer.
+func play_looping(stream: AudioStream, key: String, volume_db: float = 1.0) -> AudioStreamPlayer:
+	stop_looping(key)
+	
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.volume_db = volume_db * linear_to_db(volume_sfx)
+	player.autoplay = false
+	add_child(player)
+	player.play()
+	
+	_looping[key] = player
+	
+	return player
+
+
+# Stop a sound from looping, given its identifier.
+func stop_looping(key: String) -> void:
+	if _looping.has(key):
+		var player = _looping[key]
+		player.stop()
+		player.queue_free()
+		_looping.erase(key)
+
+
+# Stop all looping sounds (panic switch / probably will need this at some point).
+func stop_all_looping() -> void:
+	for key in _looping.keys():
+		stop_looping(key)
+
+
+
+# Volume Control
+# --------------
+
+# Set music volume (0.0 - 1.0). Immediately updates active track.
+func set_music_volume(linear: float) -> void:
+	volume_music = clampf(linear, 0.0, 1.0)
+	_music_tracks[_active_track].volume_db = linear_to_db(volume_music)
+
+
+# Set SFX volume (0.0 - 1.0).
+func set_sfx_volume(linear: float) -> void:
+	volume_sfx = clampf(linear, 0.0, 1.0)
+
+
+
+# Helper functions
+# ----------------
+
+# Create players for sfx.
+func _build_sfx_pool() -> void:
+	for i in CHANNELS:
+		var p := AudioStreamPlayer.new()
+		p.bus = "SFX"
+		add_child(p)
+		_sfx_pool.append(p)
+
+
+# Create players for music.
+func _build_music_players() -> void:
+	for i in 2:
+		var p := AudioStreamPlayer.new()
+		p.bus = "Music"
+		add_child(p)
+		_music_tracks.append(p)
