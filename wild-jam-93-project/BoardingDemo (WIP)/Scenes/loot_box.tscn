@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://12qdq3hkpbow"]
+
+[ext_resource type="Texture2D" uid="uid://f7nrcjtlug0b" path="res://BoardingDemo (WIP)/Assets/loot.png" id="1_0ipmj"]
+[ext_resource type="Script" uid="uid://dfhub0lw332cp" path="res://BoardingDemo (WIP)/Scripts/loot_box.gd" id="1_bej16"]
+
+[node name="LootBox" type="Node2D" unique_id=867373841]
+script = ExtResource("1_bej16")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1886934923]
+texture = ExtResource("1_0ipmj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1305161212]
+rect = Rect2(-28, -27, 57, 58)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
