@@ -3,7 +3,7 @@ extends Area2D
 var origin_point: Vector2
 var target_point: Vector2
 var speed: float
-var damage: float = 50
+var damage: float = 25
 
 var max_x: float
 var min_x: float
@@ -28,6 +28,7 @@ func _ready() -> void:
 	
 	# Connect impact function
 	area_entered.connect(on_impact)
+	body_entered.connect(on_impact)
 	
 	#Face where we're going
 	look_at(target_point)
@@ -53,6 +54,5 @@ func on_new_turn() -> void:
 		queue_free()
 
 func on_impact(entering_body) -> void:
-	print("Hit asteroid")
-	entering_body.take_damage()
+	entering_body.take_damage(damage)
 	queue_free()

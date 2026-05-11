@@ -1,22 +1,14 @@
 extends Area2D
 
-@export var rotation_rate = 1.5
-
-@onready var line_warning: Line2D = %LineWarning
-@onready var sprite: Sprite2D = %Sprite
-
 var origin_point: Vector2
 var target_point: Vector2
 var speed: float
-var damage: float = 20
+var damage: float = 25
 
 var max_x: float
 var min_x: float
 var max_y: float
 var min_y: float
-
-var current_indicator_point: Vector2
-var health: float = 50
 
 func _ready() -> void:
 	# Fix our position and target point to be 'in bounds'
@@ -24,20 +16,22 @@ func _ready() -> void:
 	min_x = Global.level.min_x
 	max_y = Global.level.max_y
 	min_y = Global.level.min_y
-	origin_point.x = clamp(origin_point.x, min_x, max_x)
-	origin_point.y = clamp(origin_point.y, min_y, max_y)
-	target_point.x = clamp(target_point.x, min_x, max_x)
-	target_point.y = clamp(target_point.y, min_y, max_y)
+	#origin_point.x = clamp(origin_point.x, min_x, max_x)
+	#origin_point.y = clamp(origin_point.y, min_y, max_y)
+	#target_point.x = clamp(target_point.x, min_x, max_x)
+	#target_point.y = clamp(target_point.y, min_y, max_y)
 	
 	position = origin_point
-	line_warning.set_point_position(0, Vector2.ZERO)
-	update_indicator_position()
 	
 	# Connect on new turn function
 	Global.turn_started.connect(on_new_turn)
 	
 	# Connect impact function
 	body_entered.connect(on_impact)
+	area_entered.connect(on_impact)
+	
+	#Face where we're going
+	look_at(target_point)
 	
 func _physics_process(delta: float) -> void:
 	# Only process physics for this outside of the player turn
@@ -48,10 +42,6 @@ func _physics_process(delta: float) -> void:
 	var dir_normal = abs((target_point - position).normalized())
 	position.x = move_toward(position.x, target_point.x, speed * dir_normal.x * delta)
 	position.y = move_toward(position.y, target_point.y, speed * dir_normal.y * delta)
-	
-	# Update visuals
-	sprite.rotation += (2*PI*delta)/rotation_rate
-	line_warning.set_point_position(1, current_indicator_point - position)
 
 func on_new_turn() -> void:
 	#Check if we're out of bounds, if we are, destroy us!
@@ -62,22 +52,7 @@ func on_new_turn() -> void:
 	if position.y < min_y: out_of_bounds = true
 	if out_of_bounds:
 		queue_free()
-	
-	update_indicator_position()
-	line_warning.set_point_position(1, current_indicator_point - position)
-	
-func update_indicator_position():
-	#Update our indicator to where we'll get next
-	var new_indicator_pos = ((target_point - position).normalized() * speed * Global.DEFAULT_TURN_DURATION) + position
-	current_indicator_point = new_indicator_pos
-	
 
 func on_impact(entering_body) -> void:
 	entering_body.take_damage(damage)
 	queue_free()
-
-func take_damage(incoming_damage: float) -> void:
-	if incoming_damage >= health:
-		queue_free()
-		return
-	health -= incoming_damage

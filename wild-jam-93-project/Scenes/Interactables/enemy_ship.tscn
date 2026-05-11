@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://bb66ar3rvy2mg"]
 
 [ext_resource type="Texture2D" uid="uid://c04sklfqs4ssi" path="res://Assets/Textures/enemy_ship.png" id="1_10dav"]
+[ext_resource type="Script" uid="uid://blkbyqjc7i3wl" path="res://Scripts/Interactables/enemy_ship.gd" id="1_p7yn3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
-radius = 11.4643955
-height = 108.63483
+radius = 42.0
+height = 130.0
 
 [node name="EnemyShip" type="CharacterBody2D" unique_id=273264536]
+scale = Vector2(1, 0.9910375)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_p7yn3")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=700273540]
+unique_name_in_owner = true
 texture = ExtResource("1_10dav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336434755]
-scale = Vector2(5.3208213, 0.7364121)
 shape = SubResource("CapsuleShape2D_p7yn3")

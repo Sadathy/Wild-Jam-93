@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://8x3hw3dhpryy"]
+
+[ext_resource type="Script" uid="uid://bjq51q6pso56h" path="res://Scripts/Interactables/enemy_laser.gd" id="1_b3yyj"]
+[ext_resource type="Texture2D" uid="uid://chwh1ehre6u4h" path="res://Assets/Textures/enemy_laser.png" id="2_b3yyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp2uo"]
+size = Vector2(72, 32)
+
+[node name="EnemyLaser" type="Area2D" unique_id=5276601]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_b3yyj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751337253]
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_b3yyj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421303482]
+shape = SubResource("RectangleShape2D_wp2uo")

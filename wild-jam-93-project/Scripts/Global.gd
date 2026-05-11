@@ -13,6 +13,7 @@ signal turn_started
 # A var so we know whether it's the player's turn or not
 var player_turn: bool = true
 var turn_timer: float = 0.0
+var turn_count = 0
 
 # Keep track of what level we're on
 var level: Node2D = null
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 			AudioManager.stop_looping("engine")
 			player_turn = true
 			turn_started.emit()
+			turn_count += 1
 		
 func create_interactable(new_object_type, new_origin: Vector2, new_target: Vector2, new_speed: float) -> Node2D:
 	var new_object = new_object_type.instantiate()

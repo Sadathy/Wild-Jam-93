@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/Textures/asteroid_line.png" id="2_nhepu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
-radius = 14.0
+radius = 28.0
 
 [node name="Asteroid" type="Area2D" unique_id=5276601]
-collision_layer = 2
+collision_layer = 6
 script = ExtResource("1_1s34e")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1751337253]
 unique_name_in_owner = true
 z_index = 1
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("1_6buvt")
 
 [node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
@@ -22,7 +22,7 @@ unique_name_in_owner = true
 texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
-width = 28.0
+width = 56.0
 texture = ExtResource("2_nhepu")
 texture_mode = 1
 
