@@ -14,7 +14,7 @@ extends Node
 #							preload("res://Assets/Audio/track_battle.ogg"))
 #
 # Usage:
-#	AudioManager.play(preload("res://Assets/Audio/sfx.ogg:))
+#	AudioManager.play(preload("res://Assets/Audio/sfx.ogg"))
 #	AudioManager.play_looping(preload("res://Assets/Audio/loop.ogg"), "engine")
 #	AudioManager.stop_looping("engine")
 #	AudioManager.set_music(AudioManager.TRACK_BATTLE)
