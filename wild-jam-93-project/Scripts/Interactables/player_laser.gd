@@ -1,7 +1,5 @@
 extends Area2D
 
-@onready var line_warning: Line2D = %LineWarning
-
 var origin_point: Vector2
 var target_point: Vector2
 var speed: float
@@ -18,20 +16,21 @@ func _ready() -> void:
 	min_x = Global.level.min_x
 	max_y = Global.level.max_y
 	min_y = Global.level.min_y
-	origin_point.x = clamp(origin_point.x, min_x, max_x)
-	origin_point.y = clamp(origin_point.y, min_y, max_y)
-	target_point.x = clamp(target_point.x, min_x, max_x)
-	target_point.y = clamp(target_point.y, min_y, max_y)
+	#origin_point.x = clamp(origin_point.x, min_x, max_x)
+	#origin_point.y = clamp(origin_point.y, min_y, max_y)
+	#target_point.x = clamp(target_point.x, min_x, max_x)
+	#target_point.y = clamp(target_point.y, min_y, max_y)
 	
 	position = origin_point
-	line_warning.set_point_position(0, origin_point - position)
-	line_warning.set_point_position(1, target_point - position)
 	
 	# Connect on new turn function
 	Global.turn_started.connect(on_new_turn)
 	
 	# Connect impact function
-	body_entered.connect(on_impact)
+	area_entered.connect(on_impact)
+	
+	#Face where we're going
+	look_at(target_point)
 	
 func _physics_process(delta: float) -> void:
 	# Only process physics for this outside of the player turn
@@ -54,8 +53,6 @@ func on_new_turn() -> void:
 		queue_free()
 
 func on_impact(entering_body) -> void:
-	entering_body.take_damage(damage)
-	queue_free()
-
-func take_damage() -> void:
+	print("Hit asteroid")
+	entering_body.take_damage()
 	queue_free()

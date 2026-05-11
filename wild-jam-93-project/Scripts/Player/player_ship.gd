@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
-@export var DEFAULT_PLOT_COOLDOWN: float = 0.15
+@export var speed: float = 300.0
 @export var DEFAULT_MAX_HP: float = 100
 
 @onready var sprite: Sprite2D = %Sprite
@@ -32,7 +31,7 @@ func _ready() -> void:
 	button_main_menu.pressed.connect(Global.pressed_main_menu)
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
-	rotation = lerpf(rotation, rotation + get_angle_to(t_pos), weight)
+	sprite.rotation = lerpf(sprite.rotation, sprite.rotation + sprite.get_angle_to(t_pos) - (PI*0.5), weight)
 	
 #-----------------------------------#
 #----------DAMAGE HANDLING----------#

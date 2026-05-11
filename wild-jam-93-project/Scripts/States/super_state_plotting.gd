@@ -77,13 +77,13 @@ func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 #--------------------------#
 func on_press_move() -> void:
 	print("Ship fuel at: ", player_ship.fuel)
-	if CONTROLLER.current_state != self or player_ship.fuel <= MIN_PLOT_FUEL:
+	if CONTROLLER.current_state != self or player_ship.fuel < MIN_PLOT_FUEL:
 		return
 	change_state(STATE_MOVE_PLOT)
 	
 func on_press_attack() -> void:
 	print("Ship fuel at: ", player_ship.fuel)
-	if CONTROLLER.current_state != self or player_ship.fuel <= MIN_PLOT_FUEL:
+	if CONTROLLER.current_state != self or player_ship.fuel < MIN_PLOT_FUEL * 3:
 		return
 	change_state(STATE_ATTACK_PLOT)
 	
@@ -96,18 +96,34 @@ func on_press_undo() -> void:
 	if CONTROLLER.current_state != self or order_id < 2:
 		return
 	var order_to_remove = order_id - 1
-	var indicator_to_remove = plotted_orders[order_to_remove]["indicator"]
-	var line_to_remove = plotted_orders[order_to_remove]["line"]
 	var fuel_to_gain = plotted_orders[order_to_remove]["fuel_cost"]
 	
+	# For this order, emove the standard indicators
+	var indicator_to_remove = plotted_orders[order_to_remove]["indicator"]
+	var line_to_remove = plotted_orders[order_to_remove]["line"]
 	indicator_to_remove.queue_free()
 	line_to_remove.queue_free()
+		
+	# If this order was an attack, remove the attack-related indicator
+	if plotted_orders[order_to_remove]["order_string"] == "attack":
+		plotted_orders[order_to_remove]["attack_line"].queue_free()
+	
+	# Give back the fuel cost of this order
 	player_ship.fuel += fuel_to_gain
+	
+	# Remove this order from the queue and go back to plotting this order again
 	plotted_orders.erase(order_to_remove)
 	order_id = order_to_remove
 	
 	if player_ship.fuel > MIN_PLOT_FUEL:
 		bar_fuel.texture_under = TIME_BAR_UNDER
+		
+	# Set our camera back to where it should be
+	# If we have an order, tell the camera to move to the last order's target
+	if order_id != 1:
+		camera.desired_position = (plotted_orders[order_id - 1]["target"] - player_ship.position)
+	else:
+		camera.desired_position = Vector2.ZERO
 		
 func on_press_end_turn() -> void:
 	if CONTROLLER.current_state != self:
@@ -119,4 +135,7 @@ func on_new_turn() -> void:
 	for key in plotted_orders:
 		plotted_orders[key]["indicator"].queue_free()
 		plotted_orders[key]["line"].queue_free()
+		# If this order was an attack, remove the attack-related indicator
+		if plotted_orders[key]["order_string"] == "attack":
+			plotted_orders[key]["attack_line"].queue_free()
 	plotted_orders.clear()

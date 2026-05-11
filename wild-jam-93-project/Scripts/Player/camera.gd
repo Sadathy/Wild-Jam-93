@@ -6,13 +6,17 @@ extends Camera2D
 @export var rate_zoom = 0.6
 
 var zoom_target = 1.0
+var desired_position = position
+var interpolate_time = 0.33
+var interpolate_speed = 0
+var speed_set = false
 
 func _ready() -> void:
 	make_current()
 	limit_left = Global.level.min_x
-	limit_top = Global.level.max_y
+	limit_top = Global.level.min_y
 	limit_right = Global.level.max_x
-	limit_bottom = Global.level.min_y
+	limit_bottom = Global.level.max_y
 
 # Scroll mouse when the wheel is scrolled
 func _process(delta: float ) -> void:
@@ -25,3 +29,14 @@ func _process(delta: float ) -> void:
 	
 	zoom.x = move_toward(zoom.x, zoom_target, rate_zoom * delta)
 	zoom.y = move_toward(zoom.y, zoom_target, rate_zoom * delta)
+	
+	# Interpolate camera towards the target
+	if position != desired_position:
+		if speed_set == false:
+			interpolate_speed = position.distance_to(desired_position) / interpolate_time
+			speed_set = true
+		var dir_normal = abs((desired_position - position).normalized())
+		position.x = move_toward(position.x, desired_position.x, interpolate_speed * delta * dir_normal.x)
+		position.y = move_toward(position.y, desired_position.y, interpolate_speed * delta * dir_normal.y)
+		if position == desired_position:
+			speed_set = false

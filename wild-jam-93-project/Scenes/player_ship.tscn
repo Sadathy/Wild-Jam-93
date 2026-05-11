@@ -21,11 +21,11 @@
 [ext_resource type="Script" uid="uid://cax0eaotk2tky" path="res://Scripts/States/state_noplot.gd" id="15_dpfuu"]
 [ext_resource type="Script" uid="uid://cdn32cf11pdkj" path="res://Scripts/States/super_state_executing.gd" id="16_ykbcd"]
 [ext_resource type="Script" uid="uid://3nk15dyi376c" path="res://Scripts/States/state_dead.gd" id="17_opdlr"]
-[ext_resource type="Script" uid="uid://b3q5e4djg78r3" path="res://Scenes/state_move_plot.gd" id="19_2vuj5"]
+[ext_resource type="Script" uid="uid://b3q5e4djg78r3" path="res://Scripts/States/state_move_plot.gd" id="19_2vuj5"]
 [ext_resource type="Script" uid="uid://c2gt2pln646en" path="res://Scripts/States/state_no_orders.gd" id="19_kcay0"]
-[ext_resource type="Script" uid="uid://pmfulsr2mpri" path="res://Scenes/state_attack_plot.gd" id="20_8ex22"]
-[ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scenes/state_move.gd" id="20_t3c3c"]
-[ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scenes/state_attack.gd" id="21_etcwo"]
+[ext_resource type="Script" uid="uid://pmfulsr2mpri" path="res://Scripts/States/state_attack_plot.gd" id="20_8ex22"]
+[ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scripts/States/state_move.gd" id="20_t3c3c"]
+[ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scripts/States/state_attack.gd" id="21_etcwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
 size = Vector2(117.729126, 67.277176)
@@ -47,6 +47,8 @@ scale = Vector2(0.61157334, 0.5648275)
 shape = SubResource("RectangleShape2D_6s7s7")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
+unique_name_in_owner = true
+limit_enabled = false
 script = ExtResource("3_xljp0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484873603]

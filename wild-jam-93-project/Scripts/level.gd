@@ -1,12 +1,12 @@
 extends Node2D
 
-@export var max_x = 1500
-@export var min_x = -1500
-@export var max_y = 1500
-@export var min_y = -1500
+@export var max_x = 4500
+@export var min_x = -4500
+@export var max_y = 4500
+@export var min_y = -4500
 
-@export var asteroid_spawn_distance = 2200
-@export var asteroid_target_variance = 1500
+@export var asteroid_spawn_distance = 2500
+@export var asteroid_target_variance = 1000
 
 @onready var background: Polygon2D = %Background
 
@@ -40,7 +40,7 @@ func on_new_turn() -> void:
 	# Loop through and generate a bunch of asteroids
 	for i in asteroid_count:
 		var new_speed = 450 #Giving asteroids constant speed for now
-		var new_origin = Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance
+		var new_origin = Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance + player_ship.position
 		var new_target = Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance)) + player_ship.position
 		# Now we map the vector from the origin to the target so we can 'project past' by multiplaying it then transforming by origin position again
 		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin

@@ -1,5 +1,8 @@
 extends State
 
+@onready var camera: Camera2D = %Camera
+@onready var player_ship: CharacterBody2D = $"../../.."
+
 const TIME_BAR_UNDER_OOF = preload("uid://b45e6foxnfm75")
 
 
@@ -19,6 +22,12 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 		CONTROLLER.button_move.disabled = true
 		CONTROLLER.button_attack.disabled = true
 		CONTROLLER.bar_fuel.texture_under = TIME_BAR_UNDER_OOF
+		
+	# If we have an order, tell the camera to move to the last order's target
+	if CONTROLLER.order_id != 1:
+		camera.desired_position = (CONTROLLER.plotted_orders[CONTROLLER.order_id - 1]["target"] - player_ship.position)
+	else:
+		camera.desired_position = Vector2.ZERO
 		
 	
 func on_exit() -> void:

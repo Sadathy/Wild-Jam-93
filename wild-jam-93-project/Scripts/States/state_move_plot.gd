@@ -13,7 +13,7 @@ const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 
 func on_enter(_entry_data: Dictionary = {}) -> void:
 	# Set up interface
-	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	CONTROLLER.button_cancel.disabled = false
 	CONTROLLER.button_cancel.show()
 	CONTROLLER.button_move.disabled = true
@@ -39,6 +39,7 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 	
 
 func on_exit() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if order == {}: player_ship.fuel = fuel_on_enter
 	indicator.queue_free()
 	line.queue_free()

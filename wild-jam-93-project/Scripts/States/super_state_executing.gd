@@ -9,6 +9,7 @@ extends State
 @export var STATE_MOVE: State = null
 
 @onready var order_buttons: VBoxContainer = %OrderButtons
+@onready var camera: Camera2D = %Camera
 
 var STATE_LIBRARY: Dictionary = {}
 
@@ -46,10 +47,14 @@ func on_input(event: InputEvent) -> void:
 func on_enter(entry_data: Dictionary = {}) -> void:
 	plotted_orders = entry_data
 	order_id = 1
+	# Tell camera to track player
+	camera.desired_position = Vector2.ZERO
 	if entry_data != {}:
 		change_state(STATE_LIBRARY[plotted_orders[order_id]["order_string"]], plotted_orders[order_id])
 		return
 	change_state(STATE_NO_ORDERS)
+	
+
 
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 	print("Leaving state: ", current_state)
