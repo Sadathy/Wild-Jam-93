@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dktdn1jg4c0br" path="res://Assets/Textures/enemy_fighter_ship.png" id="2_p7yn3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
-radius = 42.0
-height = 130.0
+radius = 50.0
+height = 140.0
 
 [node name="EnemyShip" type="CharacterBody2D" unique_id=273264536]
 scale = Vector2(1, 0.9910375)
@@ -19,4 +19,6 @@ scale = Vector2(2.357806, 2.357806)
 texture = ExtResource("2_p7yn3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336434755]
+position = Vector2(8.072343, -3.162457e-09)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p7yn3")
