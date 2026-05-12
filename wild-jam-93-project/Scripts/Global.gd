@@ -38,8 +38,9 @@ func _process(delta: float) -> void:
 		if turn_timer <= 0:
 			AudioManager.stop_looping("engine")
 			player_turn = true
-			turn_started.emit()
 			turn_count += 1
+			turn_started.emit()
+
 		
 func create_interactable(new_object_type, new_origin: Vector2, new_target: Vector2, new_speed: float) -> Node2D:
 	var new_object = new_object_type.instantiate()
