@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var HEALTH: float = 100
 @export var MISSILE_SPEED: float = 450
 
-var THREAT_RANGE = MISSILE_SPEED * Global.DEFAULT_TURN_DURATION
+var THREAT_RANGE = (MISSILE_SPEED * Global.DEFAULT_TURN_DURATION) - 200
 
 # Art assets & loadables
 const TARGET_INDICATOR_ART = preload("uid://cqe8li46sh7w2")
@@ -122,6 +122,8 @@ func plot_pursue() -> void:
 	var order_indicator = TARGET_INDICATOR.instantiate()
 	order_indicator.position = order_target
 	order_indicator.label = str(order_id) + ": Move"
+	# FOR NOW TO SEE HOW IT LOOKS
+	order_indicator.label = ""
 	get_tree().get_root().add_child(order_indicator)
 	order_indicator.sprite.texture = TARGET_INDICATOR_ART
 	
@@ -164,6 +166,8 @@ func plot_strafe() -> void:
 	var order_indicator = TARGET_INDICATOR.instantiate()
 	order_indicator.position = order_target
 	order_indicator.label = str(order_id) + ": Move"
+	# FOR NOW TO SEE HOW IT LOOKS
+	order_indicator.label = ""
 	get_tree().get_root().add_child(order_indicator)
 	order_indicator.sprite.texture = TARGET_INDICATOR_ART
 	
@@ -200,6 +204,9 @@ func plot_attack() -> void:
 	# Project a first turn target based on max distance that the projectile will cover on this turn
 	var initial_target = ((desired_target - order_origin).normalized() * (MISSILE_SPEED * (4 - order_id))) + order_origin
 	
+	# Project an origin point for this projectile slightly further out for art/clarity
+	var attack_origin = ((desired_target - order_origin).normalized() * 100) + order_origin
+	
 	# Project a true target some excessive distance in that direction
 	var order_target = (desired_target - order_origin).normalized() * 10000 + order_origin
 	
@@ -209,10 +216,12 @@ func plot_attack() -> void:
 	order_indicator.label = str(order_id) + ": Shoot"
 	get_tree().get_root().add_child(order_indicator)
 	order_indicator.sprite.texture = TARGET_INDICATOR_ART
+	# FOR NOW TO SEE HOW IT LOOKS
+	order_indicator.hide()
 	
 	# Create lines for this order
 	var order_line = TARGET_LINE.instantiate()
-	order_line.set_point_position(0, order_origin)
+	order_line.set_point_position(0, attack_origin)
 	order_line.set_point_position(1, initial_target)
 	get_tree().get_root().add_child(order_line)
 	order_line.texture = SHOOT_LINE_ART
@@ -221,7 +230,7 @@ func plot_attack() -> void:
 	# Save everything under the current order_id in the orders dictionary
 	orders[order_id] = {
 		"order_string": "attack",
-		"origin": order_origin,
+		"origin": attack_origin,
 		"target": order_origin,
 		"indicator": order_indicator,
 		"line": order_line,

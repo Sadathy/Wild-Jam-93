@@ -125,8 +125,8 @@ func on_press_undo() -> void:
 	else:
 		camera.desired_position = Vector2.ZERO
 	
-	CONTROLLER.button_move.disabled = false
-	CONTROLLER.button_attack.disabled = false
+	button_move.disabled = false
+	button_attack.disabled = false
 		
 func on_press_end_turn() -> void:
 	if CONTROLLER.current_state != self:
