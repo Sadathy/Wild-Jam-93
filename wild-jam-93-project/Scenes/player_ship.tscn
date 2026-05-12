@@ -77,7 +77,10 @@ position = Vector2(0.99999857, 3.5762787e-07)
 scale = Vector2(0.61157334, 0.5648275)
 shape = SubResource("RectangleShape2D_6s7s7")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1087476652]
+[node name="CameraPanner" type="Node2D" parent="." unique_id=2015528912]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera2D" parent="CameraPanner" unique_id=1087476652]
 unique_name_in_owner = true
 limit_enabled = false
 script = ExtResource("3_xljp0")

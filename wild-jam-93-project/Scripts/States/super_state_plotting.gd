@@ -20,7 +20,8 @@ const TIME_BAR_UNDER = preload("uid://prktvu2e1n0g")
 @onready var label_orders: Label = %LabelOrders
 @onready var order_buttons: VBoxContainer = %OrderButtons
 @onready var bar_fuel: TextureProgressBar = %BarFuel
-@onready var camera: Camera2D = $"../../Camera"
+@onready var camera: Camera2D = %Camera
+
 
 
 var current_state: State = null
