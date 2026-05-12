@@ -1,0 +1,98 @@
+extends Node
+
+# USAGE ---
+# This order will spend some amount of time moving at some speed roughly towards the location of the pursuit target
+# The pursuit target should be set during the controlled body's on_ready action, otherwise it will default to the player_ship
+# ARE YOU REUISNG THIS ORDER FOR A NEW CHARACTER? Great! That's intended, configure it in the -editor- using the export vars.
+# --- If you change this code, you change the instructions for ALL CHARACTERS that use this order type
+
+@export var min_offset: float = 100
+@export var max_offset: float = 350
+@export var speed: float = 600
+
+var controller: Node
+var character: CharacterBody2D = null
+var target = null
+var order_data = {}
+
+const ORDER_DURATION: float = 0.95
+var execution_time: float = 0
+var just_started: bool = true
+
+const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")
+const TARGET_LINE = preload("uid://c68eu6qksr8n5")
+
+const TARGET_INDICATOR_ART = preload("uid://cqe8li46sh7w2")
+const TARGET_LINE_ART = preload("uid://b2k88n4s7ghoj")
+
+
+func _ready() -> void:
+	if target == null: target = Global.level.player_ship
+
+# Plot an instance of this order, saved to the controller's current order_id
+func plot_order() -> void:
+	var order_id = controller.plotting_order_id
+	
+	# Find where we're actually going
+	var order_origin = controller.get_order_finish(order_id - 1)
+	var order_target = target.position + (Vector2.from_angle(randf() * 2 * PI) * randf_range(min_offset, max_offset))
+	var order_finish = ((order_target - order_origin).normalized() * speed * ORDER_DURATION) + order_origin
+	
+	# Create an indicator for where we're going
+	var order_indicator = TARGET_INDICATOR.instantiate()
+	order_indicator.label = ""
+	order_indicator.position = order_finish
+	Global.level.add_child(order_indicator)
+	order_indicator.sprite.texture = TARGET_INDICATOR_ART
+	
+	# Create a line for where we're going
+	var order_line = TARGET_LINE.instantiate()
+	order_line.set_point_position(0, order_origin)
+	order_line.set_point_position(1, order_finish)
+	Global.level.add_child(order_line)
+	order_line.texture = TARGET_LINE_ART
+	
+	# Save data we need for executing this order
+	order_data[order_id] = {
+		"origin": order_origin,
+		"finish": order_finish,
+		"indicator": order_indicator,
+		"line": order_line
+	}
+
+# Executes one physics frame of this order type, based on the contollers current order_id, returns true if the order is complete.+
+func execute_order(delta: float) -> bool:
+	# If we just entered this order, start our timer for leaving
+	if just_started == true:
+		just_started = false
+		execution_time = ORDER_DURATION
+	
+	# Move and face towards the finish point
+	var order_id = controller.executing_order_id
+	var order_finish = order_data[order_id]["finish"]
+	var move_dir = abs(order_finish - character.position).normalized()
+	
+	character.rotation = lerp_angle(character.rotation, character.position.angle_to_point(order_finish), 3 * PI * delta)
+	
+	character.position = character.position.move_toward(order_finish, speed * delta)
+	
+	# Update the position of the order line
+	order_data[order_id]["line"].set_point_position(0, character.position)
+	
+	# Check if this order is now finished
+	execution_time -= delta
+	if execution_time <= 0:
+		order_data[order_id]["indicator"].hide()
+		order_data[order_id]["line"].hide()
+		just_started = true
+		return true
+		
+	return false
+
+# Clean up this order's indicators and tidy up anything else it needs to
+func clear_orders() -> void:
+	for key in order_data:
+		order_data[key]["indicator"].queue_free()
+		order_data[key]["line"].queue_free()
+	order_data.clear()
+	just_started = true

@@ -33,10 +33,7 @@ func _process(delta: float ) -> void:
 	zoom.y = move_toward(zoom.y, zoom_target, rate_zoom * delta)
 	
 	# Pan camera desired position towrds the edges
-	if Global.player_turn == true:
-		camera_panner.position = (get_local_mouse_position() * camera_panning_amount) + (camera_panner.position * (1-camera_panning_amount))
-	else:
-		camera_panner.position = camera_panner.position.move_toward(Vector2.ZERO, camera_panning_amount)
+	camera_panner.position = (get_local_mouse_position() * camera_panning_amount) + (camera_panner.position * (1-camera_panning_amount))
 	
 	# Interpolate camera towards the target
 	if position != desired_position:

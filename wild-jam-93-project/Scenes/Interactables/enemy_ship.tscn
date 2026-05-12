@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://blkbyqjc7i3wl" path="res://Scripts/Interactables/enemy_ship.gd" id="1_p7yn3"]
 [ext_resource type="Texture2D" uid="uid://dktdn1jg4c0br" path="res://Assets/Textures/enemy_fighter_ship.png" id="2_p7yn3"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_8gkss"]
+[ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="4_271r2"]
+[ext_resource type="Script" uid="uid://dlqqh3ydsdlda" path="res://Scripts/Order Machine/order_strafe.gd" id="5_1gcn8"]
+[ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="6_yi3le"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
 radius = 50.0
@@ -22,3 +26,17 @@ texture = ExtResource("2_p7yn3")
 position = Vector2(8.072343, -3.162457e-09)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p7yn3")
+
+[node name="OrderMachine" type="Node" parent="." unique_id=1360759756 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("3_8gkss")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderPursue" type="Node" parent="OrderMachine" unique_id=123153748]
+script = ExtResource("4_271r2")
+
+[node name="OrderShoot" type="Node" parent="OrderMachine" unique_id=1036955696]
+script = ExtResource("6_yi3le")
+
+[node name="OrderStrafe" type="Node" parent="OrderMachine" unique_id=882880178]
+script = ExtResource("5_1gcn8")
