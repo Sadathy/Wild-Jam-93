@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c5tua1ysemdkj"]
+
+[ext_resource type="Script" uid="uid://d32tcubmelg2c" path="res://Scripts/Interactables/freighter_turret.gd" id="1_8qpst"]
+[ext_resource type="Texture2D" uid="uid://dyt2p6gkvkp83" path="res://Assets/Textures/turret.png" id="1_r0kxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qpst"]
+size = Vector2(30, 28)
+
+[node name="Turret" type="StaticBody2D" unique_id=615665979]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_8qpst")
+
+[node name="SpriteSwivel" type="Node2D" parent="." unique_id=651692062]
+
+[node name="Turret" type="Sprite2D" parent="SpriteSwivel" unique_id=831865374]
+position = Vector2(9, 0)
+rotation = 1.5707964
+texture = ExtResource("1_r0kxt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837868867]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_8qpst")

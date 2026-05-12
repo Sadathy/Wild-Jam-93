@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cnkybbkco0ryw"]
+
+[ext_resource type="Texture2D" uid="uid://buyfq6rldp1n1" path="res://Assets/Textures/freighter.png" id="1_gctp1"]
+[ext_resource type="Script" uid="uid://c21kjj8pukmd1" path="res://Scripts/Interactables/enemy_freighter.gd" id="1_icclw"]
+[ext_resource type="PackedScene" uid="uid://c5tua1ysemdkj" path="res://Scenes/Interactables/turret.tscn" id="2_426ko"]
+
+[node name="EnemyFreighter" type="Node2D" unique_id=1069898650]
+script = ExtResource("1_icclw")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=447935711]
+rotation = 1.5707964
+scale = Vector2(2.7092817, 2.7092817)
+texture = ExtResource("1_gctp1")
+
+[node name="Turret" parent="Sprite" unique_id=2039279366 instance=ExtResource("2_426ko")]
+position = Vector2(0, -20.002306)
+scale = Vector2(0.46635705, 0.46635705)
+
+[node name="Turret3" parent="Sprite" unique_id=1186115463 instance=ExtResource("2_426ko")]
+position = Vector2(-48.005527, 35.337402)
+scale = Vector2(0.46635705, 0.46635705)
+
+[node name="Turret4" parent="Sprite" unique_id=916761307 instance=ExtResource("2_426ko")]
+position = Vector2(50.00576, 35.337406)
+scale = Vector2(0.46635705, 0.46635705)
+
+[node name="Turret5" parent="Sprite" unique_id=233087944 instance=ExtResource("2_426ko")]
+position = Vector2(0, -46.672047)
+scale = Vector2(0.46883225, 0.46883225)
+
+[node name="Turret2" parent="Sprite" unique_id=1050862868 instance=ExtResource("2_426ko")]
+position = Vector2(0, 8.000922)
+scale = Vector2(0.5113695, 0.5113695)
