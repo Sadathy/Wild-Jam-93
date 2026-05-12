@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Nova_AMBIENT_temp.ogg-a032e95afe37c6edd5cd126
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

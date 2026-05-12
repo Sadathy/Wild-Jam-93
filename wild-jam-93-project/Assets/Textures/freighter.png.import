@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c04sklfqs4ssi"
-path="res://.godot/imported/enemy_ship.png-53d0051c6426542a1f4340ab55544324.ctex"
+uid="uid://buyfq6rldp1n1"
+path="res://.godot/imported/freighter.png-fc53327f79092a2457fcab3702c4bb92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/enemy_ship.png"
-dest_files=["res://.godot/imported/enemy_ship.png-53d0051c6426542a1f4340ab55544324.ctex"]
+source_file="res://Assets/Textures/freighter.png"
+dest_files=["res://.godot/imported/freighter.png-fc53327f79092a2457fcab3702c4bb92.ctex"]
 
 [params]
 

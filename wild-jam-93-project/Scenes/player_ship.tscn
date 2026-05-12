@@ -42,6 +42,36 @@ rotation = -1.5707964
 scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("2_6s7s7")
 
+[node name="Shadows" type="Node2D" parent="Sprite" unique_id=1977834336]
+rotation = 1.5707964
+scale = Vector2(1.4320662, 1.4320662)
+script = ExtResource("3_n4oq7")
+lighting_angle_offset = 45
+
+[node name="LitFromBack" type="Sprite2D" parent="Sprite/Shadows" unique_id=1941087890]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("4_0gljw")
+
+[node name="LitFromFront" type="Sprite2D" parent="Sprite/Shadows" unique_id=12139891]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("5_xljp0")
+
+[node name="LitFromLeft" type="Sprite2D" parent="Sprite/Shadows" unique_id=961777531]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("6_wfgbg")
+
+[node name="LitFromRight" type="Sprite2D" parent="Sprite/Shadows" unique_id=1921144366]
+unique_name_in_owner = true
+rotation = -1.5707964
+scale = Vector2(0.6982917, 0.6982917)
+texture = ExtResource("7_o3pyb")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966913274]
 position = Vector2(0.99999857, 3.5762787e-07)
 scale = Vector2(0.61157334, 0.5648275)
@@ -206,34 +236,6 @@ fill_mode = 3
 texture_under = ExtResource("8_05dn2")
 texture_over = ExtResource("9_awjoh")
 texture_progress = ExtResource("10_2vuj5")
-
-[node name="Shadows" type="Node2D" parent="." unique_id=1977834336]
-script = ExtResource("3_n4oq7")
-lighting_angle_offset = 45
-
-[node name="LitFromBack" type="Sprite2D" parent="Shadows" unique_id=1941087890]
-unique_name_in_owner = true
-rotation = -1.5707964
-scale = Vector2(0.6982917, 0.6982917)
-texture = ExtResource("4_0gljw")
-
-[node name="LitFromFront" type="Sprite2D" parent="Shadows" unique_id=12139891]
-unique_name_in_owner = true
-rotation = -1.5707964
-scale = Vector2(0.6982917, 0.6982917)
-texture = ExtResource("5_xljp0")
-
-[node name="LitFromLeft" type="Sprite2D" parent="Shadows" unique_id=961777531]
-unique_name_in_owner = true
-rotation = -1.5707964
-scale = Vector2(0.6982917, 0.6982917)
-texture = ExtResource("6_wfgbg")
-
-[node name="LitFromRight" type="Sprite2D" parent="Shadows" unique_id=1921144366]
-unique_name_in_owner = true
-rotation = -1.5707964
-scale = Vector2(0.6982917, 0.6982917)
-texture = ExtResource("7_o3pyb")
 
 [node name="SuperStateController" type="Node2D" parent="." unique_id=1236676132 node_paths=PackedStringArray("DEFAULT_STATE")]
 script = ExtResource("13_q2j26")
