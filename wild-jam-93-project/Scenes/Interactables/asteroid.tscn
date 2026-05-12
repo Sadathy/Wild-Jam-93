@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctc7rs0xwmvya"]
 
 [ext_resource type="Script" uid="uid://bcsvlnb2jbk7y" path="res://Scripts/Interactables/asteroid.gd" id="1_1s34e"]
-[ext_resource type="Texture2D" uid="uid://b1yx5523ydvba" path="res://Assets/Textures/asteroid.png" id="1_6buvt"]
+[ext_resource type="Texture2D" uid="uid://cr6jlwc7d7bvq" path="res://Assets/Textures/asteroid_little.png" id="2_1s34e"]
 [ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/Textures/asteroid_line.png" id="2_nhepu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
@@ -14,8 +14,8 @@ script = ExtResource("1_1s34e")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1751337253]
 unique_name_in_owner = true
 z_index = 1
-scale = Vector2(4, 4)
-texture = ExtResource("1_6buvt")
+scale = Vector2(1.8359754, 1.8359754)
+texture = ExtResource("2_1s34e")
 
 [node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
 unique_name_in_owner = true
