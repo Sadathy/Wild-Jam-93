@@ -4,6 +4,7 @@ extends Camera2D
 @export var min_zoom = 0.5
 @export var inc_zoom = 0.3
 @export var rate_zoom = 0.6
+@export var camera_panning_amount = 0.05
 
 var zoom_target = 1.0
 var desired_position = position
@@ -40,3 +41,5 @@ func _process(delta: float ) -> void:
 		position.y = move_toward(position.y, desired_position.y, interpolate_speed * delta * dir_normal.y)
 		if position == desired_position:
 			speed_set = false
+	
+	position = (get_local_mouse_position() * camera_panning_amount) + (desired_position * (1-camera_panning_amount))
