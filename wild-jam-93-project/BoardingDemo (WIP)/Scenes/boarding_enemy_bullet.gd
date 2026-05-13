@@ -7,6 +7,8 @@ var lifespan : int = 1000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if not player.moving:
+		return
 	if lifespan >= 990:
 		movement_vector = (player.global_position - global_position).normalized()
 	global_position += movement_vector * 4

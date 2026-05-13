@@ -10,6 +10,8 @@ const bullet_scene : PackedScene = preload("../Scenes/boarding_enemy_bullet.tscn
 var timer : int = 100
 
 func _physics_process(delta: float) -> void:
+	if not player.moving:
+		return
 	velocity.x = move_toward(0, global_position.x - player.global_position.x, -80)
 	velocity.y = move_toward(0, global_position.y - player.global_position.y, -80)
 	timer -= 1
