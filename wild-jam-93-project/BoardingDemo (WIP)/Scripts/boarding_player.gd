@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var money_label : Label = $Camera2D/MoneyLabel
 @onready var health_label : Label = $Camera2D/HealthLabel
+@onready var sprite : Sprite2D = $Sprite2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -10,6 +11,11 @@ var money : int = 0
 var health : int = 10
 
 var moving : bool = false
+
+var sprite_timer : int = 0
+var sprite_timer_interval : int = 10
+var sprite_state : bool = false
+var leg_flag : bool = false
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
@@ -32,6 +38,50 @@ func _physics_process(delta: float) -> void:
 		moving = true
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
+	
+	if moving:
+		sprite_timer += 1
+	
+	if sprite_timer > sprite_timer_interval:
+		sprite_timer = 0
+		sprite_state = not sprite_state
+		
+		if ud_direction < 0:
+			if sprite_state:
+				sprite.frame = 7
+			else:
+				sprite.frame = 6
+		elif ud_direction > 0:
+			if sprite_state:
+				sprite.frame = 5
+			else:
+				sprite.frame = 4
+		elif lr_direction < 0:
+			sprite.scale.x = -1.594
+			if sprite_state:
+				if leg_flag:
+					sprite.frame = 1
+				else:
+					sprite.frame = 2
+				leg_flag = not leg_flag
+			else:
+				sprite.frame = 3
+		elif lr_direction > 0:
+			sprite.scale.x = 1.594
+			if sprite_state:
+				if leg_flag:
+					sprite.frame = 1
+				else:
+					sprite.frame = 2
+				leg_flag = not leg_flag
+			else:
+				sprite.frame = 3
+	if lr_direction == 0 and ud_direction == 0:
+		sprite.frame = 0
+		
+	print(lr_direction)
+		
+		
 	
 	velocity = velocity.normalized() * SPEED
 	
