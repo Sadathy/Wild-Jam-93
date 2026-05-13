@@ -1,16 +1,16 @@
 extends Node
 
 # USAGE ---
-# This order will cause the character to strafe perpendicular to its target's position
-# The strafe target should be set during the controlled body's on_ready action, otherwise it will default to the player_ship
+# This order will simply cause the controlled character to drift in some set direction
+# If the direciton is not set, it is randomly assigned when this order loads
 # ARE YOU REUISNG THIS ORDER FOR A NEW CHARACTER? Great! That's intended, configure it in the -editor- using the export vars.
 # --- If you change this code, you change the instructions for ALL CHARACTERS that use this order type
 
-@export var speed: float = 400
+@export var speed: float = 200
 
 var controller: Node
 var character: CharacterBody2D = null
-var target = null
+var direction = null
 var order_data = {}
 
 const ORDER_DURATION: float = 0.95
@@ -25,7 +25,7 @@ const TARGET_LINE_ART = preload("res://Assets/Textures/target_line_move.png")
 
 
 func _ready() -> void:
-	if target == null: target = Global.level.player_ship
+	if direction == null: direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
 
 # Plot an instance of this order, saved to the controller's current order_id
 func plot_order() -> void:
@@ -33,8 +33,7 @@ func plot_order() -> void:
 	
 	# Find where we're actually going
 	var order_origin = controller.get_order_finish(order_id - 1)
-	var strafe_angle = order_origin.angle_to_point(character.position) + (0.5*PI)
-	var order_finish = (Vector2.from_angle(strafe_angle) * speed * ORDER_DURATION) + order_origin
+	var order_finish = order_origin + (direction * speed * ORDER_DURATION)
 	
 	# Create an indicator for where we're going
 	var order_indicator = TARGET_INDICATOR.instantiate()
@@ -68,11 +67,9 @@ func execute_order(delta: float) -> bool:
 	# Move and face towards the finish point
 	var order_id = controller.executing_order_id
 	var order_finish = order_data[order_id]["finish"]
-	var move_dir = abs(order_finish - character.position).normalized()
-	
-	character.sprite.rotation = lerp_angle(character.sprite.rotation, character.position.angle_to_point(target.position), 3 * PI * delta)
-	
 	character.position = character.position.move_toward(order_finish, speed * delta)
+	
+	character.sprite.rotation = lerp_angle(character.sprite.rotation, direction.angle(), 0.3)
 	
 	# Update the position of the order line
 	order_data[order_id]["line"].set_point_position(0, character.position)

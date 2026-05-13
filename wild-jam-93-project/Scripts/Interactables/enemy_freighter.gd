@@ -1,36 +1,25 @@
-extends Node2D
+extends CharacterBody2D
 
-#var order_id: int = -1
+@export var HEALTH: float = 200
 
-@onready var travel_direction_vector = Vector2.ZERO#Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-@onready var SPEED = 1
-@onready var time_to_jump : int = randi_range(1500, 3000)
-
-var jump_timer : int = 0
-
+@onready var sprite: Node2D = %Sprite
+@onready var order_machine: Node = %OrderMachine
+@onready var order_drift: Node = $OrderMachine/OrderDrift
 
 var player_ship: CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	look_at(global_position + travel_direction_vector)
+	player_ship = Global.level.player_ship
+	order_machine.ready_for_orders.connect(plot_orders)
+	order_drift.direction = (Vector2.ZERO - global_position).normalized()
+	
+func plot_orders() -> void:
+	# Drift three times
+	for i in 3:
+		order_machine.plot_order("OrderDrift")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	if player_ship == null:
-		player_ship = Global.level.player_ship
-		if player_ship != null:
-			travel_direction_vector = (player_ship.global_position - global_position).normalized()
-			look_at(global_position + travel_direction_vector)
-	# Execute orders, if we have them and if it's the processing turn
-	if Global.player_turn == true:# or order_id == -1:
+func take_damage(incoming_damage: float) -> void:
+	if incoming_damage >= HEALTH:
+		queue_free()
 		return
-	global_position = global_position.move_toward(global_position + (travel_direction_vector * SPEED), SPEED) 
-	jump_timer += 1
-	print(jump_timer)
-	if jump_timer > time_to_jump:
-		SPEED *= 1.1
-		if jump_timer > time_to_jump + 300:
-			queue_free()
-		
+	HEALTH -= incoming_damage

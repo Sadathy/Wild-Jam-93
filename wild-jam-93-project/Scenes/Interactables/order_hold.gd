@@ -7,6 +7,7 @@ extends Node
 # --- If you change this code, you change the instructions for ALL CHARACTERS that use this order type
 
 var controller: Node
+var controller_parent: Node
 var character: CharacterBody2D = null
 var target = null
 var order_data = {}
@@ -42,7 +43,7 @@ func execute_order(delta: float) -> bool:
 	# Move face towards the target point
 	var order_id = controller.executing_order_id
 	
-	character.rotation = lerp_angle(character.rotation, character.position.angle_to_point(target.position), 3 * PI * delta)
+	character.sprite.rotation = lerp_angle(character.sprite.rotation, character.global_position.angle_to_point(target.global_position), 0.3)
 		
 	# Check if this order is now finished
 	execution_time -= delta
@@ -56,3 +57,7 @@ func execute_order(delta: float) -> bool:
 func clear_orders() -> void:
 	order_data.clear()
 	just_started = true
+	
+# Whatever this needs to do every frame that orders are executing
+func live_update() -> void:
+	return

@@ -43,31 +43,30 @@ func plot_order() -> void:
 	# Find where we're trying to shoot
 	var order_origin = controller.get_order_finish(order_id - 1)
 	var order_finish = order_origin
-	var order_target = target.position + (Vector2.from_angle(randf() * 2 * PI) * randf_range(min_offset, max_offset))
-	var shoot_dir = (order_target - order_origin).normalized()
-	order_target = (shoot_dir * 10000) + order_origin
+	var order_target = target.global_position + (Vector2.from_angle(randf() * 2 * PI) * randf_range(min_offset, max_offset))
+	var shoot_dir = (order_target - character.global_position).normalized()
 	var indicator_start_pos = (shoot_dir * 100) + order_origin
-	var indicator_finish_pos = (shoot_dir * ((projectile_speed * ORDER_DURATION) + 100))+ order_origin
+	var indicator_finish_pos = (shoot_dir * (((projectile_speed * ORDER_DURATION * (4 - (order_id * ORDER_DURATION))) + 100))) + order_origin
 	
 	# Create an indicator for where we're going
 	var order_indicator = TARGET_INDICATOR.instantiate()
 	order_indicator.label = ""
 	order_indicator.position = indicator_start_pos
-	Global.level.add_child(order_indicator)
+	character.add_sibling(order_indicator)
 	order_indicator.sprite.texture = TARGET_INDICATOR_ART
 	
 	# Create a line for where we're going
 	var order_line = TARGET_LINE.instantiate()
 	order_line.set_point_position(0, order_origin)
 	order_line.set_point_position(1, indicator_start_pos)
-	Global.level.add_child(order_line)
+	character.add_sibling(order_line)
 	order_line.texture = TARGET_LINE_ART
 	
 	# Create a shootline for our projectile
 	var shoot_line = SHOOT_LINE.instantiate()
 	shoot_line.set_point_position(0, indicator_start_pos)
 	shoot_line.set_point_position(1, indicator_finish_pos)
-	Global.level.add_child(shoot_line)
+	character.add_sibling(shoot_line)
 	shoot_line.texture = SHOOT_LINE_ART
 	
 	# Save data we need for executing this order
@@ -77,8 +76,7 @@ func plot_order() -> void:
 		"indicator": order_indicator,
 		"line": order_line,
 		"shoot_line": shoot_line,
-		"attack_start": indicator_start_pos,
-		"attack_end": order_target
+		"shoot_dir": shoot_dir,
 	}
 
 # Executes one physics frame of this order type, based on the contollers current order_id, returns true if the order is complete.+
@@ -90,16 +88,16 @@ func execute_order(delta: float) -> bool:
 	
 	# Move face towards the target point
 	var order_id = controller.executing_order_id
-	var attack_start = order_data[order_id]["attack_start"]
+	var shoot_dir = order_data[order_id]["shoot_dir"]
 	
-	character.rotation = lerp_angle(character.rotation, character.position.angle_to_point(attack_start), 3 * PI * delta)
+	character.sprite.rotation = lerp_angle(character.sprite.rotation, shoot_dir.angle(), 0.5)
 	
 	# Check if it's now time to fire a shot
 	shoot_time -= delta
 	if shoot_time <= 0:
 		shoot_time += SHOOT_TIMER
-		var attack_end = order_data[order_id]["attack_end"]
-		var new_laser = Global.create_interactable(ENEMY_LASER, attack_start, attack_end, projectile_speed)
+		var true_origin = character.global_position
+		var new_laser = Global.create_interactable(ENEMY_LASER, true_origin + (100 * shoot_dir), true_origin + (10000 * shoot_dir), projectile_speed)
 		Global.level.add_child(new_laser)
 		
 	# Check if this order is now finished

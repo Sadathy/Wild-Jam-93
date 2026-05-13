@@ -50,26 +50,19 @@ func on_new_turn() -> void:
 			add_child(new_asteroid)
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy_ships").size()
-	var freighter_count = get_tree().get_nodes_in_group("freighters").size()
 	# Roll to generate an enemy ship, based on difficulty
 	if randi_range(-1, int(Global.difficulty)) > 1 and enemy_count < Global.difficulty:
 		# Create a new enemy ship
-		var new_enemy
-		# Make sure there is always a freighter
-		if freighter_count <= 0:
-			new_enemy = FREIGHTER.instantiate()
-			new_enemy.add_to_group("freighters")
-		else:
-			new_enemy = ENEMY_SHIP.instantiate()
+		var new_enemy = ENEMY_SHIP.instantiate()
 		new_enemy.position.x = randf_range(min_x, max_x)
 		new_enemy.position.y = randf_range(min_y, max_y)
 		# Make sure we spawn at one extreme edge atleast:
 		new_enemy.position = force_to_edge(new_enemy.position)
 		add_child(new_enemy)
 		new_enemy.add_to_group("enemy_ships")
-	if Global.turn_count == 1 and enemy_count < Global.difficulty:
+	if Global.turn_count == 1:
 		# Create a new enemy ship
-		var new_enemy = ENEMY_SHIP.instantiate()
+		var new_enemy = FREIGHTER.instantiate()
 		new_enemy.position.x = randf_range(min_x, max_x)
 		new_enemy.position.y = randf_range(min_y, max_y)
 		new_enemy.position = force_to_edge(new_enemy.position)

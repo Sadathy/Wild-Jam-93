@@ -22,8 +22,8 @@ var just_started: bool = true
 const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")
 const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 
-const TARGET_INDICATOR_ART = preload("uid://cqe8li46sh7w2")
-const TARGET_LINE_ART = preload("uid://b2k88n4s7ghoj")
+const TARGET_INDICATOR_ART = preload("res://Assets/Textures/target_indicator_move.png")
+const TARGET_LINE_ART = preload("res://Assets/Textures/target_line_move.png")
 
 
 func _ready() -> void:
@@ -42,14 +42,14 @@ func plot_order() -> void:
 	var order_indicator = TARGET_INDICATOR.instantiate()
 	order_indicator.label = ""
 	order_indicator.position = order_finish
-	Global.level.add_child(order_indicator)
+	character.add_sibling(order_indicator)
 	order_indicator.sprite.texture = TARGET_INDICATOR_ART
 	
 	# Create a line for where we're going
 	var order_line = TARGET_LINE.instantiate()
 	order_line.set_point_position(0, order_origin)
 	order_line.set_point_position(1, order_finish)
-	Global.level.add_child(order_line)
+	character.add_sibling(order_line)
 	order_line.texture = TARGET_LINE_ART
 	
 	# Save data we need for executing this order
@@ -72,7 +72,7 @@ func execute_order(delta: float) -> bool:
 	var order_finish = order_data[order_id]["finish"]
 	var move_dir = abs(order_finish - character.position).normalized()
 	
-	character.rotation = lerp_angle(character.rotation, character.position.angle_to_point(order_finish), 3 * PI * delta)
+	character.sprite.rotation = lerp_angle(character.sprite.rotation, character.position.angle_to_point(order_finish), 3 * PI * delta)
 	
 	character.position = character.position.move_toward(order_finish, speed * delta)
 	
@@ -96,3 +96,7 @@ func clear_orders() -> void:
 		order_data[key]["line"].queue_free()
 	order_data.clear()
 	just_started = true
+
+# Whatever this needs to do every frame that orders are executing
+func live_update() -> void:
+	return
