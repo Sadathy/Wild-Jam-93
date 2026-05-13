@@ -2,22 +2,35 @@
 
 [ext_resource type="Script" uid="uid://d32tcubmelg2c" path="res://Scripts/Interactables/freighter_turret.gd" id="1_8qpst"]
 [ext_resource type="Texture2D" uid="uid://dyt2p6gkvkp83" path="res://Assets/Textures/turret.png" id="1_r0kxt"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_ca1i7"]
+[ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scenes/Interactables/order_hold.gd" id="5_6rth4"]
+[ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="5_rehgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qpst"]
 size = Vector2(30, 28)
 
-[node name="Turret" type="StaticBody2D" unique_id=615665979]
+[node name="Turret" type="CharacterBody2D" unique_id=2082558995]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_8qpst")
 
-[node name="SpriteSwivel" type="Node2D" parent="." unique_id=651692062]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837868867]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_8qpst")
 
-[node name="Turret" type="Sprite2D" parent="SpriteSwivel" unique_id=831865374]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=831865374]
+unique_name_in_owner = true
 position = Vector2(9, 0)
 rotation = 1.5707964
 texture = ExtResource("1_r0kxt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837868867]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_8qpst")
+[node name="OrderMachine" type="Node" parent="." unique_id=246429154 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("3_ca1i7")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderShoot" type="Node" parent="OrderMachine" unique_id=677625431]
+script = ExtResource("5_rehgw")
+
+[node name="OrderHold" type="Node" parent="OrderMachine" unique_id=1400116476]
+script = ExtResource("5_6rth4")

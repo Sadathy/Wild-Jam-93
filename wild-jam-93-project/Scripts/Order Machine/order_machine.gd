@@ -69,5 +69,8 @@ func get_order_finish(order_id: int) -> Vector2:
 	if orders.has(order_id):
 		return order_register[orders[order_id]].order_data[order_id]["finish"]
 	else:
-		return CONTROLLED_BODY.position
+		return CONTROLLED_BODY.global_position
+	
+func _exit_tree() -> void:
+	clear_orders()
 	
