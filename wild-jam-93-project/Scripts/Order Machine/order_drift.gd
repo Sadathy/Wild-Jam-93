@@ -6,7 +6,7 @@ extends Node
 # ARE YOU REUISNG THIS ORDER FOR A NEW CHARACTER? Great! That's intended, configure it in the -editor- using the export vars.
 # --- If you change this code, you change the instructions for ALL CHARACTERS that use this order type
 
-@export var speed: float = 200
+@export var speed: float = 100
 
 var controller: Node
 var character: CharacterBody2D = null

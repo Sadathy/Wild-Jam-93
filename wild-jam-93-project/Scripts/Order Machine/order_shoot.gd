@@ -8,7 +8,7 @@ extends Node
 
 @export var min_offset: float = 20
 @export var max_offset: float = 320
-@export var projectile_speed: float = 900
+@export var projectile_speed: float = 450
 
 var controller: Node
 var character: CharacterBody2D = null

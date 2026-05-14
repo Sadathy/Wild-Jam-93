@@ -22,6 +22,9 @@ func on_enter(entry_data: Dictionary = {}) -> void:
 	if entry_data.has("dead"):
 		current_state = STATE_DEAD
 	current_state.on_enter(entry_data)
+	
+func on_exit():
+	current_state.on_exit()
 
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 	print("Leaving state: ", current_state)

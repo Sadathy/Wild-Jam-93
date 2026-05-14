@@ -54,7 +54,8 @@ func on_enter(entry_data: Dictionary = {}) -> void:
 		return
 	change_state(STATE_NO_ORDERS)
 	
-
+func on_exit():
+	current_state.on_exit()
 
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 	print("Leaving state: ", current_state)

@@ -64,6 +64,7 @@ func on_exit() -> void:
 	button_attack.disabled = true
 	button_cancel.disabled = true
 	button_undo.disabled = true
+	current_state.on_exit()
 	
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 	print("Leaving state: ", current_state)

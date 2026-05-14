@@ -14,7 +14,7 @@ const SHIP = preload("res://Scenes/player_ship.tscn")
 const ASTEROID = preload("res://Scenes/Interactables/asteroid.tscn")
 const ENEMY_SHIP = preload("res://Scenes/Interactables/enemy_ship.tscn")
 const FREIGHTER = preload("res://Scenes/Interactables/enemy_freighter.tscn")
-
+const SPINNER = preload("res://Scenes/Interactables/spinner.tscn")
 var player_ship: Node2D = null
 
 func _ready() -> void:
@@ -67,7 +67,15 @@ func on_new_turn() -> void:
 		new_enemy.position.y = randf_range(min_y, max_y)
 		new_enemy.position = force_to_edge(new_enemy.position)
 		add_child(new_enemy)
-		new_enemy.add_to_group("enemy_ships")
+		new_enemy.add_to_group("freighters")
+	# Also make a spinner
+	var new_spinner = SPINNER.instantiate()
+	new_spinner.position.x = randf_range(min_x, max_x)
+	new_spinner.position.y = randf_range(min_y, max_y)
+	# Make sure we spawn at one extreme edge atleast:
+	new_spinner.position = force_to_edge(new_spinner.position)
+	add_child(new_spinner)
+	new_spinner.add_to_group("spinners")
 		
 
 func force_to_edge(v: Vector2) -> Vector2:

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cq7vw8fvsw5cq" path="res://Scripts/UI/target_indicator.gd" id="1_itg3d"]
 
 [node name="TargetIndicator" type="Node2D" unique_id=943005867]
+modulate = Color(1, 1, 1, 0.19607843)
 z_index = 1
 script = ExtResource("1_itg3d")
 

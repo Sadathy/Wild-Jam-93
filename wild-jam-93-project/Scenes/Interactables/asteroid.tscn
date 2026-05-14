@@ -19,6 +19,7 @@ texture = ExtResource("2_1s34e")
 
 [node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.19607843)
 texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)

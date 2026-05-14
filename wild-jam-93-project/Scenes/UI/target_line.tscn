@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://muvq70ljaj3x" path="res://Assets/Textures/target_line.png" id="1_rskg4"]
 
 [node name="TargetLine" type="Line2D" unique_id=732587031]
+modulate = Color(1, 1, 1, 0.19607843)
 texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)

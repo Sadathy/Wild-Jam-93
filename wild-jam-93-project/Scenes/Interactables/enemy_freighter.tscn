@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://buyfq6rldp1n1" path="res://Assets/Textures/freighter.png" id="1_gctp1"]
 [ext_resource type="Script" uid="uid://c21kjj8pukmd1" path="res://Scripts/Interactables/enemy_freighter.gd" id="1_icclw"]
 [ext_resource type="PackedScene" uid="uid://c5tua1ysemdkj" path="res://Scenes/Interactables/turret.tscn" id="2_426ko"]
-[ext_resource type="Script" uid="uid://bq1ytftslgr0o" path="res://Scenes/Interactables/freighter_turret_fixtures.gd" id="2_sjb4y"]
+[ext_resource type="Script" uid="uid://bq1ytftslgr0o" path="res://Scripts/Interactables/freighter_turret_fixtures.gd" id="2_sjb4y"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_0hux5"]
-[ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scenes/Interactables/order_drift.gd" id="6_0hux5"]
+[ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="6_0hux5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icclw"]
 radius = 90.0
