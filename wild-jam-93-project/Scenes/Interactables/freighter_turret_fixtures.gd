@@ -24,5 +24,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	for fixture in turrets:
+		if turrets[fixture] == null:
+			return
 		turrets[fixture].global_position = fixture.global_position
 	return
