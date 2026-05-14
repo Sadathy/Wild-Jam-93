@@ -28,7 +28,7 @@ const DEFAULT_CROSSFADE_DURATION := 1.5
 const DEFAULT_FADE_DURATION := 0.0
 
 var volume_sfx 	:= 1.0
-var volume_music := 0.0
+var volume_music := 1.0
 
 
 # Internal state tracking
