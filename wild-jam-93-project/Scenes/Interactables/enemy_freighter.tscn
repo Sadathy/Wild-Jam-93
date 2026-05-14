@@ -39,6 +39,15 @@ position = Vector2(85, 0)
 [node name="Fixture5" type="Node2D" parent="Sprite" unique_id=1060479546]
 position = Vector2(5, 0)
 
+[node name="Label" type="Label" parent="Sprite" unique_id=387868801]
+visible = false
+offset_left = -243.0
+offset_top = -280.0
+offset_right = -155.0
+offset_bottom = -257.0
+scale = Vector2(5.386281, 5.386281)
+text = "BOARD ME!"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749338670]
 unique_name_in_owner = true
 position = Vector2(-9, 0)

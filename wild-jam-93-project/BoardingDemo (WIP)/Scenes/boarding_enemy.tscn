@@ -8,6 +8,8 @@ size = Vector2(23, 39)
 
 [node name="BoardingEnemy" type="CharacterBody2D" unique_id=1546769036 groups=["BoardingEnemy"]]
 scale = Vector2(1.6724126, 1.6724126)
+collision_layer = 16
+collision_mask = 16
 motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false

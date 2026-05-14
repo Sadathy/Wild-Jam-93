@@ -21,6 +21,9 @@ var level: Node2D = null
 # So we can show the main menue
 var main_menu = null
 
+# tracking whether we're in the boarding mode or not
+var currently_boarding : bool = false
+
 func _process(delta: float) -> void:
 	# Only do turn processing if we are in a level
 	if level == null:

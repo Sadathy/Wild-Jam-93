@@ -17,6 +17,9 @@ var sprite_timer_interval : int = 10
 var sprite_state : bool = false
 var leg_flag : bool = false
 
+func _ready() -> void:
+	$Camera2D.make_current()
+
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		visible = false

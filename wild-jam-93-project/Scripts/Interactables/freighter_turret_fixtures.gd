@@ -11,6 +11,8 @@ extends Node2D
 @onready var turret_4: CharacterBody2D = $"../Turret4"
 @onready var turret_5: CharacterBody2D = $"../Turret5"
 
+var all_turrets_destroyed : bool = false
+
 var turrets: Dictionary = {}
 
 func _ready():
@@ -23,8 +25,12 @@ func _ready():
 }
 
 func _process(_delta: float) -> void:
+	var turret_count : int = 0
 	for fixture in turrets:
 		if turrets[fixture] == null:
 			continue
 		turrets[fixture].global_position = fixture.global_position
+		turret_count += 1
+	if turret_count == 0:
+		all_turrets_destroyed = true
 	return

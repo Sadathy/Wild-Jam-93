@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b5l6duerts5tk" path="res://BoardingDemo (WIP)/Assets/darkness.png" id="3_xyskk"]
 [ext_resource type="Script" uid="uid://dg6oaow328fgd" path="res://BoardingDemo (WIP)/Scripts/boarding_player.gd" id="4_foh7n"]
 [ext_resource type="Texture2D" uid="uid://n0jo7ixex3sv" path="res://BoardingDemo (WIP)/Assets/boarding-walk-animation.png" id="5_eq30g"]
+[ext_resource type="Script" uid="uid://bjvogh31ex4cy" path="res://BoardingDemo (WIP)/Scenes/entrance.gd" id="5_w04mx"]
+[ext_resource type="Texture2D" uid="uid://bgdj4wm5i2m3q" path="res://BoardingDemo (WIP)/Assets/entrance.png" id="6_ytpxu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e368"]
 texture = ExtResource("1_whpvk")
@@ -95,13 +97,15 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_xyskk"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_0e368")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8xlj"]
 size = Vector2(46, 60)
 
 [node name="Main" type="Node2D" unique_id=117456690]
+z_index = 4000
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1583860047]
 position = Vector2(10164, 8873)
@@ -114,7 +118,16 @@ script = ExtResource("2_0e368")
 loot_box_parent = NodePath("../LootBoxParent")
 enemy_parent = NodePath("../EnemyParent")
 
+[node name="Entrance" type="Sprite2D" parent="." unique_id=1552939942]
+position = Vector2(-160, 32)
+rotation = -1.5707964
+texture = ExtResource("6_ytpxu")
+script = ExtResource("5_w04mx")
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=326127428 groups=["BoardingPlayer"]]
+position = Vector2(-120, 32)
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("4_foh7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=2056671223]
