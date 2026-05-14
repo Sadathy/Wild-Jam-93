@@ -25,6 +25,7 @@ extends Node
 # -------------
 const CHANNELS := 16
 const DEFAULT_CROSSFADE_DURATION := 1.5
+const DEFAULT_FADE_DURATION := 0.0
 
 var volume_sfx 	:= 1.0
 var volume_music := 1.0
@@ -140,29 +141,61 @@ func play(stream: AudioStream, volume_db: float = 1.0) -> AudioStreamPlayer:
 
 # Play a looping sound with string identifier. Use for sounds that should loop until stopped.
 # Calling this again with the same key will restart the sound.
+# Fades in with a duration, if passed.
 # Returns the AudioStreamPlayer.
-func play_looping(stream: AudioStream, key: String, volume_db: float = 1.0) -> AudioStreamPlayer:
+func play_looping(stream: AudioStream, key: String, fade_in: float = DEFAULT_FADE_DURATION, volume_db: float = 1.0) -> AudioStreamPlayer:
 	stop_looping(key)
 	
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
-	player.volume_db = volume_db * linear_to_db(volume_sfx)
+	player.volume_db = 0.0
 	player.autoplay = false
 	add_child(player)
 	player.play()
 	
 	_looping[key] = player
 	
+	# Optional fade behaviour
+	_looping[key+"_tween"] = create_tween()
+	
+	# Fade volume to volume_db over fade_in
+	_looping[key+"_tween"].tween_method(
+		func(t: float):
+			_looping[key].volume_db = linear_to_db(sin(t * PI / 2) * volume_sfx),
+		0.0, volume_db, fade_in
+	)
+	
+	# Clear up after ourselves when done
+	_looping[key+"_tween"].finished.connect(func(): _looping.erase(key+"_tween"))
+	
 	return player
 
 
 # Stop a sound from looping, given its identifier.
-func stop_looping(key: String) -> void:
+# Optionally fade the sound out if passed a duration.
+func stop_looping(key: String, fade_out: float = DEFAULT_FADE_DURATION) -> void:
 	if _looping.has(key):
-		var player = _looping[key]
-		player.stop()
-		player.queue_free()
-		_looping.erase(key)
+		if _looping.has(key+"_tween"):
+			# Gracefully end current tween if it exists
+			_looping[key+"_tween"].kill()
+		
+		_looping[key+"_tween"] = create_tween()
+		
+		# Fade volume to 0 over fade_out
+		_looping[key+"_tween"].tween_method(
+			func(t: float):
+				_looping[key].volume_db = linear_to_db(sin(t * PI / 2) * volume_sfx),
+			db_to_linear(_looping[key].volume_db), 0.0, fade_out
+		)
+		
+		# Stop the player and clean up once tween finishes
+		_looping[key+"_tween"].finished.connect(func():
+			var player = _looping[key]
+			player.stop()
+			player.queue_free()
+			_looping.erase(key)
+			_looping.erase(key+"_tween")
+		)
 
 
 # Stop all looping sounds (panic switch / probably will need this at some point).

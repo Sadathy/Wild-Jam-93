@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("next_turn") and player_turn == true:
-		AudioManager.play_looping(preload("res://Assets/Audio/engine_loop.ogg"), "engine")
+		AudioManager.play_looping(preload("res://Assets/Audio/engine_loop.ogg"), "engine", 1.0)
 		player_turn = false
 		turn_timer = DEFAULT_TURN_DURATION
 		turn_ended.emit()
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	if player_turn == false:
 		turn_timer -= delta
 		if turn_timer <= 0:
-			AudioManager.stop_looping("engine")
+			AudioManager.stop_looping("engine", 1.0)
 			player_turn = true
 			turn_count += 1
 			turn_started.emit()
