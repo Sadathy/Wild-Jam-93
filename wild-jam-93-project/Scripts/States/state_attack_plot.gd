@@ -8,7 +8,6 @@ var attack_line = null
 var fuel_on_enter: float = 0
 var order: Dictionary = {}
 var order_origin: Vector2 = Vector2.ZERO
-var mouse_pos: Vector2 = Vector2.ZERO
 
 const ATTACK_LINE = preload("uid://7b8ahfruxcgl")
 const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")

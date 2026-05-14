@@ -19,7 +19,7 @@ const ORDER_DURATION: float = 0.95
 var execution_time: float = 0
 var just_started: bool = true
 
-const SHOOT_TIMER: float = 0.35
+const SHOOT_TIMER: float = 1.0
 var shoot_time: float = 0
 
 const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")
