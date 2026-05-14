@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dib2ig48q63gk"]
 
 [ext_resource type="Script" uid="uid://be4of63jf4jiw" path="res://Scripts/spinner.gd" id="1_t0t2i"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_hrugb"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_hrugb"]
-[ext_resource type="Script" uid="uid://chbtagttxlny2" path="res://Scenes/Interactables/blade.gd" id="3_ulsdo"]
+[ext_resource type="Script" uid="uid://chbtagttxlny2" path="res://Scripts/Interactables/blade.gd" id="3_ulsdo"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="4_2etkp"]
 [ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="4_svd47"]
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_gvt4j"]
 [ext_resource type="Texture2D" uid="uid://bt00633oykuj" path="res://Assets/Textures/enemy_alien_spinner.png" id="6_t0t2i"]
@@ -10,6 +12,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulsdo"]
 radius = 25.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svd47"]
+resource_local_to_scene = true
+shader = ExtResource("2_hrugb")
+shader_parameter/flashing = false
+shader_parameter/white = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0t2i"]
 size = Vector2(9, 57.515488)
@@ -28,7 +36,9 @@ shape = SubResource("CircleShape2D_ulsdo")
 unique_name_in_owner = true
 
 [node name="Sprite" type="Sprite2D" parent="Sprite" unique_id=700273540]
+material = SubResource("ShaderMaterial_svd47")
 texture = ExtResource("6_t0t2i")
+script = ExtResource("4_2etkp")
 
 [node name="Blade" type="Area2D" parent="Sprite" unique_id=1836903891]
 position = Vector2(0, -30)

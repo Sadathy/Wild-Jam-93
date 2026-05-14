@@ -3,23 +3,34 @@ extends CharacterBody2D
 @export var HEALTH: float = 200
 
 @onready var sprite: Node2D = %Sprite
+@onready var sprite_art: Sprite2D = $Sprite/Sprite
 @onready var order_machine: Node = %OrderMachine
 @onready var order_drift: Node = $OrderMachine/OrderDrift
 
 var player_ship: CharacterBody2D
+var immune = false
 
 func _ready() -> void:
 	player_ship = Global.level.player_ship
 	order_machine.ready_for_orders.connect(plot_orders)
 	order_drift.direction = (Vector2.ZERO - global_position).normalized()
+	sprite_art.finished.connect(on_damage_flash_end)
 	
 func plot_orders() -> void:
 	# Drift three times
 	for i in 3:
 		order_machine.plot_order("OrderDrift")
 
-func take_damage(incoming_damage: float) -> void:
+func take_damage(incoming_damage: float) -> bool:
+	if immune == true:
+		return false
 	if incoming_damage >= HEALTH:
 		queue_free()
-		return
+		return true
 	HEALTH -= incoming_damage
+	immune = true
+	sprite_art.damage_flash()
+	return true
+
+func on_damage_flash_end() -> void:
+	immune = false

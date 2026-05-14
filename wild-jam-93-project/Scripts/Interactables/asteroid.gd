@@ -3,7 +3,8 @@ extends Area2D
 @export var rotation_rate = 1.5
 
 @onready var line_warning: Line2D = %LineWarning
-@onready var sprite: Sprite2D = %Sprite
+@onready var sprite_art: Sprite2D = %Sprite
+
 
 var origin_point: Vector2
 var target_point: Vector2
@@ -16,7 +17,8 @@ var max_y: float
 var min_y: float
 
 var current_indicator_point: Vector2
-var health: float = 50
+var HEALTH: float = 50
+var immune = false
 
 func _ready() -> void:
 	# Fix our position and target point to be 'in bounds'
@@ -38,6 +40,7 @@ func _ready() -> void:
 	
 	# Connect impact function
 	body_entered.connect(on_impact)
+	sprite_art.finished.connect(on_damage_flash_end)
 	
 func _physics_process(delta: float) -> void:
 	# Only process physics for this outside of the player turn
@@ -50,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	position.y = move_toward(position.y, target_point.y, speed * dir_normal.y * delta)
 	
 	# Update visuals
-	sprite.rotation += (2*PI*delta)/rotation_rate
+	sprite_art.rotation += (2*PI*delta)/rotation_rate
 	line_warning.set_point_position(1, current_indicator_point - position)
 
 func on_new_turn() -> void:
@@ -73,11 +76,21 @@ func update_indicator_position():
 	
 
 func on_impact(entering_body) -> void:
-	entering_body.take_damage(damage)
-	queue_free()
-
-func take_damage(incoming_damage: float) -> void:
-	if incoming_damage >= health:
-		queue_free()
+	if Global.player_turn == true:
 		return
-	health -= incoming_damage
+	if entering_body.take_damage(damage):
+		queue_free()
+
+func take_damage(incoming_damage: float) -> bool:
+	if immune == true:
+		return false
+	if incoming_damage >= HEALTH:
+		queue_free()
+		return true
+	HEALTH -= incoming_damage
+	immune = true
+	sprite_art.damage_flash()
+	return true
+
+func on_damage_flash_end() -> void:
+	immune = false

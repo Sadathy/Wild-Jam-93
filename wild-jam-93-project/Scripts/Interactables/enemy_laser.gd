@@ -54,5 +54,7 @@ func on_new_turn() -> void:
 		queue_free()
 
 func on_impact(entering_body) -> void:
-	entering_body.take_damage(damage)
-	queue_free()
+	if Global.player_turn == true:
+		return
+	if entering_body.take_damage(damage):
+		queue_free()

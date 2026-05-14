@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
 [ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_rr3bg"]
 [ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scripts/Player/player_label_turn.gd" id="3_0gljw"]
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
 [ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scripts/Player/camera.gd" id="3_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="4_mj8rx"]
 [ext_resource type="Texture2D" uid="uid://6fefxhai76cq" path="res://Assets/Textures/hp_bar_under.png" id="5_bp4n6"]
 [ext_resource type="Texture2D" uid="uid://cvi2lqa1cl4ee" path="res://Assets/Textures/PlayerShip/lit-from-front.png" id="5_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4j1kor8m85lt" path="res://Assets/Textures/hp_bar_over.png" id="6_q2j26"]
@@ -27,6 +29,12 @@
 [ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scripts/States/state_move.gd" id="20_t3c3c"]
 [ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scripts/States/state_attack.gd" id="21_etcwo"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2fco"]
+resource_local_to_scene = true
+shader = ExtResource("2_rr3bg")
+shader_parameter/flashing = false
+shader_parameter/white = false
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s7s7"]
 size = Vector2(117.729126, 67.277176)
 
@@ -38,9 +46,11 @@ script = ExtResource("1_6s7s7")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=411507298]
 unique_name_in_owner = true
 z_index = 1
+material = SubResource("ShaderMaterial_u2fco")
 rotation = -1.5707964
 scale = Vector2(0.6982917, 0.6982917)
 texture = ExtResource("2_6s7s7")
+script = ExtResource("4_mj8rx")
 
 [node name="Shadows" type="Node2D" parent="Sprite" unique_id=1977834336]
 rotation = 1.5707964

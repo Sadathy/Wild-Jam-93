@@ -5,12 +5,16 @@ extends CharacterBody2D
 
 @onready var sprite: Node2D = %Sprite
 @onready var order_machine: Node = %OrderMachine
+@onready var sprite_art: Sprite2D = $Sprite/Sprite
 
 var player_ship: CharacterBody2D
+var immune: bool = false
+
 
 func _ready() -> void:
 	player_ship = Global.level.player_ship
 	order_machine.ready_for_orders.connect(plot_orders)
+	sprite_art.finished.connect(on_damage_flash_end)
 	
 func plot_orders() -> void:
 	# Check if we're in threat range
@@ -24,8 +28,16 @@ func plot_orders() -> void:
 		else:
 			order_machine.plot_order("OrderPursue")
 
-func take_damage(incoming_damage: float) -> void:
+func take_damage(incoming_damage: float) -> bool:
+	if immune == true:
+		return false
 	if incoming_damage >= HEALTH:
 		queue_free()
-		return
+		return true
 	HEALTH -= incoming_damage
+	immune = true
+	sprite_art.damage_flash()
+	return true
+	
+func on_damage_flash_end() -> void:
+	immune = false

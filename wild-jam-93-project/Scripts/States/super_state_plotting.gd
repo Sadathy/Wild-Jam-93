@@ -67,10 +67,8 @@ func on_exit() -> void:
 	current_state.on_exit()
 	
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
-	print("Leaving state: ", current_state)
 	current_state.on_exit()
 	previous_state = current_state
-	print("Entering state:", new_state)
 	current_state = new_state
 	current_state.on_enter(entry_data)
 	
@@ -78,17 +76,14 @@ func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 #-----BUTTON BEHAVIOUR-----#
 #--------------------------#
 func on_press_move() -> void:
-	print("Ship fuel at: ", player_ship.fuel)
 	if CONTROLLER.current_state != self or player_ship.fuel < MIN_PLOT_FUEL:
 		return
 	change_state(STATE_MOVE_PLOT)
 	
 func on_press_attack() -> void:
-	print("Ship fuel at: ", player_ship.fuel)
 	if CONTROLLER.current_state != self or player_ship.fuel < MIN_PLOT_FUEL * 3:
 		return
 	change_state(STATE_ATTACK_PLOT)
-	
 func on_press_cancel() -> void:
 	if CONTROLLER.current_state != self:
 		return

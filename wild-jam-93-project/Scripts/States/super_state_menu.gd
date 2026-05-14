@@ -27,9 +27,7 @@ func on_exit():
 	current_state.on_exit()
 
 func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
-	print("Leaving state: ", current_state)
 	current_state.on_exit()
 	previous_state = current_state
-	print("Entering state:", new_state)
 	current_state = new_state
 	current_state.on_enter(entry_data)

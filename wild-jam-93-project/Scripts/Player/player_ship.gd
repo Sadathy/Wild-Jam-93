@@ -4,11 +4,10 @@ extends CharacterBody2D
 @export var DEFAULT_MAX_HP: float = 100
 
 @onready var sprite: Sprite2D = %Sprite
+@onready var sprite_art: Sprite2D = %Sprite
 @onready var bar_health: TextureProgressBar = %BarHealth
 @onready var button_retry: Button = %ButtonRetry
 @onready var button_main_menu: Button = %ButtonMainMenu
-
-
 
 var plot_cooldown = 0
 
@@ -19,6 +18,9 @@ var max_fuel: float = 0
 var alive = true
 var max_hp: float
 var hp: float
+var immune: bool = false
+
+signal player_died
 
 func _ready() -> void:
 	max_hp = DEFAULT_MAX_HP
@@ -29,6 +31,7 @@ func _ready() -> void:
 	#Connect ui buttons
 	button_retry.pressed.connect(Global.pressed_retry)
 	button_main_menu.pressed.connect(Global.pressed_main_menu)
+	sprite_art.finished.connect(on_damage_flash_end)
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 	sprite.rotation = lerpf(sprite.rotation, sprite.rotation + sprite.get_angle_to(t_pos) - (PI*0.5), weight)
@@ -37,11 +40,22 @@ func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 #----------DAMAGE HANDLING----------#
 #-----------------------------------#
 
-func take_damage(incoming_damage: float) -> void:
-	hp -= incoming_damage
-	bar_health.value = hp
-	if hp <= 0:
+func take_damage(incoming_damage: float) -> bool:
+	print("player told to take damage")
+	if immune == true:
+		print("player found to be immune")
+		return false
+	if incoming_damage >= hp:
 		alive = false
-	
+		player_died.emit()
+		return true
+	hp -= incoming_damage
+	bar_health.value = (hp / max_hp) * 100
+	immune = true
+	sprite_art.damage_flash()
+	return true
+
+func on_damage_flash_end() -> void:
+	immune = false
 	
 	

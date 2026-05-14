@@ -14,6 +14,7 @@ var order_register: Dictionary = {}
 var orders: Dictionary = {}
 var plotting_order_id = 1
 var executing_order_id = 1
+var orders_complete: bool = false
 
 signal ready_for_orders
 
@@ -22,7 +23,6 @@ func _ready() -> void:
 		order_register[str(child.name)] = child
 		child.controller = self
 		child.character = CONTROLLED_BODY
-	print(order_register)
 	
 	# Connect the signal for resetting executing_order_id
 	Global.turn_started.connect(on_turn_start)
@@ -38,18 +38,22 @@ func plot_order(order_string: String) -> bool:
 
 # On physics process, calls the correct order for whichever executing_order_id we are on	
 func _physics_process(delta: float) -> void:
-	if Global.player_turn == true:
+	if Global.player_turn == true or orders_complete == true:
 		return
 	
 	# execute_order() returns true if the order was complete
 	if orders.has(executing_order_id):
 		if order_register[orders[executing_order_id]].execute_order(delta):
 			executing_order_id += 1
+			if executing_order_id > orders.size():
+				executing_order_id = orders.size()
+				orders_complete = true
 
 # When a new turn starts, reset our execution order id
 func on_turn_start() -> void:
 	executing_order_id = 1
 	plotting_order_id = 1
+	orders_complete = false
 	clear_orders()
 	ready_for_orders.emit()
 	
