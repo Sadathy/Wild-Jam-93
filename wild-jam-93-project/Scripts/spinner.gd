@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var HEALTH: float = 100
-@export var THREAT_RANGE = 400
+@export var HEALTH: float = 50
+@export var THREAT_RANGE = 300
 
 @onready var sprite: Node2D = %Sprite
 @onready var order_machine: Node = %OrderMachine
@@ -16,7 +16,11 @@ func plot_orders() -> void:
 	# Check if we're in threat range
 	for i in 3:
 		if order_machine.get_order_finish(i).distance_to(player_ship.position) <= THREAT_RANGE:
-			order_machine.plot_order("OrderHold")
+			# If we're nearby, we have a 50/50 chance to try and spin through the player!
+			if randi_range(0, 1) == 1:
+				order_machine.plot_order("OrderSpin")
+			else:
+				order_machine.plot_order("OrderHold")
 		else:
 			order_machine.plot_order("OrderPursue")
 

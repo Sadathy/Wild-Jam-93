@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://be4of63jf4jiw" path="res://Scripts/spinner.gd" id="1_t0t2i"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_hrugb"]
+[ext_resource type="Script" uid="uid://chbtagttxlny2" path="res://Scenes/Interactables/blade.gd" id="3_ulsdo"]
 [ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="4_svd47"]
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_gvt4j"]
 [ext_resource type="Texture2D" uid="uid://bt00633oykuj" path="res://Assets/Textures/enemy_alien_spinner.png" id="6_t0t2i"]
+[ext_resource type="Script" uid="uid://w55y6wdq5u7s" path="res://Scripts/Order Machine/order_spin.gd" id="6_ulsdo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulsdo"]
 radius = 25.0
@@ -30,6 +32,9 @@ texture = ExtResource("6_t0t2i")
 
 [node name="Blade" type="Area2D" parent="Sprite" unique_id=1836903891]
 position = Vector2(0, -30)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_ulsdo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Blade" unique_id=1810261371]
 position = Vector2(-3, -22)
@@ -37,6 +42,9 @@ shape = SubResource("RectangleShape2D_t0t2i")
 
 [node name="Blade2" type="Area2D" parent="Sprite" unique_id=1668369769]
 position = Vector2(0, 30)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_ulsdo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Blade2" unique_id=1712109829]
 position = Vector2(3, 22)
@@ -53,3 +61,6 @@ min_offset = 200.0
 
 [node name="OrderHold" type="Node" parent="OrderMachine" unique_id=1480824802]
 script = ExtResource("5_gvt4j")
+
+[node name="OrderSpin" type="Node" parent="OrderMachine" unique_id=786992782]
+script = ExtResource("6_ulsdo")
