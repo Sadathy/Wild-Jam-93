@@ -281,7 +281,7 @@ func place_entities():
 				var new_lootbox : Node2D = lootbox_scene.instantiate()
 				new_lootbox.global_position = (cell_coord) * 64
 				loot_box_parent.add_child(new_lootbox)
-			elif randf_range(0, 100) <= 3:
+			elif randf_range(0, 100) <= 2:
 				var new_enemy : Node2D = enemy_scene.instantiate()
 				new_enemy.global_position = (cell_coord) * 64
 				enemy_parent.add_child(new_enemy)
