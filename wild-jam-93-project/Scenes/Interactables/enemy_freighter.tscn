@@ -20,7 +20,7 @@ radius = 90.0
 height = 450.0
 
 [node name="EnemyFreighter" type="CharacterBody2D" unique_id=944012623]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_icclw")
 
