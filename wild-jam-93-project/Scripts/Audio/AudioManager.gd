@@ -28,7 +28,7 @@ const DEFAULT_CROSSFADE_DURATION := 1.5
 const DEFAULT_FADE_DURATION := 0.0
 
 var volume_sfx 	:= 1.0
-var volume_music := 1.0
+var volume_music := 0.0
 
 
 # Internal state tracking
@@ -144,7 +144,13 @@ func play(stream: AudioStream, volume_db: float = 1.0) -> AudioStreamPlayer:
 # Fades in with a duration, if passed.
 # Returns the AudioStreamPlayer.
 func play_looping(stream: AudioStream, key: String, fade_in: float = DEFAULT_FADE_DURATION, volume_db: float = 1.0) -> AudioStreamPlayer:
-	stop_looping(key)
+	if _looping.has(key) and _looping.has(key+"_tween"):
+		# We are trying to start a sound in the process of stopping -
+		# kill the tween and set volume, then exit.
+		_looping[key+"_tween"].kill()
+		_looping.erase(key+"_tween")
+		_looping[key].volume_db = linear_to_db(volume_db * volume_sfx)
+		return
 	
 	var player := AudioStreamPlayer.new()
 	player.stream = stream

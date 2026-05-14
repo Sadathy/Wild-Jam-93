@@ -6,8 +6,12 @@ var order_id: int = -1
 var order: Dictionary = {}
 
 func on_enter(enter_data: Dictionary = {}) -> void:
+	AudioManager.play_looping(preload("res://Assets/Audio/engine_loop.ogg"), "engine", 1.0)
 	order_id = CONTROLLER.order_id
 	order = enter_data
+
+func on_exit() -> void:
+	AudioManager.stop_looping("engine", 1.0)
 
 func on_physics(delta: float) -> void:
 	var dir_normal = abs((order["target"] - order["origin"]).normalized())
