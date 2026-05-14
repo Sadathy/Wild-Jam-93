@@ -10,5 +10,7 @@ func _ready() -> void:
 
 func on_impact(entering_body) -> void:
 	# Only do damage if we're currently spinning
+	if order_machine.executing_order_id not in order_machine.orders:
+		return
 	if order_machine.orders[order_machine.executing_order_id] == "OrderSpin":
 		entering_body.take_damage(damage)
