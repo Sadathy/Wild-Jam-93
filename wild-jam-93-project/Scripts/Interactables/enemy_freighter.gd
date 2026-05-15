@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var HEALTH: float = 200
+@export var HEALTH: float = 750
 
 @onready var sprite: Node2D = %Sprite
 @onready var sprite_art: Sprite2D = $Sprite/Sprite

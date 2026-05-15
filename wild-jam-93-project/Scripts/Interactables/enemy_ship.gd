@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var HEALTH: float = 100
+@export var HEALTH: float = 50
 @export var THREAT_RANGE = 600
 
 @onready var sprite: Sprite2D = %Sprite

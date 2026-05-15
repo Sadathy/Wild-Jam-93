@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var HEALTH: float = 100
+@export var HEALTH: float = 75
 @export var THREAT_RANGE = 400
 @export var SHOOT_RANGE = 1300
 

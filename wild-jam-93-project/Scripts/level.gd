@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var max_x = 3000
-@export var min_x = -3000
-@export var max_y = 2500
-@export var min_y = -2500
+@export var max_x = 2000
+@export var min_x = -2000
+@export var max_y = 1500
+@export var min_y = -1500
 
 @export var asteroid_spawn_distance = 2500
 @export var asteroid_target_variance = 1000
@@ -51,31 +51,86 @@ func on_new_turn() -> void:
 	if asteroid_count > 0:
 		# Loop through and generate a bunch of asteroids
 		for i in asteroid_count:
-			var new_speed = 300 #Giving asteroids constant speed for now
-			var new_origin = Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance + player_ship.position
-			var new_target = Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance)) + player_ship.position
+			var new_speed = randf_range(225, 375)
+			var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
+			var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
 			# Now we map the vector from the origin to the target so we can 'project past' by multiplaying it then transforming by origin position again
 			new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
 			var new_asteroid = Global.create_interactable(ASTEROID, new_origin, new_target, new_speed)
 			add_child(new_asteroid)
-
-	if Global.turn_count == 1:
-		# Create a new enemy ship
-		var new_enemy = SNIPER.instantiate()
-		new_enemy.position.x = randf_range(min_x, max_x)
-		new_enemy.position.y = randf_range(min_y, max_y)
-		new_enemy.position = force_to_edge(new_enemy.position)
-		add_child(new_enemy)
-		new_enemy.add_to_group("freighters")
 	for i in 3:
 		var new_speed = randf_range(100, 250)
-		var new_origin = Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance + player_ship.position
-		var new_target = Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance)) + player_ship.position
+		var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
+		var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
 		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
 		var new_spice = Global.create_interactable(SPICE, new_origin, new_target, new_speed)
 		add_child(new_spice)
 		new_spice.add_to_group("spice")
+
+	# For the first [DIFFICULTY] turns, spawn another enemy
+	if Global.turn_count <= int(Global.difficulty):
+		spawn_enemy(ENEMY_SHIP)
+	# If our bounty exceeds certain thresholds, and there arent absurd enemy numbers, pawn more shit!!
+	var enemy_count = get_tree().get_nodes_in_group("enemies").size()
+	if enemy_count < 30:
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 3150:
+			# Spawn a freighter
+			spawn_enemy(FREIGHTER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2900:
+			# Spawn a sniper
+			spawn_enemy(SNIPER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2650:
+			# Spawn a spinner
+			spawn_enemy(SPINNER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2400:
+			# Spawn a enemy ship
+			spawn_enemy(ENEMY_SHIP)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2150:
+			# 1 in 2 for a freighter
+			if randi_range(1, 2) == 2:
+				spawn_enemy(FREIGHTER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1900:
+			# 1 in 2 for a spinner
+			if randi_range(1, 2) == 2:
+				spawn_enemy(SPINNER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1650:
+			# 1 in 2 for a sniper
+			if randi_range(1, 2) == 2:
+				spawn_enemy(SNIPER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1400:
+			# 1 in 2 for a enemy ship
+			if randi_range(1, 2) == 2:
+				spawn_enemy(ENEMY_SHIP)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1150:
+			# 1 in 3 for a freighter
+			if randi_range(1, 3) == 3:
+				spawn_enemy(FREIGHTER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 900:
+			# 1 in 3 for a enemy ship
+			if randi_range(1, 3) == 3:
+				spawn_enemy(ENEMY_SHIP)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 650:
+			# 1 in 3 for a sniper
+			if randi_range(1, 3) == 3:
+				spawn_enemy(SNIPER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 400:
+			# 1 in 3 for a spinner
+			if randi_range(1, 3) == 3:
+				spawn_enemy(SPINNER)
+		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 150:
+			# 1 in 4 for a ship
+			if randi_range(1, 4) == 4:
+				spawn_enemy(ENEMY_SHIP)
 		
+		
+func spawn_enemy(enemy_to_spawn) -> void:
+	var new_enemy = enemy_to_spawn.instantiate()
+	new_enemy.position.x = randf_range(min_x, max_x)
+	new_enemy.position.y = randf_range(min_y, max_y)
+	new_enemy.position = force_to_edge(new_enemy.position)
+	add_child(new_enemy)
+	new_enemy.add_to_group("enemies")
+	new_enemy.plot_orders()
 
 func force_to_edge(v: Vector2) -> Vector2:
 	var edge_roll = randi_range(1, 4)
