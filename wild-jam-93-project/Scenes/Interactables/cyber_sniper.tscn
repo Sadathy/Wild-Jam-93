@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bb66ar3rvy2mg"]
 
-[ext_resource type="Script" uid="uid://dr67gybdxkb7l" path="res://Scenes/Interactables/cyber_sniper.gd" id="1_2k2kb"]
+[ext_resource type="Script" uid="uid://dr67gybdxkb7l" path="res://Scripts/Interactables/cyber_sniper.gd" id="1_2k2kb"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_2k2kb"]
 [ext_resource type="Texture2D" uid="uid://dlfbhw45p4xhe" path="res://Assets/Textures/cyber_ship_sniper.png" id="3_2k2kb"]
 [ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_13x4a"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_vy0y2"]
 [ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="6_53cs8"]
-[ext_resource type="Script" uid="uid://cbq3hbcceg48n" path="res://Scenes/Interactables/order_flee.gd" id="8_by11e"]
+[ext_resource type="Script" uid="uid://cbq3hbcceg48n" path="res://Scripts/Order Machine/order_flee.gd" id="8_by11e"]
 [ext_resource type="Script" uid="uid://dlqqh3ydsdlda" path="res://Scripts/Order Machine/order_strafe.gd" id="8_mrony"]
 [ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="9_5arn5"]
-[ext_resource type="Script" uid="uid://df33nplta1run" path="res://Scenes/Interactables/order_snipe.gd" id="9_13x4a"]
+[ext_resource type="Script" uid="uid://df33nplta1run" path="res://Scripts/Order Machine/order_snipe.gd" id="9_13x4a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfk4a"]
 resource_local_to_scene = true

@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 var player_ship: CharacterBody2D
 var immune = false
+var bounty: int = 50
 
 func _ready() -> void:
 	player_ship = Global.level.player_ship
@@ -36,6 +37,8 @@ func take_damage(incoming_damage: float) -> bool:
 	if immune == true:
 		return false
 	if incoming_damage >= HEALTH:
+		Global.bounty += bounty
+		Global.call_deferred("spice_blow", 5, position)
 		queue_free()
 		return true
 	HEALTH -= incoming_damage

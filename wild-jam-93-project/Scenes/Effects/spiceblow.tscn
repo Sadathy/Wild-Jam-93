@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://f5d3jfaiv3gc"]
+
+[ext_resource type="Texture2D" uid="uid://br875f3ircs3x" path="res://Assets/Textures/spiceblow.png" id="1_8d5vy"]
+[ext_resource type="Script" uid="uid://bap01bwlgi65c" path="res://Scenes/Effects/spiceblow.gd" id="2_iw5a7"]
+
+[node name="Spiceblow" type="Sprite2D" unique_id=1588964419]
+texture = ExtResource("1_8d5vy")
+script = ExtResource("2_iw5a7")

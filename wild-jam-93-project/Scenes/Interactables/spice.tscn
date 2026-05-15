@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dm6x5wpkbx141"]
+
+[ext_resource type="Script" uid="uid://duohhp173bykg" path="res://Scenes/Interactables/spice.gd" id="1_dstyh"]
+[ext_resource type="Texture2D" uid="uid://du1s1ly77phq1" path="res://Assets/Textures/booty.png" id="2_105xe"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_amwrm"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_j7u00"]
+[ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="6_5fv38"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="7_2o4fx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oxl4g"]
+resource_local_to_scene = true
+shader = ExtResource("2_amwrm")
+shader_parameter/flashing = false
+shader_parameter/white = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
+radius = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jc7o"]
+size = Vector2(56, 53)
+
+[node name="Spice" type="Area2D" unique_id=5276601]
+collision_layer = 0
+script = ExtResource("1_dstyh")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1751337253]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_oxl4g")
+position = Vector2(-0.46691954, -3.3636763)
+scale = Vector2(2.6872184, 2.6872187)
+texture = ExtResource("2_105xe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421303482]
+shape = SubResource("CircleShape2D_6buvt")
+
+[node name="OrderMachine" type="Node" parent="." unique_id=1384010992 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("5_j7u00")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderDrift" type="Node" parent="OrderMachine" unique_id=17744646]
+script = ExtResource("6_5fv38")
+speed = 150.0
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=1225043279 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("7_2o4fx")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=1854703986]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8jc7o")

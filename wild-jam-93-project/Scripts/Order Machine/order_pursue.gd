@@ -70,7 +70,6 @@ func execute_order(delta: float) -> bool:
 	# Move and face towards the finish point
 	var order_id = controller.executing_order_id
 	var order_finish = order_data[order_id]["finish"]
-	var move_dir = abs(order_finish - character.position).normalized()
 	
 	character.sprite.rotation = lerp_angle(character.sprite.rotation, character.position.angle_to_point(order_finish), 3 * PI * delta)
 	

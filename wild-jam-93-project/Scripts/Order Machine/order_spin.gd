@@ -84,7 +84,6 @@ func execute_order(delta: float) -> bool:
 	# Move and face towards the finish point
 	var order_id = controller.executing_order_id
 	var order_finish = order_data[order_id]["finish"]
-	var move_dir = abs(order_finish - character.position).normalized()
 	
 	# Make us spin!!!!
 	var spin_angle = order_data[order_id]["angle"]

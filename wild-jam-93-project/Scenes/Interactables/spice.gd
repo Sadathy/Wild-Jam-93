@@ -42,8 +42,6 @@ func _ready() -> void:
 	
 	# Connect impact function
 	body_entered.connect(on_impact)
-	sprite_art.finished.connect(on_damage_flash_end)
-	
 
 func on_new_turn() -> void:
 	#Check if we're out of bounds, if we are, destroy us!
@@ -59,22 +57,8 @@ func on_new_turn() -> void:
 	order_machine.plot_order("OrderDrift")
 	order_machine.plot_order("OrderDrift")
 
-func on_impact(entering_body) -> void:
+func on_impact(_entering_body) -> void:
 	if Global.player_turn == true:
 		return
-	if entering_body.take_damage(damage):
-		queue_free()
-
-func take_damage(incoming_damage: float) -> bool:
-	if immune == true:
-		return false
-	if incoming_damage >= HEALTH:
-		queue_free()
-		return true
-	HEALTH -= incoming_damage
-	immune = true
-	sprite_art.damage_flash()
-	return true
-
-func on_damage_flash_end() -> void:
-	immune = false
+	Global.credits += 1
+	queue_free()

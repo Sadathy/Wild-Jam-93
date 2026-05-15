@@ -99,9 +99,6 @@ func on_process(_delta) -> void:
 		get_tree().get_root().add_child(new_attack_line)
 		new_attack_line.modulate = Color(1, 1, 1, 1)
 		
-		# Find the normal vector of the attack, from the origin point, to use later - remember, this merely indicates the angle of the attack
-		var attack_vector = (mouse_pos - order_origin).normalized()
-		
 		order = {
 			"origin": order_origin,
 			"target": order_origin,

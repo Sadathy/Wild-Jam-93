@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://drdamynud5vaq" path="res://Scripts/Player/player_ship.gd" id="1_6s7s7"]
 [ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_6s7s7"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_rr3bg"]
-[ext_resource type="Script" uid="uid://cn6h1ypou01fm" path="res://Scripts/Player/player_label_turn.gd" id="3_0gljw"]
 [ext_resource type="Script" uid="uid://cum8838bcm0oy" path="res://Scripts/Player/player-sprite-lighting.gd" id="3_n4oq7"]
 [ext_resource type="Script" uid="uid://cjgxe7c2u23mw" path="res://Scripts/Player/camera.gd" id="3_xljp0"]
 [ext_resource type="Texture2D" uid="uid://c4xha33abt23d" path="res://Assets/Textures/PlayerShip/lit-from-back.png" id="4_0gljw"]
@@ -19,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://bjrhhnvabhj2m" path="res://Assets/Textures/time_bar_process.png" id="10_2vuj5"]
 [ext_resource type="Script" uid="uid://t7hq2ga2bu2u" path="res://Scripts/States/player_superstate.gd" id="13_q2j26"]
 [ext_resource type="Script" uid="uid://dcp1plpavqaae" path="res://Scripts/States/super_state_plotting.gd" id="14_lxxy7"]
+[ext_resource type="Script" uid="uid://54pmyy5nxjsn" path="res://Scenes/label_bounty.gd" id="14_mj8rx"]
 [ext_resource type="Script" uid="uid://c4ywa02hxihd5" path="res://Scripts/States/super_state_menu.gd" id="15_5hof5"]
 [ext_resource type="Script" uid="uid://cax0eaotk2tky" path="res://Scripts/States/state_noplot.gd" id="15_dpfuu"]
+[ext_resource type="Script" uid="uid://cy44kd156tteh" path="res://Scenes/label_credits.gd" id="15_u2fco"]
 [ext_resource type="Script" uid="uid://cdn32cf11pdkj" path="res://Scripts/States/super_state_executing.gd" id="16_ykbcd"]
 [ext_resource type="Script" uid="uid://3nk15dyi376c" path="res://Scripts/States/state_dead.gd" id="17_opdlr"]
 [ext_resource type="Script" uid="uid://b3q5e4djg78r3" path="res://Scripts/States/state_move_plot.gd" id="19_2vuj5"]
@@ -105,14 +106,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="LabelTurn" type="Label" parent="CanvasLayer/Control" unique_id=1571525818]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 188.0
-offset_bottom = 23.0
-text = "Your turn (Space to end)"
-script = ExtResource("3_0gljw")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1572226323]
 layout_mode = 1
@@ -264,6 +257,31 @@ text = "Retry"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
+
+[node name="BountyUI" type="PanelContainer" parent="CanvasLayer/Control" unique_id=787095243]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/BountyUI" unique_id=1216766974]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/BountyUI/MarginContainer2" unique_id=330343663]
+layout_mode = 2
+
+[node name="LabelBounty" type="Label" parent="CanvasLayer/Control/BountyUI/MarginContainer2/VBoxContainer" unique_id=1897934434]
+layout_mode = 2
+text = "Bounty: $0"
+script = ExtResource("14_mj8rx")
+
+[node name="LabelCredits" type="Label" parent="CanvasLayer/Control/BountyUI/MarginContainer2/VBoxContainer" unique_id=1187161180]
+layout_mode = 2
+text = "Credits: $0"
+script = ExtResource("15_u2fco")
 
 [node name="OrderUI" type="PanelContainer" parent="CanvasLayer/Control" unique_id=250804074]
 unique_name_in_owner = true

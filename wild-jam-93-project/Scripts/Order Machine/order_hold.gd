@@ -40,9 +40,6 @@ func execute_order(delta: float) -> bool:
 		just_started = false
 		execution_time = ORDER_DURATION
 	
-	# Move face towards the target point
-	var order_id = controller.executing_order_id
-	
 	character.sprite.rotation = lerp_angle(character.sprite.rotation, character.global_position.angle_to_point(target.global_position), 0.3)
 		
 	# Check if this order is now finished
@@ -59,5 +56,5 @@ func clear_orders() -> void:
 	just_started = true
 	
 # Sets the alpha of the displayed orders
-func set_alpha(alpha: float) -> void:
+func set_alpha(_alpha: float) -> void:
 	return

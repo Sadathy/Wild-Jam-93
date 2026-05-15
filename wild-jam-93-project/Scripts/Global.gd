@@ -1,5 +1,8 @@
 extends Node
 
+const SPICE = preload("res://Scenes/Interactables/spice.tscn")
+const SPICEBLOW = preload("res://Scenes/Effects/spiceblow.tscn")
+
 @export var volume: float = 50.0
 @export var difficulty: float = 2.0
 @export var DEFAULT_TURN_DURATION: float = 3.0
@@ -15,6 +18,10 @@ var player_turn: bool = true
 var turn_timer: float = 0.0
 var turn_count = 0
 var paused = false
+
+# Player progression
+var bounty: int = 0
+var credits: int = 0
 
 # Keep track of what level we're on
 var level: Node2D = null
@@ -71,3 +78,23 @@ func on_press_next_turn() -> void:
 	turn_timer = DEFAULT_TURN_DURATION
 	level.player_ship.button_end_turn.disabled = true
 	turn_ended.emit()
+	
+func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
+	var new_spice_blow = SPICEBLOW.instantiate()
+	new_spice_blow.position = location
+	new_spice_blow.lifespan = randf_range(0.8, 1.2)
+	level.add_child(new_spice_blow)
+	for i in count:
+		var new_speed = randf_range(50, 500)
+		var new_origin = location
+		var new_target = location + Vector2(randf_range(-1, 1), randf_range(-1, 1))
+		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
+		var new_spice = SPICE.instantiate()
+		new_spice.origin_point = new_origin
+		new_spice.target_point = new_target
+		new_spice.speed = new_speed
+		level.add_child(new_spice)
+		new_spice.add_to_group("spice")
+		new_spice.order_machine.plot_order("OrderDrift")
+		new_spice.order_machine.plot_order("OrderDrift")
+		new_spice.order_machine.plot_order("OrderDrift")

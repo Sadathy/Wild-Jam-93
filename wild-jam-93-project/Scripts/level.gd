@@ -16,6 +16,7 @@ const ENEMY_SHIP = preload("res://Scenes/Interactables/enemy_ship.tscn")
 const FREIGHTER = preload("res://Scenes/Interactables/enemy_freighter.tscn")
 const SPINNER = preload("res://Scenes/Interactables/spinner.tscn")
 const SNIPER = preload("res://Scenes/Interactables/cyber_sniper.tscn")
+const SPICE = preload("res://Scenes/Interactables/spice.tscn")
 
 var player_ship: Node2D = null
 
@@ -58,7 +59,6 @@ func on_new_turn() -> void:
 			var new_asteroid = Global.create_interactable(ASTEROID, new_origin, new_target, new_speed)
 			add_child(new_asteroid)
 
-	var enemy_count = get_tree().get_nodes_in_group("enemy_ships").size()
 	if Global.turn_count == 1:
 		# Create a new enemy ship
 		var new_enemy = SNIPER.instantiate()
@@ -67,6 +67,14 @@ func on_new_turn() -> void:
 		new_enemy.position = force_to_edge(new_enemy.position)
 		add_child(new_enemy)
 		new_enemy.add_to_group("freighters")
+	for i in 3:
+		var new_speed = randf_range(100, 250)
+		var new_origin = Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance + player_ship.position
+		var new_target = Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance)) + player_ship.position
+		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
+		var new_spice = Global.create_interactable(SPICE, new_origin, new_target, new_speed)
+		add_child(new_spice)
+		new_spice.add_to_group("spice")
 		
 
 func force_to_edge(v: Vector2) -> Vector2:

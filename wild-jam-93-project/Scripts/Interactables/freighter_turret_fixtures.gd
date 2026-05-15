@@ -23,8 +23,8 @@ func _ready():
 }
 
 func _process(_delta: float) -> void:
-	for fixture in turrets:
-		if turrets[fixture] == null:
+	for loop_fixture in turrets:
+		if turrets[loop_fixture] == null:
 			continue
-		turrets[fixture].global_position = fixture.global_position
+		turrets[loop_fixture].global_position = loop_fixture.global_position
 	return
