@@ -1,13 +1,13 @@
 extends Camera2D
 
-@export var max_zoom = 1.3
-@export var min_zoom = 0.7
-@export var inc_zoom = 0.3
-@export var rate_zoom = 0.6
+@export var max_zoom = 1.1
+@export var min_zoom = 0.6
+@export var inc_zoom = 0.25
+@export var rate_zoom = 1.0
 @export var camera_panning_amount = 0.08
 @onready var camera_panner: Node2D = %CameraPanner
 
-var zoom_target = 1.0
+var zoom_target = 0.6
 var desired_position = position
 var interpolate_time = 0.33
 var interpolate_speed = 0
