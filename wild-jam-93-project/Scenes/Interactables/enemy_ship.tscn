@@ -28,7 +28,7 @@ script = ExtResource("1_p7yn3")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=700273540]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_sfk4a")
-scale = Vector2(2.357806, 2.357806)
+scale = Vector2(1.7328843, 1.7328843)
 texture = ExtResource("2_p7yn3")
 script = ExtResource("4_neog0")
 

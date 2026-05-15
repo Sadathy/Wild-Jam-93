@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bx1bagor52kk2"]
 
 [ext_resource type="Script" uid="uid://c4n40btluup6o" path="res://Scripts/UI/MainMenu.gd" id="1_n6o43"]
+[ext_resource type="Texture2D" uid="uid://0paqfs1ntl3v" path="res://Assets/Textures/title-screen-ship.png" id="2_6pxni"]
 [ext_resource type="Script" uid="uid://c406ua0b3aq6x" path="res://Scripts/UI/OptionsMenu.gd" id="2_dlmu3"]
+[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="3_invnu"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=448844516]
 
@@ -22,6 +24,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n6o43")
+
+[node name="SpaceBackground" type="Sprite2D" parent="Control/Main" unique_id=2057369112]
+position = Vector2(641, 439)
+scale = Vector2(2.0551128, 2.0551128)
+texture = ExtResource("3_invnu")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Main" unique_id=732248608]
 layout_mode = 2
@@ -77,6 +84,11 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Quit"
+
+[node name="TitleScreenShip" type="Sprite2D" parent="Control/Main" unique_id=1000869549]
+position = Vector2(1034.0001, 343)
+scale = Vector2(1.0784248, 1.0784248)
+texture = ExtResource("2_6pxni")
 
 [node name="Credits" type="PanelContainer" parent="Control" unique_id=756686936]
 unique_name_in_owner = true
