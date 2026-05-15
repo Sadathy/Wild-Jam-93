@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_hrugb"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_hrugb"]
 [ext_resource type="Script" uid="uid://chbtagttxlny2" path="res://Scripts/Interactables/blade.gd" id="3_ulsdo"]
-[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="4_2etkp"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_2etkp"]
 [ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="4_svd47"]
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_gvt4j"]
 [ext_resource type="Texture2D" uid="uid://bt00633oykuj" path="res://Assets/Textures/enemy_alien_spinner.png" id="6_t0t2i"]

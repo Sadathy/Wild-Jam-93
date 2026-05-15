@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bq1ytftslgr0o" path="res://Scripts/Interactables/freighter_turret_fixtures.gd" id="2_sjb4y"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="3_vd3f0"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_0hux5"]
-[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="5_pwx2i"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="5_pwx2i"]
 [ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="6_0hux5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8i22j"]

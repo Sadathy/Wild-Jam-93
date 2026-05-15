@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dyt2p6gkvkp83" path="res://Assets/Textures/turret.png" id="1_r0kxt"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_mdq75"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_ca1i7"]
-[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="4_rehgw"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_rehgw"]
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_6rth4"]
 [ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="5_rehgw"]
 

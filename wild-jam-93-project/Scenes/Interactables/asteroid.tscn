@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cr6jlwc7d7bvq" path="res://Assets/Textures/asteroid_little.png" id="2_1s34e"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_hd84a"]
 [ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/Textures/asteroid_line.png" id="2_nhepu"]
-[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scenes/Interactables/damage_flash.gd" id="4_d03tx"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_d03tx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxl4g"]
 resource_local_to_scene = true
