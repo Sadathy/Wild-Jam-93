@@ -18,10 +18,9 @@ grow_vertical = 2
 [node name="Main" type="PanelContainer" parent="Control" unique_id=1055350293]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 450.0
 grow_vertical = 2
 script = ExtResource("1_n6o43")
 
@@ -33,7 +32,7 @@ texture = ExtResource("3_invnu")
 [node name="MarginContainer" type="MarginContainer" parent="Control/Main" unique_id=732248608]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
@@ -86,7 +85,7 @@ theme_override_font_sizes/font_size = 24
 text = "Quit"
 
 [node name="TitleScreenShip" type="Sprite2D" parent="Control/Main" unique_id=1000869549]
-position = Vector2(1034.0001, 343)
+position = Vector2(900, 343)
 scale = Vector2(1.0784248, 1.0784248)
 texture = ExtResource("2_6pxni")
 
@@ -94,16 +93,20 @@ texture = ExtResource("2_6pxni")
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 326.0
 grow_vertical = 2
+
+[node name="SpaceBackground" type="Sprite2D" parent="Control/Credits" unique_id=420895234]
+position = Vector2(641, 439)
+scale = Vector2(2.0551128, 2.0551128)
+texture = ExtResource("3_invnu")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Credits" unique_id=714526193]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
@@ -117,25 +120,33 @@ MrDetonia
 Sadathy
 Sugar Riot
 
-Made with Godot
-<Insert license here>"
+Made with Godot"
 horizontal_alignment = 1
+
+[node name="TitleScreenShip" type="Sprite2D" parent="Control/Credits" unique_id=879808064]
+position = Vector2(900, 343)
+scale = Vector2(1.0784248, 1.0784248)
+texture = ExtResource("2_6pxni")
 
 [node name="Options" type="PanelContainer" parent="Control" unique_id=177546919]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 414.0
 grow_vertical = 2
 script = ExtResource("2_dlmu3")
+
+[node name="SpaceBackground" type="Sprite2D" parent="Control/Options" unique_id=793989644]
+position = Vector2(641, 439)
+scale = Vector2(2.0551128, 2.0551128)
+texture = ExtResource("3_invnu")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Options" unique_id=1878110724]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
@@ -183,6 +194,11 @@ step = 5.0
 scrollable = false
 tick_count = 10
 ticks_position = 3
+
+[node name="TitleScreenShip" type="Sprite2D" parent="Control/Options" unique_id=444095094]
+position = Vector2(900, 343)
+scale = Vector2(1.0784248, 1.0784248)
+texture = ExtResource("2_6pxni")
 
 [node name="ButtonReturn" type="Button" parent="Control" unique_id=1274857121]
 unique_name_in_owner = true
