@@ -25,8 +25,11 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 	# Create order indicators
 	indicator = TARGET_INDICATOR.instantiate()
 	get_tree().get_root().add_child(indicator)
+	indicator.modulate = Color(1, 1, 1, 1)
+	
 	line = TARGET_LINE.instantiate()
 	get_tree().get_root().add_child(line)
+	line.modulate = Color(1, 1, 1, 1)
 	
 	# Initialise data for this order
 	fuel_on_enter = player_ship.fuel
@@ -77,10 +80,12 @@ func on_process(_delta) -> void:
 		new_indicator.position = mouse_pos
 		new_indicator.label = str(CONTROLLER.order_id)
 		get_tree().get_root().add_child(new_indicator)
+		new_indicator.modulate = Color(1, 1, 1, 1)
 		var new_line = TARGET_LINE.instantiate()
 		new_line.set_point_position(0, order_origin)
 		new_line.set_point_position(1, mouse_pos)
 		get_tree().get_root().add_child(new_line)
+		new_line.modulate = Color(1, 1, 1, 1)
 		order = {
 			"origin": order_origin,
 			"target": mouse_pos,

@@ -42,14 +42,18 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 	target_line.set_point_position(0, order_origin)
 	target_line.texture = TARGET_LINE_ART
 	get_tree().get_root().add_child(target_line)
+	target_line.modulate = Color(1, 1, 1, 1)
+	
 	indicator = TARGET_INDICATOR.instantiate()
 	indicator.label = "Attack"
 	get_tree().get_root().add_child(indicator)
 	indicator.sprite.texture = INDICATOR_ART
+	indicator.modulate = Color(1, 1, 1, 1)
 	
 	# Create our temporary targeting line
 	attack_line = ATTACK_LINE.instantiate()
 	get_tree().get_root().add_child(attack_line)
+	attack_line.modulate = Color(1, 1, 1, 1)
 	
 	# Deduct the fixed fuel cost of this order, for now just using the minimum fuel cost
 	player_ship.fuel -= CONTROLLER.MIN_PLOT_FUEL * 3
@@ -79,18 +83,21 @@ func on_process(_delta) -> void:
 		new_indicator.label = str(CONTROLLER.order_id)
 		get_tree().get_root().add_child(new_indicator)
 		new_indicator.sprite.texture = INDICATOR_ART
+		new_indicator.modulate = Color(1, 1, 1, 1)
 		
 		var new_target_line = TARGET_LINE.instantiate()
 		new_target_line.set_point_position(0, order_origin)
 		new_target_line.set_point_position(1, vector_from)
 		get_tree().get_root().add_child(new_target_line)
 		new_target_line.texture = TARGET_LINE_ART
+		new_target_line.modulate = Color(1, 1, 1, 1)
 		
 		# Create attack line
 		var new_attack_line = ATTACK_LINE.instantiate()
 		new_attack_line.set_point_position(0, vector_from)
 		new_attack_line.set_point_position(1, vector_to)
 		get_tree().get_root().add_child(new_attack_line)
+		new_attack_line.modulate = Color(1, 1, 1, 1)
 		
 		# Find the normal vector of the attack, from the origin point, to use later - remember, this merely indicates the angle of the attack
 		var attack_vector = (mouse_pos - order_origin).normalized()
