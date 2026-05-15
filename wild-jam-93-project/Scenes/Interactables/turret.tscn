@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_rehgw"]
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_6rth4"]
 [ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="5_rehgw"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="8_rehgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qpst"]
 size = Vector2(30, 28)
@@ -15,6 +16,9 @@ size = Vector2(30, 28)
 shader = ExtResource("2_mdq75")
 shader_parameter/flashing = false
 shader_parameter/white = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yjxk"]
+size = Vector2(56, 53)
 
 [node name="Turret" type="CharacterBody2D" unique_id=2082558995]
 collision_layer = 2
@@ -43,3 +47,13 @@ script = ExtResource("5_rehgw")
 
 [node name="OrderHold" type="Node" parent="OrderMachine" unique_id=1400116476]
 script = ExtResource("5_6rth4")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=567652378 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("8_rehgw")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=1593864313]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3yjxk")

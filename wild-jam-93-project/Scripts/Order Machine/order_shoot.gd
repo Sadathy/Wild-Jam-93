@@ -120,3 +120,10 @@ func clear_orders() -> void:
 	order_data.clear()
 	just_started = true
 	shoot_time = 0
+	
+# Sets the alpha of the displayed orders
+func set_alpha(alpha: float) -> void:
+	for key in order_data:
+		order_data[key]["indicator"].modulate = Color(1, 1, 1, alpha/255)
+		order_data[key]["line"].modulate = Color(1, 1, 1, alpha/255)
+		order_data[key]["shoot_line"].modulate = Color(1, 1, 1, alpha/255)

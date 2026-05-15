@@ -58,6 +58,6 @@ func clear_orders() -> void:
 	order_data.clear()
 	just_started = true
 	
-# Whatever this needs to do every frame that orders are executing
-func live_update() -> void:
+# Sets the alpha of the displayed orders
+func set_alpha(alpha: float) -> void:
 	return

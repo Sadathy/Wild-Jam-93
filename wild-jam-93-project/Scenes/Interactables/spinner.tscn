@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dcs8wbsmxr141" path="res://Scripts/Order Machine/order_hold.gd" id="5_gvt4j"]
 [ext_resource type="Texture2D" uid="uid://bt00633oykuj" path="res://Assets/Textures/enemy_alien_spinner.png" id="6_t0t2i"]
 [ext_resource type="Script" uid="uid://w55y6wdq5u7s" path="res://Scripts/Order Machine/order_spin.gd" id="6_ulsdo"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="10_2etkp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulsdo"]
 radius = 25.0
@@ -21,6 +22,9 @@ shader_parameter/white = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0t2i"]
 size = Vector2(9, 57.515488)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14ya8"]
+size = Vector2(56, 53)
 
 [node name="Spinner" type="CharacterBody2D" unique_id=273264536]
 scale = Vector2(1, 0.9910375)
@@ -74,3 +78,13 @@ script = ExtResource("5_gvt4j")
 
 [node name="OrderSpin" type="Node" parent="OrderMachine" unique_id=786992782]
 script = ExtResource("6_ulsdo")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=169164301 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("10_2etkp")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=663847932]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_14ya8")

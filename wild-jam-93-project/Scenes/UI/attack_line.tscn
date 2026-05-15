@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b62dkiktw1a0d" path="res://Assets/Textures/shoot_line.png" id="1_4fttt"]
 
 [node name="AttackLine" type="Line2D" unique_id=732587031]
-modulate = Color(1, 1, 1, 0.19607843)
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)

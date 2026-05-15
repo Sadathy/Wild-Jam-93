@@ -16,6 +16,10 @@ var plotting_order_id = 1
 var executing_order_id = 1
 var orders_complete: bool = false
 
+var desired_alpha = 60
+var current_alpha = 0
+var fade_rate = 500
+
 signal ready_for_orders
 
 func _ready() -> void:
@@ -33,6 +37,7 @@ func plot_order(order_string: String) -> bool:
 		order_register[order_string].plot_order()
 		orders[plotting_order_id] = order_string
 		plotting_order_id += 1
+		current_alpha = 0
 		return true
 	return false
 
@@ -48,6 +53,15 @@ func _physics_process(delta: float) -> void:
 			if executing_order_id > orders.size():
 				executing_order_id = orders.size()
 				orders_complete = true
+
+func _process(delta: float) -> void:
+	if desired_alpha == current_alpha:
+		return
+	current_alpha = move_toward(current_alpha, desired_alpha, fade_rate * delta)
+	for key in order_register:
+		order_register[key].set_alpha(current_alpha)
+	print("Desired alpha for orders: ", desired_alpha)
+	print("Current alpha for orders: ", current_alpha)
 
 # When a new turn starts, reset our execution order id
 func on_turn_start() -> void:

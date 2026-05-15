@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_neog0"]
 [ext_resource type="Script" uid="uid://dlqqh3ydsdlda" path="res://Scripts/Order Machine/order_strafe.gd" id="5_1gcn8"]
 [ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="6_yi3le"]
-
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="9_neog0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfk4a"]
 resource_local_to_scene = true
@@ -19,6 +19,9 @@ shader_parameter/white = false
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
 radius = 50.0
 height = 140.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfk4a"]
+size = Vector2(56, 53)
 
 [node name="EnemyShip" type="CharacterBody2D" unique_id=273264536]
 scale = Vector2(1, 0.9910375)
@@ -51,3 +54,13 @@ script = ExtResource("6_yi3le")
 
 [node name="OrderStrafe" type="Node" parent="OrderMachine" unique_id=882880178]
 script = ExtResource("5_1gcn8")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=2122056294 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("9_neog0")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=851999085]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sfk4a")

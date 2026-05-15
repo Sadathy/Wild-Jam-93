@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_0hux5"]
 [ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="5_pwx2i"]
 [ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="6_0hux5"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="9_pwx2i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8i22j"]
 resource_local_to_scene = true
@@ -18,6 +19,9 @@ shader_parameter/white = false
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icclw"]
 radius = 90.0
 height = 450.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i22j"]
+size = Vector2(423, 167)
 
 [node name="EnemyFreighter" type="CharacterBody2D" unique_id=944012623]
 collision_layer = 2
@@ -87,3 +91,13 @@ CONTROLLED_BODY = NodePath("..")
 
 [node name="OrderDrift" type="Node" parent="OrderMachine" unique_id=1034731992]
 script = ExtResource("6_0hux5")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=836039473 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("9_pwx2i")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=2086142537]
+position = Vector2(-6.5, 2.5)
+shape = SubResource("RectangleShape2D_8i22j")

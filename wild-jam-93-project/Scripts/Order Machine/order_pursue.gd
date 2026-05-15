@@ -97,6 +97,8 @@ func clear_orders() -> void:
 	order_data.clear()
 	just_started = true
 
-# Whatever this needs to do every frame that orders are executing
-func live_update() -> void:
-	return
+# Sets the alpha of the displayed orders
+func set_alpha(alpha: float) -> void:
+	for key in order_data:
+		order_data[key]["indicator"].modulate = Color(1, 1, 1, alpha/255)
+		order_data[key]["line"].modulate = Color(1, 1, 1, alpha/255)
