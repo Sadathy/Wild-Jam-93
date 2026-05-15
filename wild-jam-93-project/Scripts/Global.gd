@@ -14,6 +14,7 @@ signal turn_started
 var player_turn: bool = true
 var turn_timer: float = 0.0
 var turn_count = 0
+var paused = false
 
 # Keep track of what level we're on
 var level: Node2D = null
@@ -22,8 +23,8 @@ var level: Node2D = null
 var main_menu = null
 
 func _process(delta: float) -> void:
-	# Only do turn processing if we are in a level
-	if level == null:
+	# Only do turn processing if we are in a level and we are not paused
+	if level == null or paused:
 		return
 	
 	if Input.is_action_just_pressed("next_turn") and player_turn == true:
@@ -61,3 +62,7 @@ func new_level() -> void:
 	var new_level_instance = LEVEL.instantiate()
 	level = new_level_instance
 	get_tree().get_root().add_child(new_level_instance)
+	
+func on_press_pause() -> void:
+	paused = !paused
+	print("Paused: ", paused)

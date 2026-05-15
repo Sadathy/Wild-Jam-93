@@ -38,7 +38,7 @@ func plot_order(order_string: String) -> bool:
 
 # On physics process, calls the correct order for whichever executing_order_id we are on	
 func _physics_process(delta: float) -> void:
-	if Global.player_turn == true or orders_complete == true:
+	if Global.player_turn == true or orders_complete == true or Global.paused == true:
 		return
 	
 	# execute_order() returns true if the order was complete

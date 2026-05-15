@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://pmfulsr2mpri" path="res://Scripts/States/state_attack_plot.gd" id="20_8ex22"]
 [ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scripts/States/state_move.gd" id="20_t3c3c"]
 [ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scripts/States/state_attack.gd" id="21_etcwo"]
+[ext_resource type="Script" uid="uid://bm5ifmeq5sakr" path="res://Scenes/state_browsing.gd" id="25_mj8rx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2fco"]
 resource_local_to_scene = true
@@ -144,6 +145,83 @@ value = 100.0
 texture_under = ExtResource("5_bp4n6")
 texture_over = ExtResource("6_q2j26")
 texture_progress = ExtResource("7_lxxy7")
+
+[node name="MenuPause" type="PanelContainer" parent="CanvasLayer/Control" unique_id=738897680]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MenuPause" unique_id=620185535]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer" unique_id=1840624363]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1619478060]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1970233406]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer" unique_id=128018862]
+layout_mode = 2
+text = "Difficulty: "
+
+[node name="DifficultySlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1611862618]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+scrollable = false
+tick_count = 3
+ticks_position = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=312453072]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=825554607]
+layout_mode = 2
+text = "Volume: "
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2100265475]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+step = 5.0
+scrollable = false
+tick_count = 10
+ticks_position = 3
+
+[node name="ButtonQuitRun" type="Button" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1429277347]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to menu"
+
+[node name="ButtonUnpause" type="Button" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=624127512]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Unpause"
 
 [node name="MenuGame" type="PanelContainer" parent="CanvasLayer/Control" unique_id=276890437]
 unique_name_in_owner = true
@@ -284,6 +362,10 @@ CONTROLLER = NodePath("..")
 
 [node name="StateDead" type="Node2D" parent="SuperStateController/SuperStateMenu" unique_id=386602788 node_paths=PackedStringArray("CONTROLLER")]
 script = ExtResource("17_opdlr")
+CONTROLLER = NodePath("..")
+
+[node name="StateBrowsing" type="Node2D" parent="SuperStateController/SuperStateMenu" unique_id=1162615142 node_paths=PackedStringArray("CONTROLLER")]
+script = ExtResource("25_mj8rx")
 CONTROLLER = NodePath("..")
 
 [node name="SuperStateExecuting" type="Node2D" parent="SuperStateController" unique_id=1507986648 node_paths=PackedStringArray("DEFAULT_STATE", "SUPER_STATE_PLOTTING", "SUPER_STATE_MENU", "STATE_NO_ORDERS", "STATE_ATTACK", "STATE_MOVE", "CONTROLLER")]

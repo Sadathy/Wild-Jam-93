@@ -3,6 +3,8 @@ extends State
 @export var DEFAULT_STATE: State = null
 @export var STATE_DEAD: State = null
 
+@onready var player_ship: CharacterBody2D = $"../.."
+
 var current_state: State = null
 var previous_state: State = null
 
@@ -31,3 +33,4 @@ func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 	previous_state = current_state
 	current_state = new_state
 	current_state.on_enter(entry_data)
+	

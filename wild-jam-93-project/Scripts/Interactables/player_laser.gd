@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	# Only process physics for this outside of the player turn
-	if Global.player_turn == true:
+	if Global.player_turn == true or Global.paused == true:
 		return
 	
 	# Move based on our speed towards out target point

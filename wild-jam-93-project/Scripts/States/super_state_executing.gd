@@ -33,12 +33,16 @@ func _ready():
 }
 
 func on_physics(delta: float) -> void:
+	if Global.paused == true:
+		return
 	if player_ship.hp <= 0:
 		CONTROLLER.change_super_state(SUPER_STATE_MENU, {"dead": true})
 		return
 	current_state.on_physics(delta)
 	
 func on_process(delta: float) -> void:
+	if Global.paused == true:
+		return
 	current_state.on_process(delta)
 	
 func on_input(event: InputEvent) -> void:

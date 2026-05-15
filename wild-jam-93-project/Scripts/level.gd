@@ -21,6 +21,7 @@ func _ready() -> void:
 	player_ship = SHIP.instantiate()
 	player_ship.position = Vector2.ZERO 
 	add_child(player_ship)
+	player_ship.pause.connect(on_press_pause)
 	
 	var p_tl = Vector2(min_x, max_y)
 	var p_tr = Vector2(max_x, max_y)
@@ -35,6 +36,7 @@ func _ready() -> void:
 							preload("res://Assets/Audio/Nova_BATTLE_temp.ogg"))
 	
 	Global.turn_started.connect(on_new_turn)
+	Global.paused = false
 
 func on_new_turn() -> void:
 	var asteroid_count = Global.difficulty + randi_range(-2, 1)
@@ -85,3 +87,6 @@ func force_to_edge(v: Vector2) -> Vector2:
 	if edge_roll == 3: v.x = min_y
 	if edge_roll == 4: v.x = max_y
 	return v
+	
+func on_press_pause() -> void:
+	Global.on_press_pause()

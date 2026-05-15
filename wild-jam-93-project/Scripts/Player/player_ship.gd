@@ -8,6 +8,12 @@ extends CharacterBody2D
 @onready var bar_health: TextureProgressBar = %BarHealth
 @onready var button_retry: Button = %ButtonRetry
 @onready var button_main_menu: Button = %ButtonMainMenu
+@onready var menu_pause: PanelContainer = %MenuPause
+@onready var difficulty_slider: HSlider = %DifficultySlider
+@onready var volume_slider: HSlider = %VolumeSlider
+@onready var button_quit_run: Button = %ButtonQuitRun
+@onready var button_unpause: Button = %ButtonUnpause
+
 
 var plot_cooldown = 0
 
@@ -21,6 +27,7 @@ var hp: float
 var immune: bool = false
 
 signal player_died
+signal pause
 
 func _ready() -> void:
 	max_hp = DEFAULT_MAX_HP
@@ -32,6 +39,32 @@ func _ready() -> void:
 	button_retry.pressed.connect(Global.pressed_retry)
 	button_main_menu.pressed.connect(Global.pressed_main_menu)
 	sprite_art.finished.connect(on_damage_flash_end)
+	
+	button_quit_run.pressed.connect(Global.pressed_main_menu)
+	button_unpause.pressed.connect(on_pressed_pause)
+	
+	difficulty_slider.drag_ended.connect(difficulty_changed)
+	volume_slider.drag_ended.connect(volume_changed)
+	
+	difficulty_slider.value = Global.difficulty
+	volume_slider.value = Global.volume
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		on_pressed_pause()
+		
+func on_pressed_pause() -> void:
+	if Global.paused == true:
+		menu_pause.hide()
+	else:
+		menu_pause.show()
+	pause.emit()
+	
+func difficulty_changed(value: float) -> void:
+	Global.difficulty = value
+	
+func volume_changed(value: float) -> void:
+	Global.volume = value
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 	sprite.rotation = lerpf(sprite.rotation, sprite.rotation + sprite.get_angle_to(t_pos) - (PI*0.5), weight)
@@ -46,6 +79,8 @@ func take_damage(incoming_damage: float) -> bool:
 		print("player found to be immune")
 		return false
 	if incoming_damage >= hp:
+		hp = 0
+		bar_health.value = 0
 		alive = false
 		player_died.emit()
 		return true

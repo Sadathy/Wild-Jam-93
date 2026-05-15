@@ -22,6 +22,8 @@ func _ready() -> void:
 
 # Scroll mouse when the wheel is scrolled
 func _process(delta: float ) -> void:
+	if Global.paused == true:
+		return
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom_target += inc_zoom
 	if Input.is_action_just_pressed("zoom_out"):
