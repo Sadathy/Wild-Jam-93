@@ -33,7 +33,6 @@ window/size/viewport_height=720
 
 folder_colors={
 "res://Assets/": "green",
-"res://BoardingDemo (WIP)/": "orange",
 "res://Builds/": "purple",
 "res://Scenes/": "red",
 "res://Scripts/": "yellow"

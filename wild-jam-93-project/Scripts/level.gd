@@ -47,7 +47,7 @@ func _ready() -> void:
 	Global.paused = false
 
 func on_new_turn() -> void:
-	var asteroid_count = Global.difficulty + randi_range(-2, 1)
+	var asteroid_count = int(Global.difficulty + randi_range(-3, 0))
 	if asteroid_count > 0:
 		# Loop through and generate a bunch of asteroids
 		for i in asteroid_count:
@@ -58,14 +58,16 @@ func on_new_turn() -> void:
 			new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
 			var new_asteroid = Global.create_interactable(ASTEROID, new_origin, new_target, new_speed)
 			add_child(new_asteroid)
-	for i in 3:
-		var new_speed = randf_range(100, 250)
-		var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
-		var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
-		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
-		var new_spice = Global.create_interactable(SPICE, new_origin, new_target, new_speed)
-		add_child(new_spice)
-		new_spice.add_to_group("spice")
+	var spice_count = randi_range(-2, 1)
+	if spice_count > 0:
+		for i in spice_count:
+			var new_speed = randf_range(100, 250)
+			var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
+			var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
+			new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
+			var new_spice = Global.create_interactable(SPICE, new_origin, new_target, new_speed)
+			add_child(new_spice)
+			new_spice.add_to_group("spice")
 
 	# For the first [DIFFICULTY] turns, spawn another enemy
 	if Global.turn_count <= int(Global.difficulty):
