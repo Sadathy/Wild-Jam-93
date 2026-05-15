@@ -16,6 +16,7 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 	CONTROLLER.button_undo.disabled = false
 	CONTROLLER.button_undo.show()
 	CONTROLLER.label_orders.text = "Orders"
+	player_ship.button_end_turn.disabled = false
 	
 	# If we don't have enough fuel to take another action, we should show that!
 	if CONTROLLER.player_ship.fuel < CONTROLLER.MIN_PLOT_FUEL:

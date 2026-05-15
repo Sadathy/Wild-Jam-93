@@ -93,7 +93,6 @@ unique_name_in_owner = true
 
 [node name="Camera" type="Camera2D" parent="CameraPanner" unique_id=1087476652]
 unique_name_in_owner = true
-limit_enabled = false
 script = ExtResource("3_xljp0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484873603]
@@ -123,6 +122,7 @@ anchor_bottom = 1.0
 offset_top = -90.0
 offset_right = 384.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer" unique_id=320466442]
 layout_mode = 2
@@ -161,6 +161,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MenuPause" unique_id=620185535]
 layout_mode = 2
@@ -238,6 +239,7 @@ offset_right = 117.0
 offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MenuGame" unique_id=159386915]
 layout_mode = 2
@@ -276,6 +278,7 @@ offset_top = -170.0
 offset_bottom = 170.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/OrderUI" unique_id=1327209950]
 layout_mode = 2
@@ -284,42 +287,45 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer" unique_id=903619004]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer" unique_id=1087046216]
 layout_mode = 2
 
-[node name="OrderButtons" type="VBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer" unique_id=105373004]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer" unique_id=903619004]
+layout_mode = 2
+
+[node name="OrderButtons" type="VBoxContainer" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=105373004]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="LabelOrders" type="Label" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=671542957]
+[node name="LabelOrders" type="Label" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer/OrderButtons" unique_id=671542957]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Orders"
 
-[node name="ButtonMove" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=766462498]
+[node name="ButtonMove" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer/OrderButtons" unique_id=766462498]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[M]ove"
 
-[node name="ButtonAttack" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=567884085]
+[node name="ButtonAttack" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer/OrderButtons" unique_id=567884085]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[A]ttack"
 
-[node name="ButtonUndo" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=1971285062]
+[node name="ButtonUndo" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer/OrderButtons" unique_id=1971285062]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "[U]ndo"
 
-[node name="ButtonCancel" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer/OrderButtons" unique_id=1764089397]
+[node name="ButtonCancel" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer/OrderButtons" unique_id=1764089397]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 disabled = true
 text = "[C]ancel"
 
-[node name="BarFuel" type="TextureProgressBar" parent="CanvasLayer/Control/OrderUI/MarginContainer/HBoxContainer" unique_id=1600696103]
+[node name="BarFuel" type="TextureProgressBar" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1600696103]
 unique_name_in_owner = true
 layout_direction = 3
 layout_mode = 2
@@ -327,6 +333,11 @@ fill_mode = 3
 texture_under = ExtResource("8_05dn2")
 texture_over = ExtResource("9_awjoh")
 texture_progress = ExtResource("10_2vuj5")
+
+[node name="ButtonEndTurn" type="Button" parent="CanvasLayer/Control/OrderUI/MarginContainer/VBoxContainer" unique_id=1938803772]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Space] End Turn"
 
 [node name="SuperStateController" type="Node2D" parent="." unique_id=1236676132 node_paths=PackedStringArray("DEFAULT_STATE")]
 script = ExtResource("13_q2j26")

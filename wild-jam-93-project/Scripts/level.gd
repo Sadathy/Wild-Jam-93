@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var max_x = 1500
-@export var min_x = -1500
-@export var max_y = 1500
-@export var min_y = -1500
+@export var max_x = 3000
+@export var min_x = -3000
+@export var max_y = 2500
+@export var min_y = -2500
 
 @export var asteroid_spawn_distance = 2500
 @export var asteroid_target_variance = 1000
@@ -15,6 +15,8 @@ const ASTEROID = preload("res://Scenes/Interactables/asteroid.tscn")
 const ENEMY_SHIP = preload("res://Scenes/Interactables/enemy_ship.tscn")
 const FREIGHTER = preload("res://Scenes/Interactables/enemy_freighter.tscn")
 const SPINNER = preload("res://Scenes/Interactables/spinner.tscn")
+const SNIPER = preload("res://Scenes/Interactables/cyber_sniper.tscn")
+
 var player_ship: Node2D = null
 
 func _ready() -> void:
@@ -23,10 +25,15 @@ func _ready() -> void:
 	add_child(player_ship)
 	player_ship.pause.connect(on_press_pause)
 	
-	var p_tl = Vector2(min_x, max_y)
-	var p_tr = Vector2(max_x, max_y)
-	var p_br = Vector2(max_x, min_y)
-	var p_bl = Vector2(min_x, min_y)
+	player_ship.camera.limit_left = min_x
+	player_ship.camera.limit_right = max_x
+	player_ship.camera.limit_top = min_y
+	player_ship.camera.limit_bottom = max_y
+	
+	var p_tl = Vector2(min_x + 20, max_y - 20)
+	var p_tr = Vector2(max_x - 20, max_y - 20)
+	var p_br = Vector2(max_x - 20, min_y + 20)
+	var p_bl = Vector2(min_x + 20, min_y + 20)
 	
 	var p_arr = PackedVector2Array([p_tl, p_tr, p_br, p_bl])
 	
@@ -52,32 +59,14 @@ func on_new_turn() -> void:
 			add_child(new_asteroid)
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy_ships").size()
-	# Roll to generate an enemy ship, based on difficulty
-	if randi_range(-1, int(Global.difficulty)) > 1 and enemy_count < Global.difficulty:
-		# Create a new enemy ship
-		var new_enemy = ENEMY_SHIP.instantiate()
-		new_enemy.position.x = randf_range(min_x, max_x)
-		new_enemy.position.y = randf_range(min_y, max_y)
-		# Make sure we spawn at one extreme edge atleast:
-		new_enemy.position = force_to_edge(new_enemy.position)
-		add_child(new_enemy)
-		new_enemy.add_to_group("enemy_ships")
 	if Global.turn_count == 1:
 		# Create a new enemy ship
-		var new_enemy = FREIGHTER.instantiate()
+		var new_enemy = SNIPER.instantiate()
 		new_enemy.position.x = randf_range(min_x, max_x)
 		new_enemy.position.y = randf_range(min_y, max_y)
 		new_enemy.position = force_to_edge(new_enemy.position)
 		add_child(new_enemy)
 		new_enemy.add_to_group("freighters")
-	# Also make a spinner
-	var new_spinner = SPINNER.instantiate()
-	new_spinner.position.x = randf_range(min_x, max_x)
-	new_spinner.position.y = randf_range(min_y, max_y)
-	# Make sure we spawn at one extreme edge atleast:
-	new_spinner.position = force_to_edge(new_spinner.position)
-	add_child(new_spinner)
-	new_spinner.add_to_group("spinners")
 		
 
 func force_to_edge(v: Vector2) -> Vector2:

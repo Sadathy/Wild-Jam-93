@@ -13,6 +13,9 @@ extends CharacterBody2D
 @onready var volume_slider: HSlider = %VolumeSlider
 @onready var button_quit_run: Button = %ButtonQuitRun
 @onready var button_unpause: Button = %ButtonUnpause
+@onready var button_end_turn: Button = %ButtonEndTurn
+@onready var camera: Camera2D = %Camera
+@onready var bar_fuel: TextureProgressBar = %BarFuel
 
 
 var plot_cooldown = 0
@@ -42,6 +45,7 @@ func _ready() -> void:
 	
 	button_quit_run.pressed.connect(Global.pressed_main_menu)
 	button_unpause.pressed.connect(on_pressed_pause)
+	button_end_turn.pressed.connect(on_press_next_turn)
 	
 	difficulty_slider.drag_ended.connect(difficulty_changed)
 	volume_slider.drag_ended.connect(volume_changed)
@@ -93,4 +97,6 @@ func take_damage(incoming_damage: float) -> bool:
 func on_damage_flash_end() -> void:
 	immune = false
 	
+func on_press_next_turn() -> void:
+	Global.on_press_next_turn()
 	

@@ -10,6 +10,9 @@ var min_x: float
 var max_y: float
 var min_y: float
 
+@onready var sprite: Sprite2D = %Sprite
+
+
 func _ready() -> void:
 	# Fix our position and target point to be 'in bounds'
 	max_x = Global.level.max_x

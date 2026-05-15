@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bb66ar3rvy2mg"]
+[gd_scene format=3 uid="uid://bhkibfbthoitc"]
 
 [ext_resource type="Script" uid="uid://blkbyqjc7i3wl" path="res://Scripts/Interactables/enemy_ship.gd" id="1_p7yn3"]
 [ext_resource type="Texture2D" uid="uid://dktdn1jg4c0br" path="res://Assets/Textures/enemy_fighter_ship.png" id="2_p7yn3"]

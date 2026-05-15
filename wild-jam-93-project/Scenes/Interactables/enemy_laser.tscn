@@ -11,7 +11,8 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_b3yyj")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751337253]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1751337253]
+unique_name_in_owner = true
 z_index = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_b3yyj")

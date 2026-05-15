@@ -28,13 +28,12 @@ func _process(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("next_turn") and player_turn == true:
-		player_turn = false
-		turn_timer = DEFAULT_TURN_DURATION
-		turn_ended.emit()
+		on_press_next_turn()
 		return
 		
 	if player_turn == false:
 		turn_timer -= delta
+		level.player_ship.bar_fuel.value = (turn_timer/DEFAULT_TURN_DURATION)*100
 		if turn_timer <= 0:
 			player_turn = true
 			turn_count += 1
@@ -66,3 +65,9 @@ func new_level() -> void:
 func on_press_pause() -> void:
 	paused = !paused
 	print("Paused: ", paused)
+
+func on_press_next_turn() -> void:
+	player_turn = false
+	turn_timer = DEFAULT_TURN_DURATION
+	level.player_ship.button_end_turn.disabled = true
+	turn_ended.emit()

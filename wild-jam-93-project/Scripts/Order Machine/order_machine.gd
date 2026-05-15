@@ -60,8 +60,6 @@ func _process(delta: float) -> void:
 	current_alpha = move_toward(current_alpha, desired_alpha, fade_rate * delta)
 	for key in order_register:
 		order_register[key].set_alpha(current_alpha)
-	print("Desired alpha for orders: ", desired_alpha)
-	print("Current alpha for orders: ", current_alpha)
 
 # When a new turn starts, reset our execution order id
 func on_turn_start() -> void:
