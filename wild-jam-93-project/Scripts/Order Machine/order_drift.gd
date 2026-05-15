@@ -9,7 +9,7 @@ extends Node
 @export var speed: float = 100
 
 var controller: Node
-var character: CharacterBody2D = null
+var character: Node2D = null
 var direction = null
 var order_data = {}
 

@@ -3,7 +3,7 @@ extends State
 @onready var player_ship: CharacterBody2D = $"../../.."
 
 const PLAYER_LASER = preload("uid://dl8whwu541g6w")
-const DEFAULT_COOLDOWN = 0.2
+const DEFAULT_COOLDOWN = 1.2
 
 const LASER_SOUND_LIBRARY: Dictionary = {
 	1:preload("uid://cnx6yobdgbde0"),
@@ -22,7 +22,7 @@ func on_enter(enter_data: Dictionary = {}) -> void:
 	order = enter_data
 	order["attack_line"].hide()
 	timer = order["fuel_cost"] / player_ship.speed
-	cooldown = DEFAULT_COOLDOWN
+	cooldown = 0
 
 func on_physics(delta: float) -> void:
 	player_ship.look_at_interpolated(order["attack_from"], 1)

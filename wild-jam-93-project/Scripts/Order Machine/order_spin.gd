@@ -9,7 +9,7 @@ extends Node
 @export var min_offset: float = 40
 @export var max_offset: float = 200
 @export var speed: float = 400
-@export var spin_rate: float = 4*PI
+@export var spin_rate: float = 6*PI
 
 var controller: Node
 var character: CharacterBody2D = null

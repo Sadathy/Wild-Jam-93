@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://bcsvlnb2jbk7y" path="res://Scripts/Interactables/asteroid.gd" id="1_1s34e"]
 [ext_resource type="Texture2D" uid="uid://cr6jlwc7d7bvq" path="res://Assets/Textures/asteroid_little.png" id="2_1s34e"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_hd84a"]
-[ext_resource type="Texture2D" uid="uid://c57jco7jckh6e" path="res://Assets/Textures/asteroid_line.png" id="2_nhepu"]
 [ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_d03tx"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="6_lqgpw"]
+[ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="7_waxot"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="10_rdg46"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxl4g"]
 resource_local_to_scene = true
@@ -14,6 +16,9 @@ shader_parameter/white = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
 radius = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jc7o"]
+size = Vector2(56, 53)
 
 [node name="Asteroid" type="Area2D" unique_id=5276601]
 collision_layer = 6
@@ -27,15 +32,24 @@ scale = Vector2(1.8359754, 1.8359754)
 texture = ExtResource("2_1s34e")
 script = ExtResource("4_d03tx")
 
-[node name="LineWarning" type="Line2D" parent="." unique_id=475318060]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.19607843)
-texture_filter = 1
-texture_repeat = 2
-points = PackedVector2Array(0, 0, 0, 0)
-width = 56.0
-texture = ExtResource("2_nhepu")
-texture_mode = 1
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421303482]
 shape = SubResource("CircleShape2D_6buvt")
+
+[node name="OrderMachine" type="Node" parent="." unique_id=1384010992 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("6_lqgpw")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderDrift" type="Node" parent="OrderMachine" unique_id=17744646]
+script = ExtResource("7_waxot")
+speed = 300.0
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=1225043279 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("10_rdg46")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=1854703986]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8jc7o")

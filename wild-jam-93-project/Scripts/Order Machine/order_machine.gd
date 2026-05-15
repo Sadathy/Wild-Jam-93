@@ -8,7 +8,7 @@ extends Node
 # --- PLEASE: You don't need to change any of this code, just drop the OrderMachine node with this script onto your characterBody, then
 # ----------- make any order types you'd like a child of this node, and configure them in the -editor- using it's export vars
 
-@export var CONTROLLED_BODY: CharacterBody2D
+@export var CONTROLLED_BODY: Node2D
 
 var order_register: Dictionary = {}
 var orders: Dictionary = {}
