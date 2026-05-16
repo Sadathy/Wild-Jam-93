@@ -30,6 +30,7 @@ func take_damage(incoming_damage: float) -> bool:
 		for i in 5:
 			var blow_pos = position + (Vector2(randf_range(-1, 1), randf_range(-1, 1)) * randf_range(10, 100))
 			Global.call_deferred("spice_blow", 3, blow_pos)
+		AudioManager.play(preload("res://Assets/Audio/VOiD1/Blast_6.wav"))
 		queue_free()
 		return true
 	HEALTH -= incoming_damage

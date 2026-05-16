@@ -3,7 +3,6 @@ extends Node
 const SPICE = preload("res://Scenes/Interactables/spice.tscn")
 const SPICEBLOW = preload("res://Scenes/Effects/spiceblow.tscn")
 
-@export var volume: float = 50.0
 @export var difficulty: float = 2.0
 @export var DEFAULT_TURN_DURATION: float = 3.0
 
@@ -62,12 +61,14 @@ func create_interactable(new_object_type, new_origin: Vector2, new_target: Vecto
 	return new_object
 
 func pressed_retry() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	credits = 0
 	bounty = 0
 	level.queue_free()
 	new_level(current_level_type)
 
 func pressed_main_menu() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/back_style_2_001.wav"))
 	credits = 0
 	bounty = 0
 	level.queue_free()
@@ -83,6 +84,11 @@ func new_level(level_type) -> void:
 func on_press_pause() -> void:
 	paused = !paused
 	print("Paused: ", paused)
+	
+	if paused:
+		AudioManager.pause_music()
+	else:
+		AudioManager.resume_music()
 
 func on_press_next_turn() -> void:
 	player_turn = false

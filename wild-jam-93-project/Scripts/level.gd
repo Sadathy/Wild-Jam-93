@@ -8,6 +8,8 @@ extends Node2D
 @export var asteroid_spawn_distance = 2500
 @export var asteroid_target_variance = 1000
 
+@export var music: AudioManager.Music = AudioManager.Music.NOVA
+
 @onready var background: Polygon2D = %Background
 
 const SHIP = preload("res://Scenes/player_ship.tscn")
@@ -40,8 +42,7 @@ func _ready() -> void:
 	
 	background.polygon = p_arr
 	
-	AudioManager.load_music(preload("res://Assets/Audio/Nova_AMBIENT_temp.ogg"),
-							preload("res://Assets/Audio/Nova_BATTLE_temp.ogg"))
+	AudioManager.play_music(music)
 	
 	Global.turn_started.connect(on_new_turn)
 	Global.paused = false

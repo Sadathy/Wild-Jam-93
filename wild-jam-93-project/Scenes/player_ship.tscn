@@ -172,14 +172,15 @@ layout_mode = 2
 text = "Options"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1970233406]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1267615956]
 layout_mode = 2
+columns = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer" unique_id=128018862]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=128018862]
 layout_mode = 2
 text = "Difficulty: "
 
-[node name="DifficultySlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1611862618]
+[node name="DifficultySlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=1611862618]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -191,22 +192,56 @@ scrollable = false
 tick_count = 3
 ticks_position = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=312453072]
+[node name="Label2" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=825554607]
 layout_mode = 2
+text = "Master Volume: "
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=825554607]
-layout_mode = 2
-text = "Volume: "
-
-[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2100265475]
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=2100265475]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 1
-step = 5.0
+max_value = 1.0
+step = 0.05
 scrollable = false
 tick_count = 10
 ticks_position = 3
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=2048978379]
+layout_mode = 2
+text = "Music Volume: "
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=1715520144]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+scrollable = false
+tick_count = 10
+ticks_position = 3
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=1744751173]
+layout_mode = 2
+text = "Effects Volume: "
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer/GridContainer" unique_id=1733066330]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+scrollable = false
+tick_count = 10
+ticks_position = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1970233406]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=312453072]
+layout_mode = 2
 
 [node name="ButtonQuitRun" type="Button" parent="CanvasLayer/Control/MenuPause/MarginContainer/VBoxContainer" unique_id=1429277347]
 unique_name_in_owner = true

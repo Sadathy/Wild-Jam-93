@@ -35,6 +35,7 @@ func take_damage(incoming_damage: float) -> bool:
 	if incoming_damage >= HEALTH:
 		Global.bounty += bounty
 		Global.call_deferred("spice_blow", 3, position)
+		AudioManager.play(preload("res://Assets/Audio/VOiD1/Blast_14.wav"))
 		queue_free()
 		return true
 	HEALTH -= incoming_damage
