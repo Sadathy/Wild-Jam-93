@@ -10,11 +10,11 @@ extends Node
 # The maximum number of SFX played at once is controlled by CHANNELS.
 #
 # Usage:
-#	AudioManager.play_music(AudioManager.MUSIC_NOVA)
+#	AudioManager.play_music(AudioManager.Music.NOVA)
 #	AudioManager.play(preload("res://Assets/Audio/sfx.ogg"))
 #	AudioManager.play_looping(preload("res://Assets/Audio/loop.ogg"), "engine")
 #	AudioManager.stop_looping("engine")
-#	AudioManager.set_music(AudioManager.TRACK_BATTLE)
+#	AudioManager.set_music(AudioManager.Track.BATTLE)
 #
 
 
@@ -39,8 +39,8 @@ var _looping: Dictionary = {}
 
 var _music_tracks: Array[AudioStreamPlayer] = []
 var _active_track: int = 0
-enum {TRACK_AMBIENT, TRACK_BATTLE}
-enum {MUSIC_NOVA, MUSIC_LAGRANGE, MUSIC_FISSION}
+enum Track {AMBIENT, BATTLE}
+enum Music {NOVA, LAGRANGE, FISSION}
 
 var _crossfade_tween: Tween
 
@@ -62,13 +62,13 @@ func play_music(music: int) -> void:
 	var track_b: String
 	
 	match music:
-		MUSIC_NOVA:
+		Music.NOVA:
 			track_a = "res://Assets/Audio/Nova_ambient.ogg"
 			track_b = "res://Assets/Audio/Nova_battle.ogg"
-		MUSIC_LAGRANGE:
+		Music.LAGRANGE:
 			track_a = "res://Assets/Audio/Lagrange_ambient.ogg"
 			track_b = "res://Assets/Audio/Lagrange_battle.ogg"
-		MUSIC_FISSION:
+		Music.FISSION:
 			track_a = "res://Assets/Audio/Fission_ambient.ogg"
 			track_b = "res://Assets/Audio/Fission_battle.ogg"
 		_:
@@ -97,7 +97,7 @@ func load_music(stream_a: AudioStream, stream_b: AudioStream) -> void:
 
 # Crossfade to the given track over duration (seconds).
 func set_music(track_index: int, duration: float = DEFAULT_CROSSFADE_DURATION) -> void:
-	if track_index == _active_track or (track_index < TRACK_AMBIENT or track_index > TRACK_BATTLE):
+	if track_index == _active_track or (track_index < Track.AMBIENT or track_index > Track.BATTLE):
 		# ugly error checking - do nothing if we select the currently playing track
 		# and ignore anything else.
 		return

@@ -8,7 +8,7 @@ extends Node2D
 @export var asteroid_spawn_distance = 2500
 @export var asteroid_target_variance = 1000
 
-@export var music = AudioManager.MUSIC_NOVA
+@export var music: AudioManager.Music = AudioManager.Music.NOVA
 
 @onready var background: Polygon2D = %Background
 
