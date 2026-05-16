@@ -19,6 +19,7 @@ const FREIGHTER = preload("res://Scenes/Interactables/enemy_freighter.tscn")
 const SPINNER = preload("res://Scenes/Interactables/spinner.tscn")
 const SNIPER = preload("res://Scenes/Interactables/cyber_sniper.tscn")
 const SPICE = preload("res://Scenes/Interactables/spice.tscn")
+const CIVILIAN = preload("res://Scenes/Interactables/civilian_ship.tscn")
 
 var player_ship: Node2D = null
 
@@ -123,7 +124,19 @@ func on_new_turn() -> void:
 			# 1 in 4 for a ship
 			if randi_range(1, 4) == 4:
 				spawn_enemy(ENEMY_SHIP)
-		
+	# Spawn "civilian" ships that don't do anything except fly around
+	var civilian_count = get_tree().get_nodes_in_group("civilians").size()
+	if civilian_count < 5:
+		spawn_civilian()
+
+func spawn_civilian() -> void:
+	var new_civilian = CIVILIAN.instantiate()
+	new_civilian.position.x = randf_range(min_x, max_x)
+	new_civilian.position.y = randf_range(min_y, max_y)
+	new_civilian.position = force_to_edge(new_civilian.position)
+	add_child(new_civilian)
+	new_civilian.add_to_group("civilians")
+	new_civilian.plot_orders()
 		
 func spawn_enemy(enemy_to_spawn) -> void:
 	var new_enemy = enemy_to_spawn.instantiate()
