@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var HEALTH: float = 100
+@export var HEALTH: float = 50
 @export var THREAT_RANGE = 600
 
 @onready var sprite: Sprite2D = %Sprite
@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var player_ship: CharacterBody2D
 var immune = false
-var bounty: int = 200
+var bounty: int = 120
 
 func _ready() -> void:
 	player_ship = Global.level.player_ship

@@ -62,7 +62,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Start"
+text = "New Game"
+
+[node name="ButtonTutorial" type="Button" parent="Control/Main/MarginContainer/VBoxContainer/VBoxContainer" unique_id=492554931]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Tutorial"
 
 [node name="ButtonOptions" type="Button" parent="Control/Main/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1543164399]
 unique_name_in_owner = true
@@ -96,7 +103,7 @@ visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 326.0
+offset_right = 699.0
 grow_vertical = 2
 
 [node name="SpaceBackground" type="Sprite2D" parent="Control/Credits" unique_id=420895234]
@@ -107,22 +114,37 @@ texture = ExtResource("3_invnu")
 [node name="MarginContainer" type="MarginContainer" parent="Control/Credits" unique_id=714526193]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 200
+theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="Label" type="Label" parent="Control/Credits/MarginContainer" unique_id=255184797]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Credits/MarginContainer" unique_id=676998255]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Credits/MarginContainer/VBoxContainer" unique_id=255184797]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Blauhschwert
-incompetent fool
-MrDetonia
-Sadathy
-Sugar Riot
-
-Made with Godot"
+text = "incompetent fool - Art, Design"
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Credits/MarginContainer/VBoxContainer" unique_id=677635196]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "MrDetonia - Music, Sound, Design"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/Credits/MarginContainer/VBoxContainer" unique_id=751878651]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Sadathy - Art, Design, Gameplay"
+horizontal_alignment = 1
+
+[node name="LicenseButton" type="LinkButton" parent="Control/Credits/MarginContainer/VBoxContainer" unique_id=1854553992]
+layout_mode = 2
+text = "This game was produced with Godot Game Engine, click here to view the license"
+underline = 1
+uri = "https://godotengine.org/license"
 
 [node name="TitleScreenShip" type="Sprite2D" parent="Control/Credits" unique_id=879808064]
 position = Vector2(900, 343)

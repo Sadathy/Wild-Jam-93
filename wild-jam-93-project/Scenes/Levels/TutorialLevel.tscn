@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d1g3k48fngi1w"]
+
+[ext_resource type="Script" uid="uid://0yocusg8nuet" path="res://Scenes/Levels/tutorial_level.gd" id="1_76fmo"]
+[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_knm82"]
+
+[node name="TutorialLevel" type="Node2D" unique_id=1380992670]
+script = ExtResource("1_76fmo")
+
+[node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_knm82")

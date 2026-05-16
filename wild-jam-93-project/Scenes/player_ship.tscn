@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://mohripua3sa5" path="res://Assets/Textures/time_bar_over.png" id="9_awjoh"]
 [ext_resource type="Texture2D" uid="uid://bjrhhnvabhj2m" path="res://Assets/Textures/time_bar_process.png" id="10_2vuj5"]
 [ext_resource type="Script" uid="uid://t7hq2ga2bu2u" path="res://Scripts/States/player_superstate.gd" id="13_q2j26"]
+[ext_resource type="Script" uid="uid://1qybsg66xvnf" path="res://Scenes/label_retry.gd" id="14_j2wid"]
 [ext_resource type="Script" uid="uid://dcp1plpavqaae" path="res://Scripts/States/super_state_plotting.gd" id="14_lxxy7"]
 [ext_resource type="Script" uid="uid://54pmyy5nxjsn" path="res://Scenes/label_bounty.gd" id="14_mj8rx"]
 [ext_resource type="Script" uid="uid://c4ywa02hxihd5" path="res://Scripts/States/super_state_menu.gd" id="15_5hof5"]
@@ -247,6 +248,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CanvasLayer/Control/MenuGame/MarginContainer/VBoxContainer" unique_id=2041313147]
 layout_mode = 2
 text = "Your ship was destroyed!"
+script = ExtResource("14_j2wid")
 
 [node name="ButtonRetry" type="Button" parent="CanvasLayer/Control/MenuGame/MarginContainer/VBoxContainer" unique_id=2030124001]
 unique_name_in_owner = true

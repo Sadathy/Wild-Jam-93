@@ -33,7 +33,7 @@ func _ready() -> void:
 	target_point.y = clamp(target_point.y, min_y, max_y)
 	
 	position = origin_point
-	var dir_normal = abs((target_point - position).normalized())
+	var dir_normal = (target_point - position).normalized()
 	order_drift.direction = dir_normal
 	order_drift.speed = speed
 	
