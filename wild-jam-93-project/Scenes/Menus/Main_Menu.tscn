@@ -180,15 +180,16 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Options/MarginContainer/VBoxContainer" unique_id=1227673752]
+[node name="GridContainer" type="GridContainer" parent="Control/Options/MarginContainer/VBoxContainer" unique_id=1455885340]
 layout_mode = 2
+columns = 2
 
-[node name="Label" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/HBoxContainer" unique_id=219125185]
+[node name="Label" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=219125185]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Difficulty:"
 
-[node name="DifficultySlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1359998138]
+[node name="DifficultySlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=1359998138]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -200,15 +201,46 @@ scrollable = false
 tick_count = 3
 ticks_position = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Options/MarginContainer/VBoxContainer" unique_id=1517201335]
-layout_mode = 2
-
-[node name="Volume" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=500602680]
+[node name="Volume" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=500602680]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Volume:"
+text = "Master Volume:"
 
-[node name="VolumeSlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1102349739]
+[node name="VolumeSlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=1102349739]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+tick_count = 10
+ticks_position = 3
+
+[node name="MusicVolume" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=647117686]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="MusicSlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=1670320350]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+tick_count = 10
+ticks_position = 3
+
+[node name="SFXVolume" type="Label" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=574692747]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Effects Volume:"
+
+[node name="SFXSlider" type="HSlider" parent="Control/Options/MarginContainer/VBoxContainer/GridContainer" unique_id=35283325]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2

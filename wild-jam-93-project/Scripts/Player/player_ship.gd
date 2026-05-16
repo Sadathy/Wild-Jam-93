@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var menu_pause: PanelContainer = %MenuPause
 @onready var difficulty_slider: HSlider = %DifficultySlider
 @onready var volume_slider: HSlider = %VolumeSlider
+@onready var music_slider: HSlider = %MusicSlider
+@onready var sfx_slider: HSlider = %SFXSlider
 @onready var button_quit_run: Button = %ButtonQuitRun
 @onready var button_unpause: Button = %ButtonUnpause
 @onready var button_end_turn: Button = %ButtonEndTurn
@@ -48,10 +50,14 @@ func _ready() -> void:
 	button_end_turn.pressed.connect(on_press_next_turn)
 	
 	difficulty_slider.drag_ended.connect(difficulty_changed)
-	volume_slider.value_changed.connect(volume_changed)
+	volume_slider.value_changed.connect(volume_master_changed)
+	music_slider.value_changed.connect(volume_music_changed)
+	sfx_slider.value_changed.connect(volume_sfx_changed)
 	
 	difficulty_slider.value = Global.difficulty
 	volume_slider.value = AudioManager.volume_master
+	music_slider.value = AudioManager.volume_music
+	sfx_slider.value = AudioManager.volume_sfx
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -69,8 +75,17 @@ func on_pressed_pause() -> void:
 func difficulty_changed(value: float) -> void:
 	Global.difficulty = value
 	
-func volume_changed(value: float) -> void:
+func volume_master_changed(value: float) -> void:
 	AudioManager.set_master_volume(value)
+	Global.main_menu.get_node("%VolumeSlider").value = AudioManager.volume_master
+
+func volume_music_changed(value: float) -> void:
+	AudioManager.set_music_volume(value)
+	Global.main_menu.get_node("%MusicSlider").value = AudioManager.volume_music
+
+func volume_sfx_changed(value: float) -> void:
+	AudioManager.set_sfx_volume(value)
+	Global.main_menu.get_node("%SFXSlider").value = AudioManager.volume_sfx
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 	sprite.rotation = lerpf(sprite.rotation, sprite.rotation + sprite.get_angle_to(t_pos) - (PI*0.5), weight)
