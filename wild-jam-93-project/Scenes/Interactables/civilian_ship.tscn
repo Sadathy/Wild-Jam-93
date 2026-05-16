@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c7uc7jdwsdekn"]
+
+[ext_resource type="Script" uid="uid://dvh2lgrfhi57e" path="res://Scripts/Interactables/civilian_ship.gd" id="1_7nc2t"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_7nc2t"]
+[ext_resource type="Texture2D" uid="uid://cw60djagib4sb" path="res://Assets/Textures/civilian_ship.png" id="3_1w3fm"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_w8w6o"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_7d5bd"]
+[ext_resource type="Script" uid="uid://bhkys40p1v5h3" path="res://Scripts/Order Machine/order_drift.gd" id="9_7nc2t"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="9_8e0r8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfk4a"]
+resource_local_to_scene = true
+shader = ExtResource("2_7nc2t")
+shader_parameter/flashing = false
+shader_parameter/white = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
+radius = 50.0
+height = 140.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfk4a"]
+size = Vector2(56, 53)
+
+[node name="CivilianShip" type="CharacterBody2D" unique_id=273264536]
+scale = Vector2(1, 0.9910375)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_7nc2t")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=700273540]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sfk4a")
+scale = Vector2(1.7328843, 1.7328843)
+texture = ExtResource("3_1w3fm")
+script = ExtResource("4_w8w6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336434755]
+position = Vector2(8.072343, -3.162457e-09)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_p7yn3")
+
+[node name="OrderMachine" type="Node" parent="." unique_id=1360759756 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("5_7d5bd")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderDrift" type="Node" parent="OrderMachine" unique_id=1545720137]
+script = ExtResource("9_7nc2t")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=2122056294 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("9_8e0r8")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=851999085]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sfk4a")
