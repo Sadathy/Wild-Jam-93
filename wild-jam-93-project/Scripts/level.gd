@@ -124,6 +124,13 @@ func on_new_turn() -> void:
 			# 1 in 4 for a ship
 			if randi_range(1, 4) == 4:
 				spawn_enemy(ENEMY_SHIP)
+	
+	# If there's enough things that hurt us on screen, switch to battle music
+	if asteroid_count + enemy_count >= 5:
+		AudioManager.set_music(AudioManager.Track.BATTLE)
+	else:
+		AudioManager.set_music(AudioManager.Track.AMBIENT)
+	
 	# Spawn "civilian" ships that don't do anything except fly around
 	var civilian_count = get_tree().get_nodes_in_group("civilians").size()
 	if civilian_count < 5:
@@ -137,6 +144,7 @@ func spawn_civilian() -> void:
 	add_child(new_civilian)
 	new_civilian.add_to_group("civilians")
 	new_civilian.plot_orders()
+		
 		
 func spawn_enemy(enemy_to_spawn) -> void:
 	var new_enemy = enemy_to_spawn.instantiate()

@@ -69,6 +69,7 @@ func pressed_retry() -> void:
 
 func pressed_main_menu() -> void:
 	AudioManager.play(preload("res://Assets/Audio/obsydianx/back_style_2_001.wav"))
+	AudioManager.stop_music()
 	credits = 0
 	bounty = 0
 	level.queue_free()

@@ -5,6 +5,7 @@
 
 [node name="Level" type="Node2D" unique_id=849871524]
 script = ExtResource("1_tumq0")
+music = 1
 
 [node name="Background" type="Polygon2D" parent="." unique_id=2063051926]
 unique_name_in_owner = true

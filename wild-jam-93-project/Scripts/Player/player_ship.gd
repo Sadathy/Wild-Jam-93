@@ -105,6 +105,7 @@ func take_damage(incoming_damage: float) -> bool:
 		bar_health.value = 0
 		alive = false
 		player_died.emit()
+		AudioManager.set_music(AudioManager.Track.AMBIENT)
 		return true
 	hp -= incoming_damage
 	bar_health.value = (hp / max_hp) * 100
