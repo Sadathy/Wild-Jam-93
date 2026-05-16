@@ -24,8 +24,8 @@ func _ready() -> void:
 	player_ship = SHIP.instantiate()
 	player_ship.position = Vector2.ZERO 
 	add_child(player_ship)
-	player_ship.pause.connect(on_press_pause)
 	
+	player_ship.pause.connect(on_press_pause)
 	player_ship.camera.limit_left = min_x
 	player_ship.camera.limit_right = max_x
 	player_ship.camera.limit_top = min_y

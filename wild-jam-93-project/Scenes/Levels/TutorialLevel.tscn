@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0yocusg8nuet" path="res://Scenes/Levels/tutorial_level.gd" id="1_76fmo"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_knm82"]
+[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_knm82"]
+[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_fkc41"]
 
 [node name="TutorialLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_76fmo")
@@ -11,3 +13,98 @@ unique_name_in_owner = true
 texture_filter = 1
 texture_repeat = 2
 texture = ExtResource("2_knm82")
+
+[node name="EnterGate" parent="." unique_id=1368292179 instance=ExtResource("3_knm82")]
+position = Vector2(-100, 0)
+
+[node name="ExitGate" parent="." unique_id=604080706 instance=ExtResource("4_fkc41")]
+unique_name_in_owner = true
+position = Vector2(3600, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1328243657]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1338140613]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeaveMenu" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1465964092]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/LeaveMenu" unique_id=1862254192]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LeaveMenu/MarginContainer" unique_id=1630330206]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer" unique_id=195269167]
+layout_mode = 2
+text = "This gate will allow you to exit the tutorial"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer" unique_id=1417995695]
+layout_mode = 2
+
+[node name="ButtonLeaveTutorial" type="Button" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=568442889]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave tutorial"
+
+[node name="ButtonKeepPlayingTutorial" type="Button" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=529478684]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Keep playing"
+
+[node name="TutorialSlide" type="PanelContainer" parent="CanvasLayer/Control" unique_id=926110481]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/TutorialSlide" unique_id=407227889]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/TutorialSlide/MarginContainer" unique_id=502141583]
+layout_mode = 2
+
+[node name="LabelTutorialTitle" type="Label" parent="CanvasLayer/Control/TutorialSlide/MarginContainer/VBoxContainer" unique_id=10190450]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "<INSERT TITLE>"
+horizontal_alignment = 1
+
+[node name="LabelTutorialText" type="Label" parent="CanvasLayer/Control/TutorialSlide/MarginContainer/VBoxContainer" unique_id=1738891829]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<INSERT TITLE>"
+
+[node name="ButtonOkay" type="Button" parent="CanvasLayer/Control/TutorialSlide/MarginContainer/VBoxContainer" unique_id=318250063]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Okay"

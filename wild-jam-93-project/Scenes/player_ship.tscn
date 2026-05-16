@@ -282,7 +282,7 @@ script = ExtResource("14_mj8rx")
 
 [node name="LabelCredits" type="Label" parent="CanvasLayer/Control/BountyUI/MarginContainer2/VBoxContainer" unique_id=1187161180]
 layout_mode = 2
-text = "Credits: $0"
+text = "Spice: 0"
 script = ExtResource("15_u2fco")
 
 [node name="OrderUI" type="PanelContainer" parent="CanvasLayer/Control" unique_id=250804074]

@@ -1,14 +1,16 @@
 extends Node2D
 
-@export var max_x = 2000
-@export var min_x = -2000
-@export var max_y = 1500
-@export var min_y = -1500
-
-@export var asteroid_spawn_distance = 2500
-@export var asteroid_target_variance = 1000
+@export var max_x = 4000
+@export var min_x = -500
+@export var max_y = 1000
+@export var min_y = -1000
 
 @onready var background: Polygon2D = %Background
+@onready var exit_gate: Area2D = %ExitGate
+
+@onready var leave_menu: PanelContainer = %LeaveMenu
+@onready var button_leave_tutorial: Button = %ButtonLeaveTutorial
+@onready var button_keep_playing_tutorial: Button = %ButtonKeepPlayingTutorial
 
 const SHIP = preload("res://Scenes/player_ship.tscn")
 const ASTEROID = preload("res://Scenes/Interactables/asteroid.tscn")
@@ -20,11 +22,22 @@ const SPICE = preload("res://Scenes/Interactables/spice.tscn")
 
 var player_ship: Node2D = null
 
+var considering_exit: bool = false
+
+#TUTORIAL SLIDES
+@onready var tutorial_slide: PanelContainer = %TutorialSlide
+@onready var label_tutorial_title: Label = %LabelTutorialTitle
+@onready var label_tutorial_text: Label = %LabelTutorialText
+@onready var button_okay: Button = %ButtonOkay
+
+var tutorial_step: int = 0
+
+
+
 func _ready() -> void:
 	player_ship = SHIP.instantiate()
 	player_ship.position = Vector2.ZERO 
 	add_child(player_ship)
-	player_ship.pause.connect(on_press_pause)
 	
 	player_ship.camera.limit_left = min_x
 	player_ship.camera.limit_right = max_x
@@ -43,86 +56,33 @@ func _ready() -> void:
 	AudioManager.load_music(preload("res://Assets/Audio/Nova_AMBIENT_temp.ogg"),
 							preload("res://Assets/Audio/Nova_BATTLE_temp.ogg"))
 	
+	#SIGNALS
 	Global.turn_started.connect(on_new_turn)
+	button_leave_tutorial.pressed.connect(on_press_leave_tutorial)
+	button_keep_playing_tutorial.pressed.connect(on_press_keep_playing)
+	exit_gate.player_tried_exit.connect(on_player_exit)
+	player_ship.pause.connect(on_press_pause)
+	button_okay.pressed.connect(hide_tutorial_prompt)
+	
+	Global.paused = false
+
+func on_player_exit() -> void:
+	considering_exit = true
+	leave_menu.show()
+	player_ship.menu_pause.hide()
+	Global.paused = true
+	
+func on_press_leave_tutorial() -> void:
+	AudioManager.stop_all_looping()
+	Global.pressed_main_menu()
+	
+func on_press_keep_playing() -> void:
+	considering_exit = false
+	leave_menu.hide()
 	Global.paused = false
 
 func on_new_turn() -> void:
-	var asteroid_count = int(Global.difficulty + randi_range(-3, 0))
-	if asteroid_count > 0:
-		# Loop through and generate a bunch of asteroids
-		for i in asteroid_count:
-			var new_speed = randf_range(225, 375)
-			var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
-			var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
-			# Now we map the vector from the origin to the target so we can 'project past' by multiplaying it then transforming by origin position again
-			new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
-			var new_asteroid = Global.create_interactable(ASTEROID, new_origin, new_target, new_speed)
-			add_child(new_asteroid)
-	var spice_count = randi_range(-2, 1)
-	if spice_count > 0:
-		for i in spice_count:
-			var new_speed = randf_range(100, 250)
-			var new_origin = (Vector2.from_angle(randf() * 2 * PI) * asteroid_spawn_distance) + player_ship.position
-			var new_target = (Vector2.from_angle(randf() * 2 * PI) * (((randf() - 0.5) * asteroid_target_variance))) + player_ship.position
-			new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
-			var new_spice = Global.create_interactable(SPICE, new_origin, new_target, new_speed)
-			add_child(new_spice)
-			new_spice.add_to_group("spice")
-	# If our bounty exceeds certain thresholds, and there arent absurd enemy numbers, pawn more shit!!
-	var enemy_count = get_tree().get_nodes_in_group("enemies").size()
-	if enemy_count == 0:
-		# Always have at least one enemy ship
-		spawn_enemy(ENEMY_SHIP)
-	if enemy_count < 30:
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 3150:
-			# Spawn a freighter
-			spawn_enemy(FREIGHTER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2900:
-			# Spawn a sniper
-			spawn_enemy(SNIPER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2650:
-			# Spawn a spinner
-			spawn_enemy(SPINNER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2400:
-			# Spawn a enemy ship
-			spawn_enemy(ENEMY_SHIP)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 2150:
-			# 1 in 2 for a freighter
-			if randi_range(1, 2) == 2:
-				spawn_enemy(FREIGHTER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1900:
-			# 1 in 2 for a spinner
-			if randi_range(1, 2) == 2:
-				spawn_enemy(SPINNER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1650:
-			# 1 in 2 for a sniper
-			if randi_range(1, 2) == 2:
-				spawn_enemy(SNIPER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1400:
-			# 1 in 2 for a enemy ship
-			if randi_range(1, 2) == 2:
-				spawn_enemy(ENEMY_SHIP)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 1150:
-			# 1 in 3 for a freighter
-			if randi_range(1, 3) == 3:
-				spawn_enemy(FREIGHTER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 900:
-			# 1 in 3 for a enemy ship
-			if randi_range(1, 3) == 3:
-				spawn_enemy(ENEMY_SHIP)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 650:
-			# 1 in 3 for a sniper
-			if randi_range(1, 3) == 3:
-				spawn_enemy(SNIPER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 400:
-			# 1 in 3 for a spinner
-			if randi_range(1, 3) == 3:
-				spawn_enemy(SPINNER)
-		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 150:
-			# 1 in 4 for a ship
-			if randi_range(1, 4) == 4:
-				spawn_enemy(ENEMY_SHIP)
-		
+	return
 		
 func spawn_enemy(enemy_to_spawn) -> void:
 	var new_enemy = enemy_to_spawn.instantiate()
@@ -142,4 +102,15 @@ func force_to_edge(v: Vector2) -> Vector2:
 	return v
 	
 func on_press_pause() -> void:
+	if considering_exit == true:
+		return
 	Global.on_press_pause()
+	
+func show_tutorial_prompt(title: String = "No Title", text: String = "No text") -> void:
+	label_tutorial_title.text = title
+	label_tutorial_text.text = text
+	tutorial_slide.show()
+
+func hide_tutorial_prompt() -> void:
+	tutorial_slide.hide()
+	tutorial_step += 1

@@ -47,8 +47,8 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/Main/MarginContainer/VBoxContainer" unique_id=1208644891]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Wild Game Jam #93 Entry
-Title Pending"
+text = "Star Bounty
+Godot Wild Game Jam #93"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Main/MarginContainer/VBoxContainer" unique_id=1055864508]
