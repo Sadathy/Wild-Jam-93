@@ -30,19 +30,23 @@ func _ready() -> void:
 	Global.main_menu = self
 	
 func start_pressed() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	Global.new_level(Global.LEVEL_GENERIC)
 	hide()
 	
 func tutorial_pressed() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	Global.new_level(Global.LEVEL_TUTORIAL)
 	hide()
 	
 func options_pressed() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	button_return.show()
 	options.show()
 	hide()
 	
 func credits_pressed() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	button_return.show()
 	credits.show()
 	hide()
@@ -51,6 +55,7 @@ func quit_pressed() -> void:
 	get_tree().quit()
 	
 func return_pressed() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/back_style_2_001.wav"))
 	button_return.hide()
 	options.hide()
 	credits.hide()

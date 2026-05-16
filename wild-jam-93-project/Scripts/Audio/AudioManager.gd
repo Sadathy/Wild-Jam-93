@@ -242,13 +242,15 @@ func set_master_volume(linear: float) -> void:
 	volume_master = clampf(linear, 0.0, 1.0)
 	var bus_idx := AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_linear(bus_idx, volume_master)
+	_play_click_on_bus("Master")
+
 
 # Set music volume (0.0 - 1.0)
 func set_music_volume(linear: float) -> void:
 	volume_music = clampf(linear, 0.0, 1.0)
 	var bus_idx := AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_volume_linear(bus_idx, volume_music)
-	#_music_tracks[_active_track].volume_db = linear_to_db(volume_music)
+	_play_click_on_bus("Music")
 
 
 # Set SFX volume (0.0 - 1.0)
@@ -256,6 +258,7 @@ func set_sfx_volume(linear: float) -> void:
 	volume_sfx = clampf(linear, 0.0, 1.0)
 	var bus_idx := AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_linear(bus_idx, volume_sfx)
+	_play_click_on_bus("SFX")
 
 
 
@@ -278,3 +281,13 @@ func _build_music_players() -> void:
 		p.bus = "Music"
 		add_child(p)
 		_music_tracks.append(p)
+
+
+# Play a test click sound on a bus
+func _play_click_on_bus(bus_name: String) -> void:
+	var p := AudioStreamPlayer.new()
+	add_child(p)
+	p.stream = load("res://Assets/Audio/obsydianx/cursor_style_2.wav")
+	p.bus = bus_name
+	p.finished.connect(p.queue_free)
+	p.play()

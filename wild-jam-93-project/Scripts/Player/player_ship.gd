@@ -65,8 +65,10 @@ func _process(_delta: float) -> void:
 		
 func on_pressed_pause() -> void:
 	if Global.paused == true:
+		AudioManager.play(preload("res://Assets/Audio/JDSherbert/Popup Close.wav"))
 		menu_pause.hide()
 	else:
+		AudioManager.play(preload("res://Assets/Audio/JDSherbert/Popup Open.wav"))
 		menu_pause.show()
 	pause.emit()
 	

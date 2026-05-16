@@ -61,12 +61,14 @@ func create_interactable(new_object_type, new_origin: Vector2, new_target: Vecto
 	return new_object
 
 func pressed_retry() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	credits = 0
 	bounty = 0
 	level.queue_free()
 	new_level(current_level_type)
 
 func pressed_main_menu() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/back_style_2_001.wav"))
 	credits = 0
 	bounty = 0
 	level.queue_free()
