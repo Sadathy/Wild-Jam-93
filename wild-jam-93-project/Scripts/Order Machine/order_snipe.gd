@@ -23,11 +23,14 @@ var just_started: bool = true
 const SHOOT_TIMER: float = 1.8
 var shoot_time: float = 1.8
 
+
+
 const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")
 const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 const SHOOT_LINE = preload("uid://7b8ahfruxcgl")
 
 const TARGET_INDICATOR_ART = preload("uid://cqe8li46sh7w2")
+const SNIPER_INDICATOR_ART = preload("uid://bk52pv76x0fcl")
 const TARGET_LINE_ART = preload("uid://b2k88n4s7ghoj")
 const SHOOT_LINE_ART = preload("uid://be3j5g2ioln0t")
 
@@ -79,7 +82,7 @@ func plot_order() -> void:
 	tracking_indicator.label = ""
 	tracking_indicator.position = tracked_pos
 	character.add_sibling(tracking_indicator)
-	tracking_indicator.sprite.texture = TARGET_INDICATOR_ART
+	tracking_indicator.sprite.texture = SNIPER_INDICATOR_ART
 	
 	# Save data we need for executing this order
 	order_data[order_id] = {
