@@ -3,7 +3,6 @@ extends Node
 const SPICE = preload("res://Scenes/Interactables/spice.tscn")
 const SPICEBLOW = preload("res://Scenes/Effects/spiceblow.tscn")
 
-@export var volume: float = 50.0
 @export var difficulty: float = 2.0
 @export var DEFAULT_TURN_DURATION: float = 3.0
 

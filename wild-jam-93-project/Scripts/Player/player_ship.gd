@@ -48,10 +48,10 @@ func _ready() -> void:
 	button_end_turn.pressed.connect(on_press_next_turn)
 	
 	difficulty_slider.drag_ended.connect(difficulty_changed)
-	volume_slider.drag_ended.connect(volume_changed)
+	volume_slider.value_changed.connect(volume_changed)
 	
 	difficulty_slider.value = Global.difficulty
-	volume_slider.value = Global.volume
+	volume_slider.value = AudioManager.volume_master
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -59,8 +59,10 @@ func _process(_delta: float) -> void:
 		
 func on_pressed_pause() -> void:
 	if Global.paused == true:
+		AudioManager.resume_music()
 		menu_pause.hide()
 	else:
+		AudioManager.pause_music()
 		menu_pause.show()
 	pause.emit()
 	
@@ -68,7 +70,7 @@ func difficulty_changed(value: float) -> void:
 	Global.difficulty = value
 	
 func volume_changed(value: float) -> void:
-	Global.volume = value
+	AudioManager.set_master_volume(value)
 
 func look_at_interpolated(t_pos : Vector2, weight : float = 0.1):
 	sprite.rotation = lerpf(sprite.rotation, sprite.rotation + sprite.get_angle_to(t_pos) - (PI*0.5), weight)

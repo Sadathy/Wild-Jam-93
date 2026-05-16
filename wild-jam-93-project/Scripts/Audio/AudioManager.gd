@@ -9,11 +9,8 @@ extends Node
 # Sound Effects (SFX) can be "one-shot" or looped until stopped.
 # The maximum number of SFX played at once is controlled by CHANNELS.
 #
-# Setup:
-# 	AudioManager.load_music(preload("res://Assets/Audio/track_ambient.ogg",
-#							preload("res://Assets/Audio/track_battle.ogg"))
-#
 # Usage:
+#	AudioManager.play_music(AudioManager.MUSIC_NOVA)
 #	AudioManager.play(preload("res://Assets/Audio/sfx.ogg"))
 #	AudioManager.play_looping(preload("res://Assets/Audio/loop.ogg"), "engine")
 #	AudioManager.stop_looping("engine")
@@ -27,8 +24,10 @@ const CHANNELS := 16
 const DEFAULT_CROSSFADE_DURATION := 1.5
 const DEFAULT_FADE_DURATION := 0.0
 
-var volume_sfx 	:= 1.0
-var volume_music := 1.0
+
+@export var volume_master := 1.0
+@export var volume_sfx := 1.0
+@export var volume_music := 1.0
 
 
 # Internal state tracking
@@ -41,6 +40,7 @@ var _looping: Dictionary = {}
 var _music_tracks: Array[AudioStreamPlayer] = []
 var _active_track: int = 0
 enum {TRACK_AMBIENT, TRACK_BATTLE}
+enum {MUSIC_NOVA, MUSIC_LAGRANGE, MUSIC_FISSION}
 
 var _crossfade_tween: Tween
 
@@ -54,6 +54,28 @@ func _ready() -> void:
 
 # Music
 # -----
+
+# Load and play music by identifier.
+# Calls load_music(), see below for behaviour.
+func play_music(music: int) -> void:
+	var track_a: String
+	var track_b: String
+	
+	match music:
+		MUSIC_NOVA:
+			track_a = "res://Assets/Audio/Nova_ambient.ogg"
+			track_b = "res://Assets/Audio/Nova_battle.ogg"
+		MUSIC_LAGRANGE:
+			track_a = "res://Assets/Audio/Lagrange_ambient.ogg"
+			track_b = "res://Assets/Audio/Lagrange_battle.ogg"
+		MUSIC_FISSION:
+			track_a = "res://Assets/Audio/Fission_ambient.ogg"
+			track_b = "res://Assets/Audio/Fission_battle.ogg"
+		_:
+			return
+	
+	load_music(load(track_a), load(track_b))
+
 
 # Load ambient / battle music for a level and begin playing them in sync.
 # Stream A will begin playing at full volume, while stream B will be silent.
@@ -154,6 +176,7 @@ func play_looping(stream: AudioStream, key: String, fade_in: float = DEFAULT_FAD
 	
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
+	player.bus = "SFX"
 	player.volume_db = 0.0
 	player.autoplay = false
 	add_child(player)
@@ -214,15 +237,25 @@ func stop_all_looping() -> void:
 # Volume Control
 # --------------
 
-# Set music volume (0.0 - 1.0). Immediately updates active track.
+# Set master volume (0.0 - 1.0)
+func set_master_volume(linear: float) -> void:
+	volume_master = clampf(linear, 0.0, 1.0)
+	var bus_idx := AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_linear(bus_idx, volume_master)
+
+# Set music volume (0.0 - 1.0)
 func set_music_volume(linear: float) -> void:
 	volume_music = clampf(linear, 0.0, 1.0)
-	_music_tracks[_active_track].volume_db = linear_to_db(volume_music)
+	var bus_idx := AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_linear(bus_idx, volume_music)
+	#_music_tracks[_active_track].volume_db = linear_to_db(volume_music)
 
 
-# Set SFX volume (0.0 - 1.0).
+# Set SFX volume (0.0 - 1.0)
 func set_sfx_volume(linear: float) -> void:
 	volume_sfx = clampf(linear, 0.0, 1.0)
+	var bus_idx := AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_linear(bus_idx, volume_sfx)
 
 
 

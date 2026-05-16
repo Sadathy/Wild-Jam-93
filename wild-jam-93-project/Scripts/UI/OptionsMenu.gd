@@ -6,13 +6,13 @@ extends PanelContainer
 func _ready() -> void:
 	# Set up signals for sliders
 	difficulty_slider.drag_ended.connect(difficulty_changed)
-	volume_slider.drag_ended.connect(volume_changed)
+	volume_slider.value_changed.connect(volume_changed)
 	
 	difficulty_slider.value = Global.difficulty
-	volume_slider.value = Global.volume
+	volume_slider.value = AudioManager.volume_master
 	
 func difficulty_changed(value: float) -> void:
 	Global.difficulty = value
 	
 func volume_changed(value: float) -> void:
-	Global.volume = value
+	AudioManager.set_master_volume(value)

@@ -40,8 +40,7 @@ func _ready() -> void:
 	
 	background.polygon = p_arr
 	
-	AudioManager.load_music(preload("res://Assets/Audio/Nova_AMBIENT_temp.ogg"),
-							preload("res://Assets/Audio/Nova_BATTLE_temp.ogg"))
+	AudioManager.play_music(AudioManager.MUSIC_NOVA)
 	
 	Global.turn_started.connect(on_new_turn)
 	Global.paused = false
