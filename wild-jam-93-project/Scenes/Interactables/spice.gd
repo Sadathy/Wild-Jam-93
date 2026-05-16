@@ -61,4 +61,5 @@ func on_impact(_entering_body) -> void:
 	if Global.player_turn == true:
 		return
 	Global.credits += 1
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_001.wav"))
 	queue_free()
