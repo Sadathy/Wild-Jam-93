@@ -36,7 +36,7 @@ func plot_orders() -> void:
 	if out_of_bounds:
 		queue_free()
 		return
-	for i in 4:
+	for i in 3:
 		order_machine.plot_order("OrderDrift")
 
 func take_damage(incoming_damage: float) -> bool:
