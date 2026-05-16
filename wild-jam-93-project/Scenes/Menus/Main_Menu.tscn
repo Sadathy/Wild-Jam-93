@@ -99,6 +99,7 @@ texture = ExtResource("2_6pxni")
 
 [node name="Credits" type="PanelContainer" parent="Control" unique_id=756686936]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
