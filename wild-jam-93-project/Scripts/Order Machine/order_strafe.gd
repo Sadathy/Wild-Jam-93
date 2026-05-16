@@ -33,7 +33,7 @@ func plot_order() -> void:
 	
 	# Find where we're actually going
 	var order_origin = controller.get_order_finish(order_id - 1)
-	var strafe_angle = order_origin.angle_to_point(character.position) + (0.5*PI)
+	var strafe_angle = order_origin.angle_to_point(target.position) + (0.5*PI)
 	var order_finish = (Vector2.from_angle(strafe_angle) * speed * ORDER_DURATION) + order_origin
 	
 	# Create an indicator for where we're going

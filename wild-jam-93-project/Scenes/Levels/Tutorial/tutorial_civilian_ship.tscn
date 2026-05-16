@@ -46,7 +46,7 @@ CONTROLLED_BODY = NodePath("..")
 
 [node name="OrderStrafe" type="Node" parent="OrderMachine" unique_id=1474903600]
 script = ExtResource("6_qmmgq")
-speed = 150.0
+speed = 225.0
 
 [node name="FocusMode" type="Area2D" parent="." unique_id=2122056294 node_paths=PackedStringArray("OrderMachine")]
 collision_layer = 512

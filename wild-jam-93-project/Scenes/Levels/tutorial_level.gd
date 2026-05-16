@@ -132,6 +132,7 @@ func _process(delta: float) -> void:
 		var new_cargo = TUTORIAL_CIVILIAN.instantiate()
 		new_cargo.position = spawn_point
 		add_child(new_cargo)
+		new_cargo.plot_orders()
 	if tutorial_step == 11:
 		show_tutorial_prompt("Not-so-not-so Notorious", "Nicely done, I hope you were close enough to hoover up that spice! Unfortunately, some folks don't take kindly to being blown to smithereens.
 		If you take a look at the top left, you'll see that destroying that 'civilian' has raised your bounty! That means you're cooler, for sure, but it also means the navy will be coming after you soon.
