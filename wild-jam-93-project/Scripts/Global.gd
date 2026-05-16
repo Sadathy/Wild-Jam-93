@@ -95,7 +95,7 @@ func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
 	new_spice_blow.lifespan = randf_range(0.8, 1.2)
 	level.add_child(new_spice_blow)
 	for i in count:
-		var new_speed = randf_range(50, 500)
+		var new_speed = randf_range(50, 250)
 		var new_origin = location
 		var new_target = location + Vector2(randf_range(-1, 1), randf_range(-1, 1))
 		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin
