@@ -287,7 +287,7 @@ func _build_music_players() -> void:
 func _play_click_on_bus(bus_name: String) -> void:
 	var p := AudioStreamPlayer.new()
 	add_child(p)
-	p.stream = load("res://Assets/Audio/obsydianx/cursor_style_2.wav")
+	p.stream = preload("res://Assets/Audio/obsydianx/cursor_style_2.wav")
 	p.bus = bus_name
 	p.finished.connect(p.queue_free)
 	p.play()

@@ -5,12 +5,15 @@ extends Node2D
 @export var max_y = 1000
 @export var min_y = -1000
 
+@export var music: AudioManager.Music = AudioManager.Music.NOVA
+
 @onready var background: Polygon2D = %Background
 @onready var exit_gate: Area2D = %ExitGate
 
 @onready var leave_menu: PanelContainer = %LeaveMenu
 @onready var button_leave_tutorial: Button = %ButtonLeaveTutorial
 @onready var button_keep_playing_tutorial: Button = %ButtonKeepPlayingTutorial
+
 
 const SHIP = preload("res://Scenes/player_ship.tscn")
 const ASTEROID = preload("res://Scenes/Interactables/asteroid.tscn")
@@ -53,7 +56,7 @@ func _ready() -> void:
 	
 	background.polygon = p_arr
 	
-	AudioManager.play_music(AudioManager.MUSIC_NOVA)
+	AudioManager.play_music(music)
 	
 	#SIGNALS
 	Global.turn_started.connect(on_new_turn)
