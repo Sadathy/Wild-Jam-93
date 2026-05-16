@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var player_ship: CharacterBody2D
 var immune = false
-var bounty: int = 500
+var bounty: int = 600
 
 func _ready() -> void:
 	player_ship = Global.level.player_ship

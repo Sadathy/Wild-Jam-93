@@ -7,7 +7,9 @@ const SPICEBLOW = preload("res://Scenes/Effects/spiceblow.tscn")
 @export var difficulty: float = 2.0
 @export var DEFAULT_TURN_DURATION: float = 3.0
 
-const LEVEL = preload("res://Scenes/level.tscn")
+const LEVEL_GENERIC = preload("res://Scenes/Levels/level.tscn")
+const LEVEL_TUTORIAL = preload("res://Scenes/Levels/TutorialLevel.tscn")
+
 
 # Some signals so our code knows when new turns start/end
 signal turn_ended
@@ -28,6 +30,9 @@ var level: Node2D = null
 
 # So we can show the main menue
 var main_menu = null
+
+# So we know what level we're on
+var current_level_type = null
 
 func _process(delta: float) -> void:
 	# Only do turn processing if we are in a level and we are not paused
@@ -57,15 +62,21 @@ func create_interactable(new_object_type, new_origin: Vector2, new_target: Vecto
 	return new_object
 
 func pressed_retry() -> void:
+	credits = 0
+	bounty = 0
 	level.queue_free()
-	new_level()
+	new_level(current_level_type)
 
 func pressed_main_menu() -> void:
+	credits = 0
+	bounty = 0
 	level.queue_free()
+	current_level_type = null
 	main_menu.show()
 
-func new_level() -> void:
-	var new_level_instance = LEVEL.instantiate()
+func new_level(level_type) -> void:
+	var new_level_instance = level_type.instantiate()
+	current_level_type = level_type
 	level = new_level_instance
 	get_tree().get_root().add_child(new_level_instance)
 	

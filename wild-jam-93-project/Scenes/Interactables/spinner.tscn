@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dib2ig48q63gk"]
 
-[ext_resource type="Script" uid="uid://be4of63jf4jiw" path="res://Scripts/spinner.gd" id="1_t0t2i"]
+[ext_resource type="Script" uid="uid://be4of63jf4jiw" path="res://Scripts/Interactables/spinner.gd" id="1_t0t2i"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_hrugb"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="3_hrugb"]
 [ext_resource type="Script" uid="uid://chbtagttxlny2" path="res://Scripts/Interactables/blade.gd" id="3_ulsdo"]

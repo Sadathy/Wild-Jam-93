@@ -15,6 +15,7 @@ extends PanelContainer
 @onready var button_credits: Button = %ButtonCredits
 @onready var button_quit: Button = %ButtonQuit
 @onready var button_return: Button = %ButtonReturn
+@onready var button_tutorial: Button = %ButtonTutorial
 
 #------------------------------#
 #-----////OTHER ONREADY///-----#
@@ -28,11 +29,16 @@ func _ready() -> void:
 	button_credits.pressed.connect(credits_pressed)
 	button_quit.pressed.connect(quit_pressed)
 	button_return.pressed.connect(return_pressed)
+	button_tutorial.pressed.connect(tutorial_pressed)
 	
 	Global.main_menu = self
 	
 func start_pressed() -> void:
-	Global.new_level()
+	Global.new_level(Global.LEVEL_GENERIC)
+	hide()
+	
+func tutorial_pressed() -> void:
+	Global.new_level(Global.LEVEL_TUTORIAL)
 	hide()
 	
 func options_pressed() -> void:
