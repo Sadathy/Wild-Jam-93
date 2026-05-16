@@ -17,10 +17,6 @@ extends PanelContainer
 @onready var button_return: Button = %ButtonReturn
 @onready var button_tutorial: Button = %ButtonTutorial
 
-#------------------------------#
-#-----////OTHER ONREADY///-----#
-#------------------------------#
-const LEVEL = preload("res://Scenes/level.tscn")
 
 func _ready() -> void:
 	# Set up signals for buttons
