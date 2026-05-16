@@ -99,7 +99,6 @@ texture = ExtResource("2_6pxni")
 
 [node name="Credits" type="PanelContainer" parent="Control" unique_id=756686936]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -145,6 +144,12 @@ layout_mode = 2
 text = "This game was produced with Godot Game Engine, click here to view the license"
 underline = 1
 uri = "https://godotengine.org/license"
+
+[node name="Label4" type="Label" parent="Control/Credits/MarginContainer/VBoxContainer" unique_id=152362295]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Additional sound effects from packs by: JDSherbert, VOiD1, obsydianx"
+horizontal_alignment = 1
 
 [node name="TitleScreenShip" type="Sprite2D" parent="Control/Credits" unique_id=879808064]
 position = Vector2(900, 343)

@@ -82,6 +82,11 @@ func new_level(level_type) -> void:
 func on_press_pause() -> void:
 	paused = !paused
 	print("Paused: ", paused)
+	
+	if paused:
+		AudioManager.pause_music()
+	else:
+		AudioManager.resume_music()
 
 func on_press_next_turn() -> void:
 	player_turn = false

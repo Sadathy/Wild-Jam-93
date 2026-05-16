@@ -65,10 +65,8 @@ func _process(_delta: float) -> void:
 		
 func on_pressed_pause() -> void:
 	if Global.paused == true:
-		AudioManager.resume_music()
 		menu_pause.hide()
 	else:
-		AudioManager.pause_music()
 		menu_pause.show()
 	pause.emit()
 	
@@ -99,6 +97,7 @@ func take_damage(incoming_damage: float) -> bool:
 	if immune == true:
 		print("player found to be immune")
 		return false
+	AudioManager.play(preload("res://Assets/Audio/VOiD1/Hit_2.wav"))
 	if incoming_damage >= hp:
 		hp = 0
 		bar_health.value = 0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://gfeyhgfqbxy4"
+path="res://.godot/imported/Popup Close.wav-9dd2c58cc552a88ec76a9cb3d6bcd07a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/JDSherbert/Popup Close.wav"
+dest_files=["res://.godot/imported/Popup Close.wav-9dd2c58cc552a88ec76a9cb3d6bcd07a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

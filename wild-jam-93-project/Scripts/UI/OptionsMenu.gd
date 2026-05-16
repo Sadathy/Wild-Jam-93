@@ -10,7 +10,7 @@ func _ready() -> void:
 	difficulty_slider.drag_ended.connect(difficulty_changed)
 	volume_slider.value_changed.connect(volume_master_changed)
 	music_slider.value_changed.connect(volume_music_changed)
-	music_slider.value_changed.connect(volume_sfx_changed)
+	sfx_slider.value_changed.connect(volume_sfx_changed)
 	
 	difficulty_slider.value = Global.difficulty
 	volume_slider.value = AudioManager.volume_master
