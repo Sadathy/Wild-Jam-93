@@ -21,6 +21,8 @@ var previous_state: State = null
 var plotted_orders: Dictionary = {}
 var order_id: int = 1
 
+@onready var tutorial_manager: Node = %TutorialManager
+
 func _ready():
 	current_state = DEFAULT_STATE
 	
@@ -70,4 +72,6 @@ func change_state(new_state: State, entry_data: Dictionary = {}) -> void:
 func on_new_turn() -> void:
 	if CONTROLLER.current_state != self:
 		return
+	if tutorial_manager.in_tutorial == true and tutorial_manager.tutorial_step == 5:
+		Global.level.tutorial_step += 1
 	CONTROLLER.change_super_state(SUPER_STATE_PLOTTING)

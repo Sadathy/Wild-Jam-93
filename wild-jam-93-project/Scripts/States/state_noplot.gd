@@ -4,6 +4,7 @@ extends State
 @onready var player_ship: CharacterBody2D = $"../../.."
 
 const TIME_BAR_UNDER_OOF = preload("uid://b45e6foxnfm75")
+@onready var tutorial_manager: Node = %TutorialManager
 
 
 func on_enter(_entry_data: Dictionary = {}) -> void:
@@ -37,9 +38,18 @@ func on_exit() -> void:
 	
 func on_process(_delta) -> void:
 	if Input.is_action_just_pressed("plot_attack"):
+		if tutorial_manager.in_tutorial == false:
+			CONTROLLER.on_press_attack()
+			return
+		if tutorial_manager.tutorial_step < 10:
+			return
 		CONTROLLER.on_press_attack()
-		return
 	if Input.is_action_just_pressed("plot_move"):
+		if tutorial_manager.in_tutorial == false:
+			CONTROLLER.on_press_move()
+			return
+		if tutorial_manager.tutorial_step < 2:
+			return
 		CONTROLLER.on_press_move()
 		return
 	if Input.is_action_just_pressed("plot_undo"):

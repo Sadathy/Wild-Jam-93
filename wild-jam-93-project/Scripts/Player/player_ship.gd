@@ -18,6 +18,7 @@ extends CharacterBody2D
 @onready var button_end_turn: Button = %ButtonEndTurn
 @onready var camera: Camera2D = %Camera
 @onready var bar_fuel: TextureProgressBar = %BarFuel
+@onready var tutorial_manager: Node = %TutorialManager
 
 
 var plot_cooldown = 0

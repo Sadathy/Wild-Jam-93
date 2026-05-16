@@ -11,6 +11,8 @@ var order_origin: Vector2 = Vector2.ZERO
 const TARGET_INDICATOR = preload("uid://dsbyr6xn56eg4")
 const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 
+@onready var tutorial_manager: Node = %TutorialManager
+
 func on_enter(_entry_data: Dictionary = {}) -> void:
 	# Set up interface
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -98,5 +100,7 @@ func on_process(_delta) -> void:
 		CONTROLLER.plotted_orders[CONTROLLER.order_id] = order
 		CONTROLLER.order_id += 1
 		CONTROLLER.change_state(CONTROLLER.STATE_NO_PLOT)
+		if tutorial_manager.in_tutorial == true and tutorial_manager.tutorial_step == 2:
+			Global.level.tutorial_step += 1
 		
 	

@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://dya43nchqukwk" path="res://Scripts/States/state_move.gd" id="20_t3c3c"]
 [ext_resource type="Script" uid="uid://chhneilu66148" path="res://Scripts/States/state_attack.gd" id="21_etcwo"]
 [ext_resource type="Script" uid="uid://bm5ifmeq5sakr" path="res://Scenes/state_browsing.gd" id="25_mj8rx"]
+[ext_resource type="Script" uid="uid://bppo1txjny531" path="res://Scenes/tutorial_manager.gd" id="32_3dmkk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2fco"]
 resource_local_to_scene = true
@@ -455,3 +456,7 @@ CONTROLLER = NodePath("..")
 [node name="StateAttack" type="Node2D" parent="SuperStateController/SuperStateExecuting" unique_id=1612156148 node_paths=PackedStringArray("CONTROLLER")]
 script = ExtResource("21_etcwo")
 CONTROLLER = NodePath("..")
+
+[node name="TutorialManager" type="Node" parent="." unique_id=1133729664]
+unique_name_in_owner = true
+script = ExtResource("32_3dmkk")

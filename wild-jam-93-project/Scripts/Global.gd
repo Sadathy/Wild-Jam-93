@@ -39,8 +39,14 @@ func _process(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("next_turn") and player_turn == true:
+		if level.player_ship.tutorial_manager.in_tutorial == false:
+			on_press_next_turn()
+			return
+		if level.player_ship.tutorial_manager.tutorial_step < 4:
+			return
+		if level.player_ship.tutorial_manager.tutorial_step == 4:
+			level.tutorial_step += 1
 		on_press_next_turn()
-		return
 		
 	if player_turn == false:
 		turn_timer -= delta
@@ -102,7 +108,7 @@ func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
 	new_spice_blow.lifespan = randf_range(0.8, 1.2)
 	level.add_child(new_spice_blow)
 	for i in count:
-		var new_speed = randf_range(50, 500)
+		var new_speed = randf_range(25, 225)
 		var new_origin = location
 		var new_target = location + Vector2(randf_range(-1, 1), randf_range(-1, 1))
 		new_target = ((new_target - new_origin).normalized() * 10000) + new_origin

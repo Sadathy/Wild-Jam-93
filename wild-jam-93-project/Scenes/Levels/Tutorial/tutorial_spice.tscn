@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bb2n28v1trkgu"]
+
+[ext_resource type="Script" uid="uid://c4qfaf4tj6hox" path="res://Scenes/Levels/Tutorial/tutorial_spice.gd" id="1_2pxjo"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_v7f7r"]
+[ext_resource type="Texture2D" uid="uid://du1s1ly77phq1" path="res://Assets/Textures/booty.png" id="3_kdtsj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oxl4g"]
+resource_local_to_scene = true
+shader = ExtResource("2_v7f7r")
+shader_parameter/flashing = false
+shader_parameter/white = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6buvt"]
+radius = 28.0
+
+[node name="Spice" type="Area2D" unique_id=5276601]
+collision_layer = 0
+script = ExtResource("1_2pxjo")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1751337253]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_oxl4g")
+position = Vector2(-0.46691954, -3.3636763)
+scale = Vector2(2.6872184, 2.6872187)
+texture = ExtResource("3_kdtsj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421303482]
+shape = SubResource("CircleShape2D_6buvt")

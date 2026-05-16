@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c876t55qmmrob"]
+
+[ext_resource type="Script" uid="uid://cj4obppsab2yy" path="res://Scenes/Levels/Tutorial/tutorial_enemy_ship.gd" id="1_v48ic"]
+[ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_gh7ru"]
+[ext_resource type="Texture2D" uid="uid://dktdn1jg4c0br" path="res://Assets/Textures/enemy_fighter_ship.png" id="3_8bqkt"]
+[ext_resource type="Script" uid="uid://bugx8wkyibcqe" path="res://Scripts/damage_flash.gd" id="4_d77ok"]
+[ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_tmvsl"]
+[ext_resource type="Script" uid="uid://4fs3yrnl2c1" path="res://Scripts/Order Machine/order_pursue.gd" id="6_svjkm"]
+[ext_resource type="Script" uid="uid://mwaryl0f7l8h" path="res://Scripts/Order Machine/order_shoot.gd" id="7_ww05n"]
+[ext_resource type="Script" uid="uid://dlqqh3ydsdlda" path="res://Scripts/Order Machine/order_strafe.gd" id="8_flios"]
+[ext_resource type="Script" uid="uid://c17a5phreacam" path="res://Scripts/Order Machine/focus_mode.gd" id="9_1wh2u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfk4a"]
+resource_local_to_scene = true
+shader = ExtResource("2_gh7ru")
+shader_parameter/flashing = false
+shader_parameter/white = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7yn3"]
+radius = 50.0
+height = 140.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfk4a"]
+size = Vector2(56, 53)
+
+[node name="EnemyShip" type="CharacterBody2D" unique_id=273264536]
+scale = Vector2(1, 0.9910375)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_v48ic")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=700273540]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sfk4a")
+scale = Vector2(1.7328843, 1.7328843)
+texture = ExtResource("3_8bqkt")
+script = ExtResource("4_d77ok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336434755]
+position = Vector2(8.072343, -3.162457e-09)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_p7yn3")
+
+[node name="OrderMachine" type="Node" parent="." unique_id=1360759756 node_paths=PackedStringArray("CONTROLLED_BODY")]
+unique_name_in_owner = true
+script = ExtResource("5_tmvsl")
+CONTROLLED_BODY = NodePath("..")
+
+[node name="OrderPursue" type="Node" parent="OrderMachine" unique_id=123153748]
+script = ExtResource("6_svjkm")
+
+[node name="OrderShoot" type="Node" parent="OrderMachine" unique_id=1036955696]
+script = ExtResource("7_ww05n")
+
+[node name="OrderStrafe" type="Node" parent="OrderMachine" unique_id=882880178]
+script = ExtResource("8_flios")
+
+[node name="FocusMode" type="Area2D" parent="." unique_id=2122056294 node_paths=PackedStringArray("OrderMachine")]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("9_1wh2u")
+OrderMachine = NodePath("../OrderMachine")
+
+[node name="FocusArea" type="CollisionShape2D" parent="FocusMode" unique_id=851999085]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sfk4a")
