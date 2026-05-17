@@ -1,0 +1,94 @@
+[gd_scene format=4 uid="uid://2y0pivr3pwdt"]
+
+[ext_resource type="Script" uid="uid://dyrt354ts58ce" path="res://Scenes/Levels/LEVEL TYPES/level_asteroid.gd" id="1_dffij"]
+[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_2oaex"]
+[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_wjw17"]
+[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_k2rq1"]
+[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_0o2m8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]
+texture = ExtResource("5_0o2m8")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t4psy"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_xbfda")
+
+[node name="AsteroidLevel" type="Node2D" unique_id=1380992670]
+script = ExtResource("1_dffij")
+
+[node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_2oaex")
+
+[node name="EnterGate" parent="." unique_id=1368292179 instance=ExtResource("3_wjw17")]
+position = Vector2(-100, 0)
+
+[node name="ExitGate" parent="." unique_id=604080706 instance=ExtResource("4_k2rq1")]
+unique_name_in_owner = true
+position = Vector2(3600, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1328243657]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1338140613]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeaveMenu" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1465964092]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/LeaveMenu" unique_id=1862254192]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LeaveMenu/MarginContainer" unique_id=1630330206]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer" unique_id=195269167]
+layout_mode = 2
+text = "This gate will allow you to exit the area"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer" unique_id=1417995695]
+layout_mode = 2
+
+[node name="ButtonLeaveLevel" type="Button" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=568442889]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave this area"
+
+[node name="ButtonKeepPlaying" type="Button" parent="CanvasLayer/Control/LeaveMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=529478684]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Keep battling"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1013588150]
+z_index = 150
+position = Vector2(1747, -15)
+scale = Vector2(1.1006497, 1.1494806)
+tile_map_data = PackedByteArray("AAD9//n/AAAAAAAAADD9/wYAAAAAAAAAAAD+//n/AAAAAAAAADD+/wYAAAAAAAAAAAD///n/AAAAAAAAADD//wYAAAAAAAAAAAAAAPn/AAAAAAAAADAAAAYAAAAAAAAAAAABAPn/AAAAAAAAADABAAYAAAAAAAAAAAACAPn/AAAAAAAAADACAAYAAAAAAAAAAAADAPn/AAAAAAAAADADAAYAAAAAAAAAAAAEAPn/AAAAAAAAADAEAAYAAAAAAAAAAAAFAPn/AAAAAAAAADAFAAYAAAAAAAAAAAAGAPn/AAAAAAAAADAGAAYAAAAAAAAAAAAHAPn/AAAAAAAAADAHAAYAAAAAAAAAAAAIAPn/AAAAAAAAADAIAAYAAAAAAAAAAAAJAPn/AAAAAAAAADAJAAYAAAAAAAAAAAAKAPn/AAAAAAAAADAKAAYAAAAAAAAAAAALAPn/AAAAAAAAADALAAYAAAAAAAAAAAAMAPn/AAAAAAAAADAMAAYAAAAAAAAAAAANAPn/AAAAAAAAADANAAYAAAAAAAAAAAAOAPn/AAAAAAAAADAOAAYAAAAAAAAAAAAPAPn/AAABAAAAADAPAAYAAAABAAAAAGDw//n/AAABAAAAAFDw//r/AAAAAAAAAFDw//v/AAAAAAAAAFDw//z/AAAAAAAAAFDw//3/AAAAAAAAAFDw//7/AAAAAAAAAFDw////AAAAAAAAAFDw/wAAAAAAAAAAAFDw/wEAAAAAAAAAAFDw/wIAAAAAAAAAAFDw/wMAAAAAAAAAAFDw/wQAAAAAAAAAAFDw/wUAAAAAAAAAAFDw/wYAAAABAAAAAADx//n/AAAAAAAAADDx/wYAAAAAAAAAAADy//n/AAAAAAAAADDy/wYAAAAAAAAAAADz//n/AAAAAAAAADDz/wYAAAAAAAAAAAD0//n/AAAAAAAAADD0/wYAAAAAAAAAAAD1//n/AAAAAAAAADD1/wYAAAAAAAAAAAD2//n/AAAAAAAAADD2/wYAAAAAAAAAAAD3//n/AAAAAAAAADD3/wYAAAAAAAAAAAD4//n/AAAAAAAAADD4/wYAAAAAAAAAAAD5//n/AAAAAAAAADD5/wYAAAAAAAAAAAD6//n/AAAAAAAAADD6/wYAAAAAAAAAAAD7//n/AAAAAAAAADD7/wYAAAAAAAAAAAD8//n/AAAAAAAAADD8/wYAAAAAAAAAAAAPAPr/AAAAAAAAAGAPAPv/AAAAAAAAAGAPAPz/AAAAAAAAAGAPAP3/AAAAAAAAAGAPAP7/AAAAAAAAAGAPAP//AAAAAAAAAGAPAAAAAAAAAAAAAGAPAAEAAAAAAAAAAGAPAAIAAAAAAAAAAGAPAAMAAAAAAAAAAGAPAAQAAAAAAAAAAGAPAAUAAAAAAAAAAGA=")
+tile_set = SubResource("TileSet_t4psy")

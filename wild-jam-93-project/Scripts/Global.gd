@@ -9,6 +9,13 @@ const SPICEBLOW = preload("res://Scenes/Effects/spiceblow.tscn")
 const LEVEL_GENERIC = preload("res://Scenes/Levels/level.tscn")
 const LEVEL_TUTORIAL = preload("res://Scenes/Levels/TutorialLevel.tscn")
 
+const LEVEL_ASTEROID = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_STATION = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_NEBULA = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_DESERT = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_CYBER = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_ALIEN = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+
 
 # Some signals so our code knows when new turns start/end
 signal turn_ended

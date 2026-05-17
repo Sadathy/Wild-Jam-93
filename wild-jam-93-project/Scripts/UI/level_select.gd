@@ -7,7 +7,7 @@ extends Node2D
 
 @onready var background: Polygon2D = %Background
 
-var max_x = 1200
+var max_x = 1050
 var min_x = -100
 var max_y = 360
 var min_y = -360
@@ -32,6 +32,8 @@ const STAGE_SELECTOR = preload("uid://kbx8xem7xbyt")
 const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 const LEVEL_SELECT_SHIP = preload("uid://cj2erk75s1vp0")
 
+@onready var select_camera: Camera2D = %SelectCamera
+
 
 const stage_type_data: Dictionary = {
 	"station": {
@@ -40,7 +42,7 @@ const stage_type_data: Dictionary = {
 		"details": "- Spend spice to lower your bounty
 		- Spend spice to repair your hull
 		- Non-combat zone, no chance to get more spice",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_STATION
 	},
 	"nebula": {
 		"art": NEBULA_ART,
@@ -48,7 +50,7 @@ const stage_type_data: Dictionary = {
 		"details": "- Small map, you'll get boxed in fast
 		- Less enemies, but also less spice available
 		- No asteroids",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_NEBULA
 	},
 	"desert": {
 		"art": DESERT_WORLD_ART,
@@ -56,7 +58,7 @@ const stage_type_data: Dictionary = {
 		"details": "- Lots of natural spice blooms
 		- Well patrolled by the navy, expect more navy ships
 		- Fewer asteroids",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_DESERT
 	},
 	"cyber": {
 		"art": CYBER_WORLD_ART,
@@ -64,7 +66,7 @@ const stage_type_data: Dictionary = {
 		"details": "- Expect lots of snipers defending their home
 		- Extra cargo ships traverse this industrialised area
 		- Good rewards, but you'll build a bounty fast",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_CYBER
 	},
 	"asteroid": {
 		"art": ASTEROID_FIELD_ART,
@@ -72,7 +74,7 @@ const stage_type_data: Dictionary = {
 		"details": "- LOADS OF ASTEROIDS
 		- I mean seriously, watch out for the asteroids
 		- Did I mention there were more asteroids?",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_ASTEROID
 	},
 	"alien": {
 		"art": ALIEN_WORLD_ART,
@@ -80,7 +82,7 @@ const stage_type_data: Dictionary = {
 		"details": "- Expect more spinners here, defending their home
 		- The navy is reluctant to patrol, lowering the relevance of your bounty
 		- Cargo ships are also reluctant, you'll be getting your spice from combat",
-		"level": Global.LEVEL_GENERIC
+		"level": Global.LEVEL_ALIEN
 	}
 }
 
@@ -137,6 +139,10 @@ func start_stage(stage_id) -> void:
 	print("Reached the next stage")
 	hide()
 	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
+	await Global.level.level_complete
+	current_stage = stage_id
+	select_camera.make_current()
+	show()
 
 func make_constellation() -> void:
 	# Generate a constellation of levels

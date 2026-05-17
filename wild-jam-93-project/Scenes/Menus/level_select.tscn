@@ -18,4 +18,5 @@ texture = ExtResource("2_sis06")
 script = ExtResource("3_h8yer")
 
 [node name="SelectCamera" type="Camera2D" parent="SelectCameraPanner" unique_id=892512705]
+unique_name_in_owner = true
 script = ExtResource("3_sis06")
