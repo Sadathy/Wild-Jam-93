@@ -1,11 +1,16 @@
 extends Camera2D
 
-@export var max_zoom = 1.1
-@export var min_zoom = 0.6
+@export var max_zoom = 0.7
+@export var min_zoom = 0.7
 @export var inc_zoom = 0.25
 @export var rate_zoom = 1.0
 @export var camera_panning_amount = 0.08
 @onready var camera_panner: Node2D = %CameraPanner
+
+@export var pan_box_x = 448
+@export var pan_box_y = 252
+
+var pan_time: float = 0
 
 var zoom_target = 0.6
 var desired_position = position
@@ -35,7 +40,16 @@ func _process(delta: float ) -> void:
 	zoom.y = move_toward(zoom.y, zoom_target, rate_zoom * delta)
 	
 	# Pan camera desired position towrds the edges
-	camera_panner.position = (get_local_mouse_position() * camera_panning_amount) + (camera_panner.position * (1-camera_panning_amount))
+	var local_mouse_pos = get_local_mouse_position()
+	local_mouse_pos.x = move_toward(local_mouse_pos.x, 0, pan_box_x)
+	local_mouse_pos.y = move_toward(local_mouse_pos.y, 0, pan_box_y)
+	if local_mouse_pos.x > 0 or local_mouse_pos.y > 0:
+		pan_time += delta
+	else:
+		pan_time = 0
+	local_mouse_pos *= 1 + pan_time
+	camera_panner.position = (local_mouse_pos * camera_panning_amount) + (camera_panner.position * (1-camera_panning_amount))
+	
 	
 	# Interpolate camera towards the target
 	if position != desired_position:

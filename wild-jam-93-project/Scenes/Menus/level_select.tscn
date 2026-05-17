@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://nkdmrs2i8i23"]
+
+[ext_resource type="Script" uid="uid://xxymjihjatkx" path="res://Scenes/Menus/level_select.gd" id="1_leldv"]
+[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_sis06"]
+[ext_resource type="Script" uid="uid://bi5mjlqocdl47" path="res://Scenes/Menus/select_camera.gd" id="3_sis06"]
+
+[node name="LevelSelect" type="Node2D" unique_id=87903366]
+script = ExtResource("1_leldv")
+
+[node name="Background" type="Polygon2D" parent="." unique_id=731846940]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_sis06")
+
+[node name="SelectCamera" type="Camera2D" parent="." unique_id=892512705]
+script = ExtResource("3_sis06")
