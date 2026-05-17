@@ -150,14 +150,27 @@ func start_stage(stage_id) -> void:
 	print("Reached the next stage")
 	AudioManager.stop_music()
 	hide()
+	general_level_ui.hide()
 	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
 	await Global.level.level_complete
+	toggle_indicator_fades(stage_id)
 	current_stage = stage_id
 	select_camera.make_current()
 	show()
+	general_level_ui.show()
 	if current_stage > no_stages - band_three_size:
 		victory()
 
+func toggle_indicator_fades(next_stage) -> void:
+	if current_stage == 0:
+		for i in band_one_size:
+			stages[0][str("link", i + 1, "_LINE")].modulate = Color(1, 1, 1, 0.25)
+	else:
+		stages[current_stage]["link_one_LINE"].modulate = Color(1, 1, 1, 0.25)
+		stages[current_stage]["link_two_LINE"].modulate = Color(1, 1, 1, 0.25)
+	stages[next_stage]["link_one_LINE"].modulate = Color(1, 1, 1, 1)
+	stages[next_stage]["link_two_LINE"].modulate = Color(1, 1, 1, 1)
+	
 func victory() -> void:
 	# Go through and queue free all our stages and our stage selector
 	selector.queue_free()
