@@ -26,7 +26,6 @@ func _ready() -> void:
 	
 func on_clicked(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 		print("Player clicked stage ID: ", id)
 		stage_clicked.emit(id)
 

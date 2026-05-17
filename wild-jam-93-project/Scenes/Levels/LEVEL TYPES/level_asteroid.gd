@@ -59,13 +59,14 @@ func _ready() -> void:
 	Global.paused = false
 
 func on_player_exit() -> void:
+	AudioManager.stop_all_looping()
 	considering_exit = true
 	leave_menu.show()
 	player_ship.menu_pause.hide()
 	Global.paused = true
 	
 func on_press_leave_level() -> void:
-	AudioManager.stop_all_looping()
+	Global.main_menu.menu_music()
 	level_complete.emit()
 	Global.level = null
 	queue_free()

@@ -27,7 +27,7 @@ const DEFAULT_FADE_DURATION := 0.0
 
 @export var volume_master := 1.0
 @export var volume_sfx := 1.0
-@export var volume_music := 1.0
+@export var volume_music := 0.5
 
 
 # Internal state tracking
