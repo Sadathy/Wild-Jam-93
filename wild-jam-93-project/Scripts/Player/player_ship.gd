@@ -100,12 +100,14 @@ func take_damage(incoming_damage: float) -> bool:
 	if immune == true:
 		print("player found to be immune")
 		return false
-	AudioManager.play(preload("res://Assets/Audio/VOiD1/Hit_2.wav"))
+	AudioManager.play(preload("res://Assets/Audio/deep_explosion.wav"))
 	if incoming_damage >= hp:
 		hp = 0
 		bar_health.value = 0
 		alive = false
 		player_died.emit()
+		AudioManager.stop_all_looping()
+		AudioManager.play(preload("res://Assets/Audio/disintegration.wav"))
 		AudioManager.set_music(AudioManager.Track.AMBIENT)
 		return true
 	hp -= incoming_damage

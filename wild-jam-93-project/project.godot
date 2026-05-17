@@ -28,6 +28,8 @@ AudioManager="*uid://812dk6s33dgh"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [file_customization]
 

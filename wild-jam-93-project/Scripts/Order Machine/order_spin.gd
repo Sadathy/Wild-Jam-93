@@ -80,6 +80,7 @@ func execute_order(delta: float) -> bool:
 	if just_started == true:
 		just_started = false
 		execution_time = ORDER_DURATION
+		AudioManager.play(preload("res://Assets/Audio/spinner.wav"))
 	
 	# Move and face towards the finish point
 	var order_id = controller.executing_order_id

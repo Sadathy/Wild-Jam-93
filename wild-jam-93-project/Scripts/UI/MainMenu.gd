@@ -29,15 +29,21 @@ func _ready() -> void:
 	button_return.pressed.connect(return_pressed)
 	button_tutorial.pressed.connect(tutorial_pressed)
 	
+	menu_music()
+	
 	Global.main_menu = self
 	
+	
+	
 func start_pressed() -> void:
+	AudioManager.stop_music()
 	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	var new_level = LEVEL_SELECT.instantiate()
 	get_tree().get_root().add_child(new_level)
 	hide()
 	
 func tutorial_pressed() -> void:
+	AudioManager.stop_music()
 	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	Global.new_level(Global.LEVEL_TUTORIAL)
 	hide()
@@ -63,3 +69,7 @@ func return_pressed() -> void:
 	options.hide()
 	credits.hide()
 	show()
+
+func menu_music() -> void:
+	# Hacky but I'm not adding a special case just for this.
+	AudioManager.load_music(preload("res://Assets/Audio/Bounty.ogg"), preload("res://Assets/Audio/Bounty.ogg"))
