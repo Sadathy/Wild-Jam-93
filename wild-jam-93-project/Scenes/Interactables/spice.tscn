@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dm6x5wpkbx141"]
 
-[ext_resource type="Script" uid="uid://duohhp173bykg" path="res://Scenes/Interactables/spice.gd" id="1_dstyh"]
+[ext_resource type="Script" uid="uid://duohhp173bykg" path="res://Scripts/Interactables/spice.gd" id="1_dstyh"]
 [ext_resource type="Texture2D" uid="uid://du1s1ly77phq1" path="res://Assets/Textures/booty.png" id="2_105xe"]
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="2_amwrm"]
 [ext_resource type="Script" uid="uid://53hl73c48sd7" path="res://Scripts/Order Machine/order_machine.gd" id="5_j7u00"]

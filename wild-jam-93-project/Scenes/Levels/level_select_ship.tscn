@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cj2erk75s1vp0"]
+
+[ext_resource type="Script" uid="uid://c1v7gfv2ekviv" path="res://Scenes/Levels/select_ship_pivot.gd" id="1_2n283"]
+[ext_resource type="Texture2D" uid="uid://de1jnlbbxb7bq" path="res://Assets/Textures/PlayerShip/ship-base.png" id="2_qirj2"]
+
+[node name="LevelSelectShip" type="Node2D" unique_id=1876825202]
+z_index = 2
+
+[node name="Pivot" type="Node2D" parent="." unique_id=2099144026]
+script = ExtResource("1_2n283")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=604636701]
+position = Vector2(46.000015, 0)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_qirj2")

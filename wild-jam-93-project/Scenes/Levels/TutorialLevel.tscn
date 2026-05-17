@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://d1g3k48fngi1w"]
 
-[ext_resource type="Script" uid="uid://0yocusg8nuet" path="res://Scenes/Levels/tutorial_level.gd" id="1_76fmo"]
+[ext_resource type="Script" uid="uid://0yocusg8nuet" path="res://Scripts/UI/tutorial_level.gd" id="1_76fmo"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_knm82"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/enter_gate.tscn" id="3_knm82"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/exit_gate.tscn" id="4_fkc41"]
+[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_knm82"]
+[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_fkc41"]
 [ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_bpjw2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]

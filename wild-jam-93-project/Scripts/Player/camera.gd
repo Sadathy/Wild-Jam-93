@@ -43,7 +43,7 @@ func _process(delta: float ) -> void:
 	var local_mouse_pos = get_local_mouse_position()
 	local_mouse_pos.x = move_toward(local_mouse_pos.x, 0, pan_box_x)
 	local_mouse_pos.y = move_toward(local_mouse_pos.y, 0, pan_box_y)
-	if local_mouse_pos.x > 0 or local_mouse_pos.y > 0:
+	if abs(local_mouse_pos.x) > 0 or abs(local_mouse_pos).y > 0:
 		pan_time += delta
 	else:
 		pan_time = 0

@@ -17,6 +17,8 @@ extends PanelContainer
 @onready var button_return: Button = %ButtonReturn
 @onready var button_tutorial: Button = %ButtonTutorial
 
+const LEVEL_SELECT = preload("res://Scenes/Menus/level_select.tscn")
+
 
 func _ready() -> void:
 	# Set up signals for buttons
@@ -31,7 +33,8 @@ func _ready() -> void:
 	
 func start_pressed() -> void:
 	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
-	Global.new_level(Global.LEVEL_GENERIC)
+	var new_level = LEVEL_SELECT.instantiate()
+	get_tree().get_root().add_child(new_level)
 	hide()
 	
 func tutorial_pressed() -> void:

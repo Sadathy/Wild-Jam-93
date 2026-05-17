@@ -2,7 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="1_4mx2d"]
 [ext_resource type="Texture2D" uid="uid://cl2rgby1l8h6f" path="res://Assets/Textures/warp_enter.png" id="2_faa8u"]
-[ext_resource type="Script" uid="uid://rdawrnr7nwpr" path="res://Scenes/Levels/enter_gate.gd" id="3_faa8u"]
+[ext_resource type="Script" uid="uid://rdawrnr7nwpr" path="res://Scripts/UI/enter_gate.gd" id="3_faa8u"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fr0hq"]
 shader = ExtResource("1_4mx2d")
