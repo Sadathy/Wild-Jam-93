@@ -26,10 +26,12 @@ func _ready() -> void:
 	
 func on_clicked(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 		print("Player clicked stage ID: ", id)
 		stage_clicked.emit(id)
 
 func on_mouse_enter() -> void:
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/cursor_style_2.wav"))
 	hover_show.desired_alpha = 0.4
 	tooltip.desired_alpha = 1.0
 	tooltip.show()

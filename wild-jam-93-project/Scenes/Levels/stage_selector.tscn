@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kbx8xem7xbyt"]
 
 [ext_resource type="Script" uid="uid://2vhr1uettmyt" path="res://Scenes/Levels/stage_selector.gd" id="1_0lry6"]
-[ext_resource type="Script" uid="uid://ca4qkun0tbgbu" path="res://Scenes/Levels/level_select_alphaslider.gd" id="2_ks727"]
+[ext_resource type="Script" path="res://Scenes/Levels/level_select_alphaslider.gd" id="2_ks727"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lry6"]
 radius = 50.0
