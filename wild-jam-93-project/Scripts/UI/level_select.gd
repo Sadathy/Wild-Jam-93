@@ -32,48 +32,55 @@ const STAGE_SELECTOR = preload("uid://kbx8xem7xbyt")
 const TARGET_LINE = preload("uid://c68eu6qksr8n5")
 const LEVEL_SELECT_SHIP = preload("uid://cj2erk75s1vp0")
 
+
 const stage_type_data: Dictionary = {
 	"station": {
 		"art": STATION_ART,
 		"name": "Space Station",
 		"details": "- Spend spice to lower your bounty
 		- Spend spice to repair your hull
-		- Non-combat zone, no chance to get more spice"
+		- Non-combat zone, no chance to get more spice",
+		"level": Global.LEVEL_GENERIC
 	},
 	"nebula": {
 		"art": NEBULA_ART,
 		"name": "Nebula",
 		"details": "- Small map, you'll get boxed in fast
 		- Less enemies, but also less spice available
-		- No asteroids"
+		- No asteroids",
+		"level": Global.LEVEL_GENERIC
 	},
 	"desert": {
 		"art": DESERT_WORLD_ART,
 		"name": "Desert World",
 		"details": "- Lots of natural spice blooms
 		- Well patrolled by the navy, expect more navy ships
-		- Fewer asteroids"
+		- Fewer asteroids",
+		"level": Global.LEVEL_GENERIC
 	},
 	"cyber": {
 		"art": CYBER_WORLD_ART,
 		"name": "Cyber World",
 		"details": "- Expect lots of snipers defending their home
 		- Extra cargo ships traverse this industrialised area
-		- Good rewards, but you'll build a bounty fast"
+		- Good rewards, but you'll build a bounty fast",
+		"level": Global.LEVEL_GENERIC
 	},
 	"asteroid": {
 		"art": ASTEROID_FIELD_ART,
 		"name": "Asteroid Belt",
 		"details": "- LOADS OF ASTEROIDS
 		- I mean seriously, watch out for the asteroids
-		- Did I mention there were more asteroids?"
+		- Did I mention there were more asteroids?",
+		"level": Global.LEVEL_GENERIC
 	},
 	"alien": {
 		"art": ALIEN_WORLD_ART,
 		"name": "Alien World",
 		"details": "- Expect more spinners here, defending their home
 		- The navy is reluctant to patrol, lowering the relevance of your bounty
-		- Cargo ships are also reluctant, you'll be getting your spice from combat"
+		- Cargo ships are also reluctant, you'll be getting your spice from combat",
+		"level": Global.LEVEL_GENERIC
 	}
 }
 
@@ -123,6 +130,13 @@ func on_stage_clicked(stage_id) -> void:
 			
 func start_stage(stage_id) -> void:
 	print("Attempted to start stage id: ", stage_id)
+	selector.show_flying()
+	print("passing position: ", stages[stage_id]["position"])
+	selector.set_target(stages[stage_id]["position"])
+	await selector.reached_next_stage
+	print("Reached the next stage")
+	hide()
+	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
 
 func make_constellation() -> void:
 	# Generate a constellation of levels
