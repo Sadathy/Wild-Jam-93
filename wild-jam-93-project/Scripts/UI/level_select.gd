@@ -93,8 +93,11 @@ var current_stage: int = 0
 var starting_stage: bool = false
 
 @onready var victory_screen: CanvasLayer = %VictoryScreen
+@onready var button_quit_to_menu: Button = %ButtonQuitToMenu
 
 func _ready() -> void:
+	button_quit_to_menu.pressed.connect(victory_screen.on_continue)
+	
 	var p_arr = PackedVector2Array([Vector2(min_x, max_y), Vector2(max_x, max_y), Vector2(max_x, min_y), Vector2(min_x, min_y)])
 	background.polygon = p_arr
 
@@ -157,10 +160,11 @@ func start_stage(stage_id) -> void:
 func victory() -> void:
 	# Go through and queue free all our stages and our stage selector
 	selector.queue_free()
+	button_quit_to_menu.queue_free()
 	for i in no_stages + 1:
 		stages[i]["stage"].queue_free()
-		victory_screen.victory()
-		
+	victory_screen.victory()
+	
 
 func make_constellation() -> void:
 	# Generate a constellation of levels
