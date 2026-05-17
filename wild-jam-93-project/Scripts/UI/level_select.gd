@@ -7,8 +7,8 @@ extends Node2D
 
 @onready var background: Polygon2D = %Background
 
-var max_x = 1050
-var min_x = -100
+var max_x = 1050 + 75
+var min_x = -100 - 75
 var max_y = 360
 var min_y = -360
 
