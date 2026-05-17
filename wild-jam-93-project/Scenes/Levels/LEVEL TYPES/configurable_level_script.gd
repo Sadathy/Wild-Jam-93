@@ -109,7 +109,7 @@ func on_new_turn() -> void:
 	# If we are below our max enemy count, go through and potentially spawn more enemies
 	if enemy_count < max_enemies + (2 * int(Global.difficulty)) and max_enemies > 0:
 		# Check threat thresholds for current bounty
-		var threat_threshold = Global.get_thresh_threshold
+		var threat_threshold = Global.get_threat_threshold()
 		# If our threat threshold is below the threat level on this map, have a chance to spawn an enemy
 		# The navy starts spawning freighters if threat differential exceeds 6
 		if threat_threshold + 5 < navy_threat and enemy_count < max_enemies + (2 * int(Global.difficulty)):
