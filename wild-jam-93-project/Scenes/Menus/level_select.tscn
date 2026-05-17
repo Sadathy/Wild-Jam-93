@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_sis06"]
 [ext_resource type="Script" uid="uid://c1eojjonkfaeb" path="res://Scripts/UI/select_camera_panner.gd" id="3_h8yer"]
 [ext_resource type="Script" uid="uid://bi5mjlqocdl47" path="res://Scripts/UI/select_camera.gd" id="3_sis06"]
+[ext_resource type="Texture2D" uid="uid://0paqfs1ntl3v" path="res://Assets/Textures/title-screen-ship.png" id="5_8wugl"]
+[ext_resource type="Script" uid="uid://bmoyvejwbllxv" path="res://Scenes/Menus/victory_screen.gd" id="5_hihw3"]
 
 [node name="LevelSelect" type="Node2D" unique_id=87903366]
 script = ExtResource("1_leldv")
@@ -20,3 +22,56 @@ script = ExtResource("3_h8yer")
 [node name="SelectCamera" type="Camera2D" parent="SelectCameraPanner" unique_id=892512705]
 unique_name_in_owner = true
 script = ExtResource("3_sis06")
+
+[node name="VictoryScreen" type="CanvasLayer" parent="." unique_id=850093080]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("5_hihw3")
+
+[node name="Polygon2D" type="Polygon2D" parent="VictoryScreen" unique_id=1295843754]
+texture = ExtResource("2_sis06")
+polygon = PackedVector2Array(-60, -42, 1335, -21, 1332, 773, -79, 754)
+
+[node name="PanelContainer" type="PanelContainer" parent="VictoryScreen" unique_id=1904566647]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -81.5
+offset_right = 575.0
+offset_bottom = 81.5
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VictoryScreen/PanelContainer" unique_id=1367562290]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryScreen/PanelContainer/MarginContainer" unique_id=1570468595]
+layout_mode = 2
+
+[node name="LabelWelldone" type="Label" parent="VictoryScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=1728191722]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Congratualtions, you finished your run!"
+horizontal_alignment = 1
+
+[node name="LabelSPICE" type="Label" parent="VictoryScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=1481405833]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Over the course of the run, you managed to gather X spice."
+
+[node name="LabelBOUNTY" type="Label" parent="VictoryScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=827239394]
+unique_name_in_owner = true
+layout_mode = 2
+text = "You also racked up a bounty of $X!"
+
+[node name="ButtonCONTINUE" type="Button" parent="VictoryScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=2107818328]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="Sprite2D" type="Sprite2D" parent="VictoryScreen" unique_id=331811515]
+position = Vector2(803, 300)
+texture = ExtResource("5_8wugl")

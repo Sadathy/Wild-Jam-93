@@ -12,6 +12,8 @@ var min_x = -100
 var max_y = 360
 var min_y = -360
 
+var main_menu = null
+
 var band_one_x: float
 var band_two_x: float
 var band_three_x: float
@@ -90,6 +92,8 @@ var stages: Dictionary = {}
 var current_stage: int = 0
 var starting_stage: bool = false
 
+@onready var victory_screen: CanvasLayer = %VictoryScreen
+
 func _ready() -> void:
 	var p_arr = PackedVector2Array([Vector2(min_x, max_y), Vector2(max_x, max_y), Vector2(max_x, min_y), Vector2(min_x, min_y)])
 	background.polygon = p_arr
@@ -143,6 +147,16 @@ func start_stage(stage_id) -> void:
 	current_stage = stage_id
 	select_camera.make_current()
 	show()
+	if current_stage > no_stages - band_three_size:
+		victory()
+
+func victory() -> void:
+	# Go through and queue free all our stages and our stage selector
+	selector.queue_free()
+	for i in no_stages + 1:
+		stages[i]["stage"].queue_free()
+		victory_screen.victory()
+		
 
 func make_constellation() -> void:
 	# Generate a constellation of levels

@@ -40,6 +40,7 @@ func start_pressed() -> void:
 	AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 	var new_level = LEVEL_SELECT.instantiate()
 	get_tree().get_root().add_child(new_level)
+	new_level.main_menu = self
 	hide()
 	
 func tutorial_pressed() -> void:
