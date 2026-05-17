@@ -2,9 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://b62e7ydqhq7a2" path="res://Scenes/Interactables/damage_flash.gdshader" id="1_c80s2"]
 [ext_resource type="Texture2D" uid="uid://8upjuud7w33i" path="res://Assets/Textures/warp_exit.png" id="2_c80s2"]
-[ext_resource type="Script" uid="uid://xoiet877d5yq" path="res://Scripts/UI/exit_gate.gd" id="3_c80s2"]
-[ext_resource type="Script" uid="uid://vwp2jdsash6u" path="res://Scripts/UI/exit_gate_sprite.gd" id="4_7cyt0"]
-
+[ext_resource type="Script" path="res://Scripts/UI/exit_gate.gd" id="3_c80s2"]
+[ext_resource type="Script" path="res://Scripts/UI/exit_gate_sprite.gd" id="4_7cyt0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fr0hq"]
 shader = ExtResource("1_c80s2")

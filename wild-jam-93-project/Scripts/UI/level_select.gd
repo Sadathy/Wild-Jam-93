@@ -124,6 +124,7 @@ func on_stage_clicked(stage_id) -> void:
 				linked_to_stage = true
 		print("Was the clicked stage linked to current?: ", linked_to_stage)
 		if linked_to_stage == true:
+			AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 			start_stage(stage_id)
 			return
 	if current_stage > 0:
@@ -131,9 +132,11 @@ func on_stage_clicked(stage_id) -> void:
 		if stage_id == stages[current_stage]["link_one"]: linked_to_stage = true
 		if stage_id == stages[current_stage]["link_two"]: linked_to_stage = true
 		if linked_to_stage == true:
+			AudioManager.play(preload("res://Assets/Audio/obsydianx/confirm_style_2_003.wav"))
 			start_stage(stage_id)
 			return
-			
+	AudioManager.play(preload("res://Assets/Audio/obsydianx/back_style_2_001.wav"))
+
 func start_stage(stage_id) -> void:
 	print("Attempted to start stage id: ", stage_id)
 	selector.show_flying()
@@ -141,6 +144,7 @@ func start_stage(stage_id) -> void:
 	selector.set_target(stages[stage_id]["position"])
 	await selector.reached_next_stage
 	print("Reached the next stage")
+	AudioManager.stop_music()
 	hide()
 	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
 	await Global.level.level_complete
