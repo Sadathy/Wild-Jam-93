@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Bounty.ogg-9fc28d7c9180c693e17e01f6f9a1c4b8.o
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
