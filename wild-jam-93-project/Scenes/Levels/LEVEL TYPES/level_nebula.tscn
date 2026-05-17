@@ -21,12 +21,10 @@ script = ExtResource("1_dtqxu")
 max_x = 2500
 max_y = 800
 min_y = -800
-navy_threat = 1
-alien_threat = -1
-cyber_threat = -1
+navy_threat = 3
 cargo_level = 1
 spice_level = 1
-max_enemies = 3
+max_enemies = 4
 
 [node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
 unique_name_in_owner = true

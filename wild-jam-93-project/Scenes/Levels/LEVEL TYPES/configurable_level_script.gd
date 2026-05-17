@@ -182,6 +182,7 @@ func spawn_asteroid() -> void:
 	new_asteroid.target_point.x = randf_range(min_x, max_x)
 	new_asteroid.target_point.y = randf_range(min_y, max_y)
 	new_asteroid.target_point = force_to_edge(new_asteroid.target_point)
+	new_asteroid.speed = randf_range(65, 225)
 	add_child(new_asteroid)
 	new_asteroid.add_to_group("asteroids")
 	new_asteroid.plot_orders()

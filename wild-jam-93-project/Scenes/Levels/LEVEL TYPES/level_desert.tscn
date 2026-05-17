@@ -20,12 +20,12 @@ sources/0 = SubResource("TileSetAtlasSource_xbfda")
 script = ExtResource("1_vm5qh")
 max_y = 2000
 min_y = -2000
-navy_threat = 6
-alien_threat = -2
-cyber_threat = -2
+navy_threat = 7
+alien_threat = -1
+cyber_threat = -1
 asteroid_threat = 1
-cargo_level = 3
-spice_level = 7
+cargo_level = 4
+spice_level = 8
 max_enemies = 7
 
 [node name="Background" type="Polygon2D" parent="." unique_id=1412134420]

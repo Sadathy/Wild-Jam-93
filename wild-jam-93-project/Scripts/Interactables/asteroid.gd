@@ -8,10 +8,9 @@ extends Area2D
 @onready var order_machine: Node = %OrderMachine
 
 
-var origin_point: Vector2
 var target_point: Vector2
 var damage: float = 20
-var speed: float = 0
+var speed: float = 50
 
 var max_x: float
 var min_x: float
@@ -27,12 +26,9 @@ func _ready() -> void:
 	min_x = Global.level.min_x
 	max_y = Global.level.max_y
 	min_y = Global.level.min_y
-	origin_point.x = clamp(origin_point.x, min_x, max_x)
-	origin_point.y = clamp(origin_point.y, min_y, max_y)
 	target_point.x = clamp(target_point.x, min_x, max_x)
 	target_point.y = clamp(target_point.y, min_y, max_y)
 	
-	position = origin_point
 	var dir_normal = (target_point - position).normalized()
 	order_drift.direction = dir_normal
 	order_drift.speed = speed

@@ -23,10 +23,9 @@ max_y = 2200
 min_y = -2200
 navy_threat = 2
 alien_threat = -3
-cyber_threat = 7
+cyber_threat = 8
 asteroid_threat = 2
-cargo_level = 6
-max_enemies = 5
+cargo_level = 8
 music = 2
 
 [node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
