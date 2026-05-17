@@ -43,10 +43,10 @@ func _ready() -> void:
 	# Connect impact function
 	body_entered.connect(on_impact)
 	sprite_art.finished.connect(on_damage_flash_end)
-	
 
 func on_new_turn() -> void:
 	#Check if we're out of bounds, if we are, destroy us!
+	plot_orders()
 	var out_of_bounds = false
 	if position.x > max_x: out_of_bounds = true
 	if position.x < min_x: out_of_bounds = true
@@ -55,6 +55,8 @@ func on_new_turn() -> void:
 	if out_of_bounds:
 		queue_free()
 		return
+
+func plot_orders() -> void:
 	order_machine.plot_order("OrderDrift")
 	order_machine.plot_order("OrderDrift")
 	order_machine.plot_order("OrderDrift")
