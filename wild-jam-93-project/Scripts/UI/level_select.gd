@@ -262,9 +262,9 @@ func make_band_one_stage(new_index: int) -> void:
 	# In band one, the stages can be nebulas, asteroid fields or desert worlds
 	var stage_roll = randi_range(1, 3)
 	if stage_roll == 1:
-		stages[new_index] = create_stage(new_index, "nebula", stage_vector)
+		stages[new_index] = create_stage(new_index, "alien", stage_vector)
 	if stage_roll == 2:
-		stages[new_index] = create_stage(new_index, "asteroid", stage_vector)
+		stages[new_index] = create_stage(new_index, "cyber", stage_vector)
 	if stage_roll == 3:
 		stages[new_index] = create_stage(new_index, "desert", stage_vector)
 		
@@ -281,9 +281,9 @@ func make_band_two_stage(new_index: int) -> void:
 	if stage_roll == 1:
 		stages[new_index] = create_stage(new_index, "desert", stage_vector)
 	if stage_roll == 2:
-		stages[new_index] = create_stage(new_index, "alien", stage_vector)
+		stages[new_index] = create_stage(new_index, "nebula", stage_vector)
 	if stage_roll == 3:
-		stages[new_index] = create_stage(new_index, "cyber", stage_vector)
+		stages[new_index] = create_stage(new_index, "asteroid", stage_vector)
 
 func make_band_three_stage(new_index: int) -> void:
 	# Roll for y position

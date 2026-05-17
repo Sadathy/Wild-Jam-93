@@ -18,12 +18,10 @@ sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
 [node name="CyberLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_hvw8w")
-max_x = 6000
-max_y = 2200
-min_y = -2200
-navy_threat = 2
-alien_threat = -3
-cyber_threat = 8
+max_x = 2500
+navy_threat = 3
+alien_threat = -5
+cyber_threat = 10
 asteroid_threat = 2
 cargo_level = 8
 music = 2

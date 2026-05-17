@@ -134,25 +134,29 @@ func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
 		
 func get_threat_threshold() -> int:
 	# Reads bounty, modifies it based on difficulty and sends back a threath threshold
-	var calculated_bounty = bounty * (0.6 + (difficulty * 0.5))
-	if calculated_bounty > 8000: return -10
-	if calculated_bounty > 7600: return -9
-	if calculated_bounty > 7200: return -8
-	if calculated_bounty > 6800: return -7
-	if calculated_bounty > 6400: return -6
-	if calculated_bounty > 6000: return -5
-	if calculated_bounty > 5600: return -4
-	if calculated_bounty > 5200: return -3
-	if calculated_bounty > 4800: return -2
-	if calculated_bounty > 4400: return -1
-	if calculated_bounty > 4000: return 0
-	if calculated_bounty > 3600: return 1
-	if calculated_bounty > 3200: return 2
-	if calculated_bounty > 2800: return 3
-	if calculated_bounty > 2400: return 4
-	if calculated_bounty > 2000: return 5
-	if calculated_bounty > 1600: return 6
-	if calculated_bounty > 1200: return 7
-	if calculated_bounty > 800: return 8
-	if calculated_bounty > 400: return 9
+	var calculated_bounty = bounty * (0.5 + (difficulty * 0.5))
+	if calculated_bounty > 6300: return -14
+	if calculated_bounty > 5850: return -13
+	if calculated_bounty > 5400: return -12
+	if calculated_bounty > 4950: return -11
+	if calculated_bounty > 4500: return -10
+	if calculated_bounty > 4125: return -9
+	if calculated_bounty > 3750: return -8
+	if calculated_bounty > 3375: return -7
+	if calculated_bounty > 3000: return -6
+	if calculated_bounty > 2700: return -5
+	if calculated_bounty > 2400: return -4
+	if calculated_bounty > 2100: return -3
+	if calculated_bounty > 1800: return -2
+	if calculated_bounty > 1575: return -1
+	if calculated_bounty > 1350: return 0
+	if calculated_bounty > 1125: return 1
+	if calculated_bounty > 900: return 2
+	if calculated_bounty > 750: return 3
+	if calculated_bounty > 600: return 4
+	if calculated_bounty > 450: return 5
+	if calculated_bounty > 300: return 6
+	if calculated_bounty > 225: return 7
+	if calculated_bounty > 150: return 8
+	if calculated_bounty > 75: return 9
 	return 10

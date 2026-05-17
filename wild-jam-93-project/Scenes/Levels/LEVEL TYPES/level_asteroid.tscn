@@ -18,12 +18,12 @@ sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
 [node name="AsteroidLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_dffij")
-max_x = 6250
-max_y = 3000
-min_y = -3000
-navy_threat = 2
-alien_threat = 2
-cyber_threat = 2
+max_x = 3000
+max_y = 1500
+min_y = -1500
+navy_threat = 3
+alien_threat = 4
+cyber_threat = 5
 asteroid_threat = 10
 cargo_level = 4
 max_enemies = 8

@@ -18,13 +18,12 @@ sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
 [node name="DesertLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_vm5qh")
-max_y = 2000
-min_y = -2000
-navy_threat = 7
-alien_threat = -1
-cyber_threat = -1
-asteroid_threat = 1
-cargo_level = 4
+max_x = 2500
+navy_threat = 9
+alien_threat = -2
+cyber_threat = -2
+asteroid_threat = 2
+cargo_level = 5
 spice_level = 8
 max_enemies = 7
 

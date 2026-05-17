@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var HEALTH: float = 50
-@export var THREAT_RANGE = 800
+@export var THREAT_RANGE = 1000
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var order_machine: Node = %OrderMachine
@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 func plot_orders() -> void:
 	# Check if we're in threat range
-	if position.distance_to(player_ship.position) <= THREAT_RANGE:
+	if global_position.distance_to(player_ship.global_position) <= THREAT_RANGE:
 		# Take a shot on a random point in the turn
 		var shot_point = randi_range(0, 2)
 		for i in 3:

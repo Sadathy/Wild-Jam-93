@@ -18,13 +18,15 @@ sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
 [node name="NebulaLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_dtqxu")
-max_x = 2500
-max_y = 800
-min_y = -800
+max_x = 1800
+max_y = 500
+min_y = -500
 navy_threat = 3
+alien_threat = 5
+cyber_threat = 1
 cargo_level = 1
 spice_level = 1
-max_enemies = 4
+max_enemies = 3
 
 [node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
 unique_name_in_owner = true

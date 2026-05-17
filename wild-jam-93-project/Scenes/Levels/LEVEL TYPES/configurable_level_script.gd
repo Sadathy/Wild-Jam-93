@@ -136,25 +136,25 @@ func on_new_turn() -> void:
 		# now go through and spawn asteroids, proportionate to the threat level
 		var asteroid_count = get_tree().get_nodes_in_group("asteroids").size()
 		if asteroid_count < 3 * asteroid_threat:
-			# 30% chance to spawn an asteroid, rolled once per asteroid threat level
+			# 40% chance to spawn an asteroid, rolled once per asteroid threat level
 			for i in asteroid_threat:
-				if randi_range(1, 10) <= 3:
+				if randi_range(1, 10) <= 4:
 					spawn_asteroid()
 		
 		# now go through and spawn cargo ships, proportionate to the cargo level
 		var cargo_count = get_tree().get_nodes_in_group("cargo").size()
 		if cargo_count < cargo_level:
-			#20% chance to spawn a cargo, rolled once per cargo level
+			#1% chance to spawn a cargo, rolled once per cargo level
 			for i in cargo_level:
-				if randi_range(1, 10) <= 2:
+				if randi_range(1, 10) <= 1:
 					spawn_cargo()
 					
 		# now go through and trigger some random spice blows, proportionate to the spice blow level 10% chance per spice level
 		if randi_range(1, 10) <= spice_level:
-			# three 40% chance rolls at various spice blows
+			# three 20% chance rolls at various spice blows
 			for i in 3:
-				if randi_range(1, 10) <= 4:
-					Global.spice_blow(2 + i, get_random_location())
+				if randi_range(1, 10) <= 2:
+					Global.spice_blow(1 + i, get_random_location())
 
 func get_random_location() -> Vector2:
 	var new_location = Vector2.ZERO
