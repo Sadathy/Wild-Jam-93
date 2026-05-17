@@ -2,8 +2,48 @@
 
 [ext_resource type="Script" uid="uid://c4n40btluup6o" path="res://Scripts/UI/MainMenu.gd" id="1_n6o43"]
 [ext_resource type="Texture2D" uid="uid://0paqfs1ntl3v" path="res://Assets/Textures/title-screen-ship.png" id="2_6pxni"]
+[ext_resource type="Shader" uid="uid://c2nxiqm5a5ogx" path="res://Scenes/Menus/scrolling_stars.gdshader" id="2_d77ou"]
 [ext_resource type="Script" uid="uid://c406ua0b3aq6x" path="res://Scripts/UI/OptionsMenu.gd" id="2_dlmu3"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="3_invnu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jqb4"]
+shader = ExtResource("2_d77ou")
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.1
+shader_parameter/small_stars_near_size = 0.4
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.2
+shader_parameter/large_stars_near_size = 0.5
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d77ou"]
+shader = ExtResource("2_d77ou")
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.1
+shader_parameter/small_stars_near_size = 0.4
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.2
+shader_parameter/large_stars_near_size = 0.5
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4y1p"]
+shader = ExtResource("2_d77ou")
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.1
+shader_parameter/small_stars_near_size = 0.4
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.2
+shader_parameter/large_stars_near_size = 0.5
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
 
 [node name="MainMenu" type="CanvasLayer" unique_id=448844516]
 
@@ -26,6 +66,7 @@ grow_vertical = 2
 script = ExtResource("1_n6o43")
 
 [node name="SpaceBackground" type="Sprite2D" parent="Control/Main" unique_id=2057369112]
+material = SubResource("ShaderMaterial_5jqb4")
 position = Vector2(641, 439)
 scale = Vector2(2.0551128, 2.0551128)
 texture = ExtResource("3_invnu")
@@ -107,6 +148,7 @@ offset_right = 699.0
 grow_vertical = 2
 
 [node name="SpaceBackground" type="Sprite2D" parent="Control/Credits" unique_id=420895234]
+material = SubResource("ShaderMaterial_d77ou")
 position = Vector2(641, 439)
 scale = Vector2(2.0551128, 2.0551128)
 texture = ExtResource("3_invnu")
@@ -168,6 +210,7 @@ grow_vertical = 2
 script = ExtResource("2_dlmu3")
 
 [node name="SpaceBackground" type="Sprite2D" parent="Control/Options" unique_id=793989644]
+material = SubResource("ShaderMaterial_c4y1p")
 position = Vector2(641, 439)
 scale = Vector2(2.0551128, 2.0551128)
 texture = ExtResource("3_invnu")
