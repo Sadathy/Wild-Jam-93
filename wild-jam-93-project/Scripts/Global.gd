@@ -134,7 +134,7 @@ func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
 		
 func get_threat_threshold() -> int:
 	# Reads bounty, modifies it based on difficulty and sends back a threath threshold
-	var calculated_bounty = bounty * (0.8 + (difficulty * 0.2))
+	var calculated_bounty = bounty * (0.6 + (difficulty * 0.5))
 	if calculated_bounty > 8000: return -10
 	if calculated_bounty > 7600: return -9
 	if calculated_bounty > 7200: return -8
