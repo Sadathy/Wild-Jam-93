@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var sprite_art: Sprite2D = %Sprite
 @onready var order_machine: Node = %OrderMachine
 
+@onready var order_drift: Node = $OrderMachine/OrderDrift
+
 @export var THREAT_RANGE = 600
 
 var max_x: float
@@ -14,6 +16,7 @@ var min_x: float
 var max_y: float
 var min_y: float
 
+var target_point: Vector2 = Vector2.ZERO
 
 var immune = false
 var bounty: int = 70
@@ -21,10 +24,14 @@ var bounty: int = 70
 func _ready() -> void:
 	order_machine.ready_for_orders.connect(plot_orders)
 	sprite_art.finished.connect(on_damage_flash_end)
+
 	max_x = Global.level.max_x
 	min_x = Global.level.min_x
 	max_y = Global.level.max_y
 	min_y = Global.level.min_y
+	
+	if target_point != Vector2.ZERO:
+		order_drift.direction = (target_point - position).normalized()
 	
 func plot_orders() -> void:
 	#Check if we're out of bounds, if we are, destroy us!

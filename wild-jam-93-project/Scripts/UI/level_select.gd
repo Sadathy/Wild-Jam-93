@@ -94,6 +94,7 @@ var starting_stage: bool = false
 
 @onready var victory_screen: CanvasLayer = %VictoryScreen
 @onready var button_quit_to_menu: Button = %ButtonQuitToMenu
+@onready var general_level_ui: CanvasLayer = %GeneralLevelUI
 
 func _ready() -> void:
 	button_quit_to_menu.pressed.connect(victory_screen.on_continue)
@@ -160,7 +161,7 @@ func start_stage(stage_id) -> void:
 func victory() -> void:
 	# Go through and queue free all our stages and our stage selector
 	selector.queue_free()
-	button_quit_to_menu.queue_free()
+	general_level_ui.queue_free()
 	for i in no_stages + 1:
 		stages[i]["stage"].queue_free()
 	victory_screen.victory()

@@ -1,13 +1,13 @@
-[gd_scene format=4 uid="uid://2y0pivr3pwdt"]
+[gd_scene format=4 uid="uid://caho4c4w6mxkh"]
 
-[ext_resource type="Script" uid="uid://dyrt354ts58ce" path="res://Scenes/Levels/LEVEL TYPES/configurable_level_script.gd" id="1_dffij"]
-[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_2oaex"]
-[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_wjw17"]
-[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_k2rq1"]
-[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_0o2m8"]
+[ext_resource type="Script" uid="uid://dyrt354ts58ce" path="res://Scenes/Levels/LEVEL TYPES/configurable_level_script.gd" id="1_xo4hy"]
+[ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_h0jco"]
+[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_01lbg"]
+[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_fsgka"]
+[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_tgou6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]
-texture = ExtResource("5_0o2m8")
+texture = ExtResource("5_tgou6")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 1:0/0 = 0
@@ -16,28 +16,23 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
-[node name="AsteroidLevel" type="Node2D" unique_id=1380992670]
-script = ExtResource("1_dffij")
-max_x = 6250
-max_y = 3000
-min_y = -3000
-navy_threat = 1
-alien_threat = 1
-cyber_threat = 1
-asteroid_threat = 10
-cargo_level = 4
-max_enemies = 8
+[node name="StationLevel" type="Node2D" unique_id=1380992670]
+script = ExtResource("1_xo4hy")
+max_x = 1000
+max_y = 400
+min_y = -400
+max_enemies = 0
 
 [node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
 unique_name_in_owner = true
 texture_filter = 1
 texture_repeat = 2
-texture = ExtResource("2_2oaex")
+texture = ExtResource("2_h0jco")
 
-[node name="EnterGate" parent="." unique_id=1368292179 instance=ExtResource("3_wjw17")]
+[node name="EnterGate" parent="." unique_id=1368292179 instance=ExtResource("3_01lbg")]
 position = Vector2(-100, 0)
 
-[node name="ExitGate" parent="." unique_id=604080706 instance=ExtResource("4_k2rq1")]
+[node name="ExitGate" parent="." unique_id=604080706 instance=ExtResource("4_fsgka")]
 unique_name_in_owner = true
 position = Vector2(3600, 0)
 

@@ -10,11 +10,11 @@ const LEVEL_GENERIC = preload("res://Scenes/Levels/level.tscn")
 const LEVEL_TUTORIAL = preload("res://Scenes/Levels/TutorialLevel.tscn")
 
 const LEVEL_ASTEROID = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
-const LEVEL_STATION = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
-const LEVEL_NEBULA = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
-const LEVEL_DESERT = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
-const LEVEL_CYBER = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
-const LEVEL_ALIEN = preload("res://Scenes/Levels/LEVEL TYPES/level_asteroid.tscn")
+const LEVEL_STATION = preload("res://Scenes/Levels/LEVEL TYPES/level_station.tscn")
+const LEVEL_NEBULA = preload("res://Scenes/Levels/LEVEL TYPES/level_nebula.tscn")
+const LEVEL_DESERT = preload("res://Scenes/Levels/LEVEL TYPES/level_desert.tscn")
+const LEVEL_CYBER = preload("res://Scenes/Levels/LEVEL TYPES/level_cyber.tscn")
+const LEVEL_ALIEN = preload("res://Scenes/Levels/LEVEL TYPES/level_alien.tscn")
 
 
 # Some signals so our code knows when new turns start/end
@@ -91,6 +91,7 @@ func pressed_main_menu() -> void:
 	main_menu.show()
 
 func new_level(level_type) -> void:
+	turn_count = 0
 	var new_level_instance = level_type.instantiate()
 	current_level_type = level_type
 	level = new_level_instance
@@ -130,3 +131,28 @@ func spice_blow(count: int = 1, location: Vector2 = Vector2.ZERO) -> void:
 		new_spice.order_machine.plot_order("OrderDrift")
 		new_spice.order_machine.plot_order("OrderDrift")
 		new_spice.order_machine.plot_order("OrderDrift")
+		
+func get_threat_threshold() -> int:
+	# Reads bounty, modifies it based on difficulty and sends back a threath threshold
+	var calculated_bounty = bounty * (0.8 + (difficulty * 0.2))
+	if calculated_bounty > 8000: return -10
+	if calculated_bounty > 7600: return -9
+	if calculated_bounty > 7200: return -8
+	if calculated_bounty > 6800: return -7
+	if calculated_bounty > 6400: return -6
+	if calculated_bounty > 6000: return -5
+	if calculated_bounty > 5600: return -4
+	if calculated_bounty > 5200: return -3
+	if calculated_bounty > 4800: return -2
+	if calculated_bounty > 4400: return -1
+	if calculated_bounty > 4000: return 0
+	if calculated_bounty > 3600: return 1
+	if calculated_bounty > 3200: return 2
+	if calculated_bounty > 2800: return 3
+	if calculated_bounty > 2400: return 4
+	if calculated_bounty > 2000: return 5
+	if calculated_bounty > 1600: return 6
+	if calculated_bounty > 1200: return 7
+	if calculated_bounty > 800: return 8
+	if calculated_bounty > 400: return 9
+	return 10
