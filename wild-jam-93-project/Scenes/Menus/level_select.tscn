@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bi5mjlqocdl47" path="res://Scripts/UI/select_camera.gd" id="3_sis06"]
 [ext_resource type="Texture2D" uid="uid://0paqfs1ntl3v" path="res://Assets/Textures/title-screen-ship.png" id="5_8wugl"]
 [ext_resource type="Script" uid="uid://bmoyvejwbllxv" path="res://Scenes/Menus/victory_screen.gd" id="5_hihw3"]
+[ext_resource type="Script" uid="uid://54pmyy5nxjsn" path="res://Scenes/label_bounty.gd" id="7_e6a8k"]
+[ext_resource type="Script" uid="uid://cy44kd156tteh" path="res://Scenes/label_credits.gd" id="8_8wt4u"]
 
 [node name="LevelSelect" type="Node2D" unique_id=87903366]
 script = ExtResource("1_leldv")
@@ -103,3 +105,27 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Quit run"
+
+[node name="BountyUI" type="PanelContainer" parent="VictoryScreen/GeneralLevelUI" unique_id=1676986766]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VictoryScreen/GeneralLevelUI/BountyUI" unique_id=2051924306]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryScreen/GeneralLevelUI/BountyUI/MarginContainer2" unique_id=1929092741]
+layout_mode = 2
+
+[node name="LabelBounty" type="Label" parent="VictoryScreen/GeneralLevelUI/BountyUI/MarginContainer2/VBoxContainer" unique_id=738819713]
+layout_mode = 2
+text = "Bounty: $0"
+script = ExtResource("7_e6a8k")
+
+[node name="LabelCredits" type="Label" parent="VictoryScreen/GeneralLevelUI/BountyUI/MarginContainer2/VBoxContainer" unique_id=939095379]
+layout_mode = 2
+text = "Spice: 0"
+script = ExtResource("8_8wt4u")

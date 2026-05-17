@@ -276,10 +276,10 @@ func make_band_two_stage(new_index: int) -> void:
 	var stage_vector = Vector2(band_two_x, y_pos)
 	# Add a bit of variance to make the layout slightly more interesting
 	stage_vector.x += randf_range(-75, 75)
-	# In band two, the stages can be stations, alien worlds or cyber worlds
+	# In band two, the stages can be deserts, alien worlds or cyber worlds
 	var stage_roll = randi_range(1, 3)
 	if stage_roll == 1:
-		stages[new_index] = create_stage(new_index, "station", stage_vector)
+		stages[new_index] = create_stage(new_index, "desert", stage_vector)
 	if stage_roll == 2:
 		stages[new_index] = create_stage(new_index, "alien", stage_vector)
 	if stage_roll == 3:

@@ -101,11 +101,11 @@ func _process(delta: float) -> void:
 		Good luck!")
 	if tutorial_step == 1:
 		show_tutorial_prompt("How to Move", "To acheive anything, you'll have learn how to move your ship.
-		After closing this dialogue box, click the 'Move' order on the right - or press the M key.
+		After closing this dialogue box, click the 'Move' order (bottom left) - or press the M key.
 		Then, hover your mouse where you'd like to move, and left-click to 'plot' the order.")
 	if tutorial_step == 3:
 		show_tutorial_prompt("Ending Your Turn", "Great, you've successfully plotted a move order, but this does nothing on it's own.
-		You now need to end your turn. You can do so by pressing the End Turn button over to the right, or by pressing space.
+		You now need to end your turn. You can do so by pressing the End Turn button over to the bottom left, or by pressing space.
 		Afterwards, you'll get to watch youre ship fly through space. If you didn't use all of your fuel for this turn, the ship will simply hold it's position after it's done moving.")
 	if tutorial_step == 6:
 		show_tutorial_prompt("Spice spotted!", "Lucky you, some spice has drifted into this region of space.
@@ -123,7 +123,7 @@ func _process(delta: float) -> void:
 		Fortunately, some 'honest' folk spend their days 'participating' in the 'economy' by 'working hard' and expect to get paid 'their spice', which they load onto 'their cargo ships'.
 		One such cargo ship has just crossed your path. You'll have to predict where it's moving, and shoot it out with your lasers if you want  'it's spice' (YOUR SPICE!)")
 	if tutorial_step == 9:
-		show_tutorial_prompt("Firing your lasers", "Wondering how to fire at the cargo ship, huh? We'll add an attack button over to the right, you can press that or press the A key to start plotting an attack.
+		show_tutorial_prompt("Firing your lasers", "Wondering how to fire at the cargo ship, huh? We'll add an attack button over to the bottom left, you can press that or press the A key to start plotting an attack.
 		Just like moving, simply point your mouse where you'd like the attack to go, then left click.
 		Be mindful though, shooting also costs fuel. That means you're always deciding how much you want to move each turn, vs how many times you'd like to shoot. Now take out that cargo ship!")
 	if tutorial_step == 10 and spawned_cargo == false:
