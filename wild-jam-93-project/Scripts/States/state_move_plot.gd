@@ -35,7 +35,7 @@ func on_enter(_entry_data: Dictionary = {}) -> void:
 	
 	# Initialise data for this order
 	fuel_on_enter = player_ship.fuel
-	if CONTROLLER.order_id != 1:
+	if CONTROLLER.order_id > 1:
 		order_origin = CONTROLLER.plotted_orders[CONTROLLER.order_id - 1]["target"]
 	else:
 		order_origin = player_ship.position

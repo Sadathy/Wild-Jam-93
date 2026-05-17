@@ -1,20 +1,10 @@
-[gd_scene format=4 uid="uid://bom31vryvh7jv"]
+[gd_scene format=3 uid="uid://bom31vryvh7jv"]
 
 [ext_resource type="Script" uid="uid://dyrt354ts58ce" path="res://Scenes/Levels/LEVEL TYPES/configurable_level_script.gd" id="1_dtqxu"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_kfr5v"]
 [ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_frh1q"]
 [ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_dkoqn"]
-[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_gyuwv"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]
-texture = ExtResource("5_gyuwv")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-1:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_t4psy"]
-tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_xbfda")
+[ext_resource type="Texture2D" uid="uid://b3qkrqjlkh0oa" path="res://Assets/Textures/Level Select/nebula.png" id="5_kfr5v"]
 
 [node name="NebulaLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_dtqxu")
@@ -27,12 +17,6 @@ cyber_threat = 1
 cargo_level = 1
 spice_level = 1
 max_enemies = 3
-
-[node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
-unique_name_in_owner = true
-texture_filter = 1
-texture_repeat = 2
-texture = ExtResource("2_kfr5v")
 
 [node name="EnterGate" parent="." unique_id=1368292179 instance=ExtResource("3_frh1q")]
 position = Vector2(-100, 0)
@@ -95,9 +79,588 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Keep battling"
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1013588150]
-z_index = 150
-position = Vector2(1747, -15)
-scale = Vector2(1.1006497, 1.1494806)
-tile_map_data = PackedByteArray("AAD9//n/AAAAAAAAADD9/wYAAAAAAAAAAAD+//n/AAAAAAAAADD+/wYAAAAAAAAAAAD///n/AAAAAAAAADD//wYAAAAAAAAAAAAAAPn/AAAAAAAAADAAAAYAAAAAAAAAAAABAPn/AAAAAAAAADABAAYAAAAAAAAAAAACAPn/AAAAAAAAADACAAYAAAAAAAAAAAADAPn/AAAAAAAAADADAAYAAAAAAAAAAAAEAPn/AAAAAAAAADAEAAYAAAAAAAAAAAAFAPn/AAAAAAAAADAFAAYAAAAAAAAAAAAGAPn/AAAAAAAAADAGAAYAAAAAAAAAAAAHAPn/AAAAAAAAADAHAAYAAAAAAAAAAAAIAPn/AAAAAAAAADAIAAYAAAAAAAAAAAAJAPn/AAAAAAAAADAJAAYAAAAAAAAAAAAKAPn/AAAAAAAAADAKAAYAAAAAAAAAAAALAPn/AAAAAAAAADALAAYAAAAAAAAAAAAMAPn/AAAAAAAAADAMAAYAAAAAAAAAAAANAPn/AAAAAAAAADANAAYAAAAAAAAAAAAOAPn/AAAAAAAAADAOAAYAAAAAAAAAAAAPAPn/AAABAAAAADAPAAYAAAABAAAAAGDw//n/AAABAAAAAFDw//r/AAAAAAAAAFDw//v/AAAAAAAAAFDw//z/AAAAAAAAAFDw//3/AAAAAAAAAFDw//7/AAAAAAAAAFDw////AAAAAAAAAFDw/wAAAAAAAAAAAFDw/wEAAAAAAAAAAFDw/wIAAAAAAAAAAFDw/wMAAAAAAAAAAFDw/wQAAAAAAAAAAFDw/wUAAAAAAAAAAFDw/wYAAAABAAAAAADx//n/AAAAAAAAADDx/wYAAAAAAAAAAADy//n/AAAAAAAAADDy/wYAAAAAAAAAAADz//n/AAAAAAAAADDz/wYAAAAAAAAAAAD0//n/AAAAAAAAADD0/wYAAAAAAAAAAAD1//n/AAAAAAAAADD1/wYAAAAAAAAAAAD2//n/AAAAAAAAADD2/wYAAAAAAAAAAAD3//n/AAAAAAAAADD3/wYAAAAAAAAAAAD4//n/AAAAAAAAADD4/wYAAAAAAAAAAAD5//n/AAAAAAAAADD5/wYAAAAAAAAAAAD6//n/AAAAAAAAADD6/wYAAAAAAAAAAAD7//n/AAAAAAAAADD7/wYAAAAAAAAAAAD8//n/AAAAAAAAADD8/wYAAAAAAAAAAAAPAPr/AAAAAAAAAGAPAPv/AAAAAAAAAGAPAPz/AAAAAAAAAGAPAP3/AAAAAAAAAGAPAP7/AAAAAAAAAGAPAP//AAAAAAAAAGAPAAAAAAAAAAAAAGAPAAEAAAAAAAAAAGAPAAIAAAAAAAAAAGAPAAMAAAAAAAAAAGAPAAQAAAAAAAAAAGAPAAUAAAAAAAAAAGA=")
-tile_set = SubResource("TileSet_t4psy")
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=155862840]
+modulate = Color(1, 1, 1, 0.21568628)
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=99596078]
+position = Vector2(101, -85)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=2068907179]
+position = Vector2(299, 12)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D" unique_id=544670552]
+position = Vector2(118, 150)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax2D" unique_id=887927841]
+position = Vector2(407, 171)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax2D" unique_id=1360461383]
+position = Vector2(279, -142)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax2D" unique_id=628684122]
+position = Vector2(431, 50)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax2D" unique_id=787508120]
+position = Vector2(49, 73)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Parallax2D" unique_id=1947819049]
+position = Vector2(212, 74)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Parallax2D" unique_id=1799462729]
+position = Vector2(97, -218)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Parallax2D" unique_id=1207626737]
+position = Vector2(569.5, -389.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Parallax2D" unique_id=1851357931]
+position = Vector2(767.5, -292.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Parallax2D" unique_id=258509897]
+position = Vector2(586.5, -154.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Parallax2D" unique_id=844340472]
+position = Vector2(875.5, -133.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Parallax2D" unique_id=639418850]
+position = Vector2(747.5, -446.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Parallax2D" unique_id=832123724]
+position = Vector2(899.5, -254.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Parallax2D" unique_id=487066012]
+position = Vector2(517.5, -231.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Parallax2D" unique_id=341967132]
+position = Vector2(680.5, -230.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Parallax2D" unique_id=2128507178]
+position = Vector2(565.5, -522.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Parallax2D" unique_id=186162926]
+position = Vector2(687.5, 72)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D20" type="Sprite2D" parent="Parallax2D" unique_id=1857951361]
+position = Vector2(885.5, 169)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D21" type="Sprite2D" parent="Parallax2D" unique_id=2034480228]
+position = Vector2(704.5, 307)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D22" type="Sprite2D" parent="Parallax2D" unique_id=1725422336]
+position = Vector2(993.5, 328)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D23" type="Sprite2D" parent="Parallax2D" unique_id=1526473070]
+position = Vector2(865.5, 15)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D24" type="Sprite2D" parent="Parallax2D" unique_id=1831391726]
+position = Vector2(1017.5, 207)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D25" type="Sprite2D" parent="Parallax2D" unique_id=77281739]
+position = Vector2(635.5, 230)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D26" type="Sprite2D" parent="Parallax2D" unique_id=587902185]
+position = Vector2(798.5, 231)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D27" type="Sprite2D" parent="Parallax2D" unique_id=1522452476]
+position = Vector2(683.5, -61)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D28" type="Sprite2D" parent="Parallax2D" unique_id=1421419590]
+position = Vector2(1156, -232.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D29" type="Sprite2D" parent="Parallax2D" unique_id=850216199]
+position = Vector2(1354, -135.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D30" type="Sprite2D" parent="Parallax2D" unique_id=602333007]
+position = Vector2(1173, 2.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D31" type="Sprite2D" parent="Parallax2D" unique_id=367860383]
+position = Vector2(1462, 23.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D32" type="Sprite2D" parent="Parallax2D" unique_id=1663293468]
+position = Vector2(1334, -289.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D33" type="Sprite2D" parent="Parallax2D" unique_id=645534472]
+position = Vector2(1486, -97.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D34" type="Sprite2D" parent="Parallax2D" unique_id=1057511796]
+position = Vector2(1104, -74.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D35" type="Sprite2D" parent="Parallax2D" unique_id=1877433860]
+position = Vector2(1267, -73.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D36" type="Sprite2D" parent="Parallax2D" unique_id=928858764]
+position = Vector2(1152, -365.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D37" type="Sprite2D" parent="Parallax2D" unique_id=2064085434]
+position = Vector2(-231.5, 627)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D38" type="Sprite2D" parent="Parallax2D" unique_id=2146334585]
+position = Vector2(-33.5, 724)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D39" type="Sprite2D" parent="Parallax2D" unique_id=1692398447]
+position = Vector2(-214.5, 862)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D40" type="Sprite2D" parent="Parallax2D" unique_id=564475728]
+position = Vector2(74.5, 883)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D41" type="Sprite2D" parent="Parallax2D" unique_id=862578483]
+position = Vector2(-53.5, 570)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D42" type="Sprite2D" parent="Parallax2D" unique_id=1272228564]
+position = Vector2(98.5, 762)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D43" type="Sprite2D" parent="Parallax2D" unique_id=1725379599]
+position = Vector2(-283.5, 785)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D44" type="Sprite2D" parent="Parallax2D" unique_id=1105159766]
+position = Vector2(-120.5, 786)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D45" type="Sprite2D" parent="Parallax2D" unique_id=2055366779]
+position = Vector2(-235.5, 494)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D46" type="Sprite2D" parent="Parallax2D" unique_id=235990176]
+position = Vector2(237, 322.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D47" type="Sprite2D" parent="Parallax2D" unique_id=2047937829]
+position = Vector2(435, 419.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D48" type="Sprite2D" parent="Parallax2D" unique_id=1150522847]
+position = Vector2(254, 557.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D49" type="Sprite2D" parent="Parallax2D" unique_id=225689937]
+position = Vector2(543, 578.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D50" type="Sprite2D" parent="Parallax2D" unique_id=878299499]
+position = Vector2(415, 265.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D51" type="Sprite2D" parent="Parallax2D" unique_id=2141201848]
+position = Vector2(567, 457.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D52" type="Sprite2D" parent="Parallax2D" unique_id=681934249]
+position = Vector2(185, 480.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D53" type="Sprite2D" parent="Parallax2D" unique_id=70510934]
+position = Vector2(348, 481.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D54" type="Sprite2D" parent="Parallax2D" unique_id=885485718]
+position = Vector2(233, 189.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D55" type="Sprite2D" parent="Parallax2D" unique_id=2124261641]
+position = Vector2(355, 784)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D56" type="Sprite2D" parent="Parallax2D" unique_id=1538803302]
+position = Vector2(553, 881)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D57" type="Sprite2D" parent="Parallax2D" unique_id=741010757]
+position = Vector2(372, 1019)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D58" type="Sprite2D" parent="Parallax2D" unique_id=1982600679]
+position = Vector2(661, 1040)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D59" type="Sprite2D" parent="Parallax2D" unique_id=728982294]
+position = Vector2(533, 727)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D60" type="Sprite2D" parent="Parallax2D" unique_id=541581733]
+position = Vector2(685, 919)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D61" type="Sprite2D" parent="Parallax2D" unique_id=1200671203]
+position = Vector2(303, 942)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D62" type="Sprite2D" parent="Parallax2D" unique_id=1217271010]
+position = Vector2(466, 943)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D63" type="Sprite2D" parent="Parallax2D" unique_id=1316426795]
+position = Vector2(351, 651)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D64" type="Sprite2D" parent="Parallax2D" unique_id=923703005]
+position = Vector2(823.5, 479.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D65" type="Sprite2D" parent="Parallax2D" unique_id=1119471451]
+position = Vector2(1021.5, 576.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D66" type="Sprite2D" parent="Parallax2D" unique_id=619967625]
+position = Vector2(840.5, 714.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D67" type="Sprite2D" parent="Parallax2D" unique_id=935930963]
+position = Vector2(1129.5, 735.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D68" type="Sprite2D" parent="Parallax2D" unique_id=232071102]
+position = Vector2(1001.5, 422.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D69" type="Sprite2D" parent="Parallax2D" unique_id=150326158]
+position = Vector2(1153.5, 614.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D70" type="Sprite2D" parent="Parallax2D" unique_id=207155410]
+position = Vector2(771.5, 637.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D71" type="Sprite2D" parent="Parallax2D" unique_id=1644567392]
+position = Vector2(934.5, 638.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D72" type="Sprite2D" parent="Parallax2D" unique_id=2146520850]
+position = Vector2(819.5, 346.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D73" type="Sprite2D" parent="Parallax2D" unique_id=1467619963]
+position = Vector2(-1314.5, 285)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D74" type="Sprite2D" parent="Parallax2D" unique_id=86692183]
+position = Vector2(-1116.5, 382)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D75" type="Sprite2D" parent="Parallax2D" unique_id=504332435]
+position = Vector2(-1297.5, 520)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D76" type="Sprite2D" parent="Parallax2D" unique_id=1033593094]
+position = Vector2(-1008.5, 541)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D77" type="Sprite2D" parent="Parallax2D" unique_id=1410477283]
+position = Vector2(-1136.5, 228)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D78" type="Sprite2D" parent="Parallax2D" unique_id=1045433341]
+position = Vector2(-984.5, 420)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D79" type="Sprite2D" parent="Parallax2D" unique_id=1202186368]
+position = Vector2(-1366.5, 443)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D80" type="Sprite2D" parent="Parallax2D" unique_id=100690701]
+position = Vector2(-1203.5, 444)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D81" type="Sprite2D" parent="Parallax2D" unique_id=221485066]
+position = Vector2(-1318.5, 152)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D82" type="Sprite2D" parent="Parallax2D" unique_id=973834121]
+position = Vector2(-846, -19.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D83" type="Sprite2D" parent="Parallax2D" unique_id=2118226762]
+position = Vector2(-648, 77.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D84" type="Sprite2D" parent="Parallax2D" unique_id=1556763207]
+position = Vector2(-829, 215.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D85" type="Sprite2D" parent="Parallax2D" unique_id=1200943886]
+position = Vector2(-540, 236.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D86" type="Sprite2D" parent="Parallax2D" unique_id=101655284]
+position = Vector2(-668, -76.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D87" type="Sprite2D" parent="Parallax2D" unique_id=903645771]
+position = Vector2(-516, 115.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D88" type="Sprite2D" parent="Parallax2D" unique_id=967291035]
+position = Vector2(-898, 138.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D89" type="Sprite2D" parent="Parallax2D" unique_id=1257822300]
+position = Vector2(-735, 139.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D90" type="Sprite2D" parent="Parallax2D" unique_id=1959397807]
+position = Vector2(-850, -152.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D91" type="Sprite2D" parent="Parallax2D" unique_id=1074408688]
+position = Vector2(-728, 442)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D92" type="Sprite2D" parent="Parallax2D" unique_id=1004505118]
+position = Vector2(-530, 539)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D93" type="Sprite2D" parent="Parallax2D" unique_id=1711144566]
+position = Vector2(-711, 677)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D94" type="Sprite2D" parent="Parallax2D" unique_id=1580392623]
+position = Vector2(-422, 698)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D95" type="Sprite2D" parent="Parallax2D" unique_id=467687728]
+position = Vector2(-550, 385)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D96" type="Sprite2D" parent="Parallax2D" unique_id=461360214]
+position = Vector2(-398, 577)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D97" type="Sprite2D" parent="Parallax2D" unique_id=261017852]
+position = Vector2(-780, 600)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D98" type="Sprite2D" parent="Parallax2D" unique_id=89494510]
+position = Vector2(-617, 601)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D99" type="Sprite2D" parent="Parallax2D" unique_id=2125507747]
+position = Vector2(-732, 309)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D100" type="Sprite2D" parent="Parallax2D" unique_id=1411462945]
+position = Vector2(-259.5, 137.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D101" type="Sprite2D" parent="Parallax2D" unique_id=411404480]
+position = Vector2(-61.5, 234.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D102" type="Sprite2D" parent="Parallax2D" unique_id=2119901652]
+position = Vector2(-242.5, 372.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D103" type="Sprite2D" parent="Parallax2D" unique_id=1855998842]
+position = Vector2(46.5, 393.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D104" type="Sprite2D" parent="Parallax2D" unique_id=873325996]
+position = Vector2(-81.5, 80.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D105" type="Sprite2D" parent="Parallax2D" unique_id=1517867160]
+position = Vector2(70.5, 272.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D106" type="Sprite2D" parent="Parallax2D" unique_id=114880066]
+position = Vector2(-311.5, 295.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D107" type="Sprite2D" parent="Parallax2D" unique_id=844040929]
+position = Vector2(-148.5, 296.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D108" type="Sprite2D" parent="Parallax2D" unique_id=894164581]
+position = Vector2(-263.5, 4.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D109" type="Sprite2D" parent="Parallax2D" unique_id=1107305027]
+position = Vector2(-997.5, -471)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D110" type="Sprite2D" parent="Parallax2D" unique_id=1510890263]
+position = Vector2(-799.5, -374)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D111" type="Sprite2D" parent="Parallax2D" unique_id=1667972544]
+position = Vector2(-980.5, -236)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D112" type="Sprite2D" parent="Parallax2D" unique_id=984364056]
+position = Vector2(-691.5, -215)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D113" type="Sprite2D" parent="Parallax2D" unique_id=1303702998]
+position = Vector2(-819.5, -528)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D114" type="Sprite2D" parent="Parallax2D" unique_id=2023206637]
+position = Vector2(-667.5, -336)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D115" type="Sprite2D" parent="Parallax2D" unique_id=1757514339]
+position = Vector2(-1049.5, -313)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D116" type="Sprite2D" parent="Parallax2D" unique_id=1883688958]
+position = Vector2(-886.5, -312)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D117" type="Sprite2D" parent="Parallax2D" unique_id=172456950]
+position = Vector2(-1001.5, -604)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D118" type="Sprite2D" parent="Parallax2D" unique_id=1634458257]
+position = Vector2(-529, -775.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D119" type="Sprite2D" parent="Parallax2D" unique_id=1180640474]
+position = Vector2(-331, -678.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D120" type="Sprite2D" parent="Parallax2D" unique_id=1594354531]
+position = Vector2(-512, -540.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D121" type="Sprite2D" parent="Parallax2D" unique_id=402177457]
+position = Vector2(-223, -519.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D122" type="Sprite2D" parent="Parallax2D" unique_id=499385729]
+position = Vector2(-351, -832.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D123" type="Sprite2D" parent="Parallax2D" unique_id=648963197]
+position = Vector2(-199, -640.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D124" type="Sprite2D" parent="Parallax2D" unique_id=582243324]
+position = Vector2(-581, -617.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D125" type="Sprite2D" parent="Parallax2D" unique_id=1427385049]
+position = Vector2(-418, -616.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D126" type="Sprite2D" parent="Parallax2D" unique_id=153170460]
+position = Vector2(-533, -908.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D127" type="Sprite2D" parent="Parallax2D" unique_id=1650126771]
+position = Vector2(-411, -314)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D128" type="Sprite2D" parent="Parallax2D" unique_id=37322380]
+position = Vector2(-213, -217)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D129" type="Sprite2D" parent="Parallax2D" unique_id=1742276626]
+position = Vector2(-394, -79)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D130" type="Sprite2D" parent="Parallax2D" unique_id=1248352367]
+position = Vector2(-105, -58)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D131" type="Sprite2D" parent="Parallax2D" unique_id=338486632]
+position = Vector2(-233, -371)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D132" type="Sprite2D" parent="Parallax2D" unique_id=1803163019]
+position = Vector2(-81, -179)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D133" type="Sprite2D" parent="Parallax2D" unique_id=618662912]
+position = Vector2(-463, -156)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D134" type="Sprite2D" parent="Parallax2D" unique_id=724909982]
+position = Vector2(-300, -155)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D135" type="Sprite2D" parent="Parallax2D" unique_id=1345982379]
+position = Vector2(-415, -447)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D136" type="Sprite2D" parent="Parallax2D" unique_id=1712490130]
+position = Vector2(57.5, -618.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D137" type="Sprite2D" parent="Parallax2D" unique_id=510311732]
+position = Vector2(255.5, -521.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D138" type="Sprite2D" parent="Parallax2D" unique_id=280392988]
+position = Vector2(74.5, -383.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D139" type="Sprite2D" parent="Parallax2D" unique_id=364357946]
+position = Vector2(363.5, -362.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D140" type="Sprite2D" parent="Parallax2D" unique_id=27454094]
+position = Vector2(235.5, -675.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D141" type="Sprite2D" parent="Parallax2D" unique_id=2072005961]
+position = Vector2(387.5, -483.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D142" type="Sprite2D" parent="Parallax2D" unique_id=620536329]
+position = Vector2(5.5, -460.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D143" type="Sprite2D" parent="Parallax2D" unique_id=552993310]
+position = Vector2(168.5, -459.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Sprite2D144" type="Sprite2D" parent="Parallax2D" unique_id=474789070]
+position = Vector2(53.5, -751.5)
+texture = ExtResource("5_kfr5v")
+
+[node name="Background" type="Polygon2D" parent="." unique_id=1412134420]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_kfr5v")

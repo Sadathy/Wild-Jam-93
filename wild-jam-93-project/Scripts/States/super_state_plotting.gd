@@ -139,3 +139,4 @@ func on_new_turn() -> void:
 		if plotted_orders[key]["order_string"] == "attack":
 			plotted_orders[key]["attack_line"].queue_free()
 	plotted_orders.clear()
+	order_id = 1

@@ -1,20 +1,10 @@
-[gd_scene format=4 uid="uid://dv1do1o7vccto"]
+[gd_scene format=3 uid="uid://dv1do1o7vccto"]
 
 [ext_resource type="Script" uid="uid://dyrt354ts58ce" path="res://Scenes/Levels/LEVEL TYPES/configurable_level_script.gd" id="1_6clhx"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_lcnp0"]
 [ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_rr7mm"]
 [ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_xqex3"]
-[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_ueabq"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]
-texture = ExtResource("5_ueabq")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-1:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_t4psy"]
-tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_xbfda")
+[ext_resource type="Texture2D" uid="uid://fjbf5jasln60" path="res://Assets/Textures/Level Select/alien_world.png" id="5_6clhx"]
 
 [node name="AlienLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_6clhx")
@@ -94,9 +84,8 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Keep battling"
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1013588150]
-z_index = 150
-position = Vector2(1747, -15)
-scale = Vector2(1.1006497, 1.1494806)
-tile_map_data = PackedByteArray("AAD9//n/AAAAAAAAADD9/wYAAAAAAAAAAAD+//n/AAAAAAAAADD+/wYAAAAAAAAAAAD///n/AAAAAAAAADD//wYAAAAAAAAAAAAAAPn/AAAAAAAAADAAAAYAAAAAAAAAAAABAPn/AAAAAAAAADABAAYAAAAAAAAAAAACAPn/AAAAAAAAADACAAYAAAAAAAAAAAADAPn/AAAAAAAAADADAAYAAAAAAAAAAAAEAPn/AAAAAAAAADAEAAYAAAAAAAAAAAAFAPn/AAAAAAAAADAFAAYAAAAAAAAAAAAGAPn/AAAAAAAAADAGAAYAAAAAAAAAAAAHAPn/AAAAAAAAADAHAAYAAAAAAAAAAAAIAPn/AAAAAAAAADAIAAYAAAAAAAAAAAAJAPn/AAAAAAAAADAJAAYAAAAAAAAAAAAKAPn/AAAAAAAAADAKAAYAAAAAAAAAAAALAPn/AAAAAAAAADALAAYAAAAAAAAAAAAMAPn/AAAAAAAAADAMAAYAAAAAAAAAAAANAPn/AAAAAAAAADANAAYAAAAAAAAAAAAOAPn/AAAAAAAAADAOAAYAAAAAAAAAAAAPAPn/AAABAAAAADAPAAYAAAABAAAAAGDw//n/AAABAAAAAFDw//r/AAAAAAAAAFDw//v/AAAAAAAAAFDw//z/AAAAAAAAAFDw//3/AAAAAAAAAFDw//7/AAAAAAAAAFDw////AAAAAAAAAFDw/wAAAAAAAAAAAFDw/wEAAAAAAAAAAFDw/wIAAAAAAAAAAFDw/wMAAAAAAAAAAFDw/wQAAAAAAAAAAFDw/wUAAAAAAAAAAFDw/wYAAAABAAAAAADx//n/AAAAAAAAADDx/wYAAAAAAAAAAADy//n/AAAAAAAAADDy/wYAAAAAAAAAAADz//n/AAAAAAAAADDz/wYAAAAAAAAAAAD0//n/AAAAAAAAADD0/wYAAAAAAAAAAAD1//n/AAAAAAAAADD1/wYAAAAAAAAAAAD2//n/AAAAAAAAADD2/wYAAAAAAAAAAAD3//n/AAAAAAAAADD3/wYAAAAAAAAAAAD4//n/AAAAAAAAADD4/wYAAAAAAAAAAAD5//n/AAAAAAAAADD5/wYAAAAAAAAAAAD6//n/AAAAAAAAADD6/wYAAAAAAAAAAAD7//n/AAAAAAAAADD7/wYAAAAAAAAAAAD8//n/AAAAAAAAADD8/wYAAAAAAAAAAAAPAPr/AAAAAAAAAGAPAPv/AAAAAAAAAGAPAPz/AAAAAAAAAGAPAP3/AAAAAAAAAGAPAP7/AAAAAAAAAGAPAP//AAAAAAAAAGAPAAAAAAAAAAAAAGAPAAEAAAAAAAAAAGAPAAIAAAAAAAAAAGAPAAMAAAAAAAAAAGAPAAQAAAAAAAAAAGAPAAUAAAAAAAAAAGA=")
-tile_set = SubResource("TileSet_t4psy")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218710958]
+modulate = Color(1, 1, 1, 0.60784316)
+position = Vector2(1141, 934.9999)
+scale = Vector2(25.82446, 25.82446)
+texture = ExtResource("5_6clhx")
