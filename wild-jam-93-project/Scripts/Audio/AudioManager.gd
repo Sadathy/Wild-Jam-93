@@ -230,7 +230,8 @@ func stop_looping(key: String, fade_out: float = DEFAULT_FADE_DURATION) -> void:
 # Stop all looping sounds (panic switch / probably will need this at some point).
 func stop_all_looping() -> void:
 	for key in _looping.keys():
-		stop_looping(key)
+		if not str(key).ends_with("_tween"):
+			stop_looping(key)
 
 
 

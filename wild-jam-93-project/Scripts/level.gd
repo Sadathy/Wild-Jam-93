@@ -116,6 +116,8 @@ func on_new_turn() -> void:
 			# 1 in 3 for a sniper
 			if randi_range(1, 3) == 3:
 				spawn_enemy(SNIPER)
+				# audio cue because they're a threat:
+				AudioManager.play(preload("res://Assets/Audio/sniper_spawn.wav"))
 		if Global.bounty * (0.4 + (Global.difficulty * 0.6)) > 400:
 			# 1 in 3 for a spinner
 			if randi_range(1, 3) == 3:
