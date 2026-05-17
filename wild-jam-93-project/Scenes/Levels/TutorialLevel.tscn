@@ -1,9 +1,108 @@
-[gd_scene format=3 uid="uid://d1g3k48fngi1w"]
+[gd_scene format=4 uid="uid://d1g3k48fngi1w"]
 
 [ext_resource type="Script" uid="uid://0yocusg8nuet" path="res://Scenes/Levels/tutorial_level.gd" id="1_76fmo"]
 [ext_resource type="Texture2D" uid="uid://waha2uhoxmuk" path="res://Assets/Textures/space_background.png" id="2_knm82"]
-[ext_resource type="PackedScene" uid="uid://ciiyw6gsua0ar" path="res://Scenes/Levels/enter_gate.tscn" id="3_knm82"]
-[ext_resource type="PackedScene" uid="uid://b51ak1fmxp70o" path="res://Scenes/Levels/exit_gate.tscn" id="4_fkc41"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/enter_gate.tscn" id="3_knm82"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/exit_gate.tscn" id="4_fkc41"]
+[ext_resource type="Texture2D" uid="uid://biehhr2gmwjyh" path="res://Assets/Textures/boundary_atlas.png" id="5_bpjw2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbfda"]
+texture = ExtResource("5_bpjw2")
+texture_region_size = Vector2i(128, 128)
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t4psy"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_xbfda")
 
 [node name="TutorialLevel" type="Node2D" unique_id=1380992670]
 script = ExtResource("1_76fmo")
@@ -120,3 +219,10 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Okay"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1013588150]
+z_index = 150
+position = Vector2(1747, -15)
+scale = Vector2(1.1006497, 1.1494806)
+tile_map_data = PackedByteArray("AAD9//n/AAAAAAAAADD9/wYAAAAAAAAAAAD+//n/AAAAAAAAADD+/wYAAAAAAAAAAAD///n/AAAAAAAAADD//wYAAAAAAAAAAAAAAPn/AAAAAAAAADAAAAYAAAAAAAAAAAABAPn/AAAAAAAAADABAAYAAAAAAAAAAAACAPn/AAAAAAAAADACAAYAAAAAAAAAAAADAPn/AAAAAAAAADADAAYAAAAAAAAAAAAEAPn/AAAAAAAAADAEAAYAAAAAAAAAAAAFAPn/AAAAAAAAADAFAAYAAAAAAAAAAAAGAPn/AAAAAAAAADAGAAYAAAAAAAAAAAAHAPn/AAAAAAAAADAHAAYAAAAAAAAAAAAIAPn/AAAAAAAAADAIAAYAAAAAAAAAAAAJAPn/AAAAAAAAADAJAAYAAAAAAAAAAAAKAPn/AAAAAAAAADAKAAYAAAAAAAAAAAALAPn/AAAAAAAAADALAAYAAAAAAAAAAAAMAPn/AAAAAAAAADAMAAYAAAAAAAAAAAANAPn/AAAAAAAAADANAAYAAAAAAAAAAAAOAPn/AAAAAAAAADAOAAYAAAAAAAAAAAAPAPn/AAABAAAAADAPAAYAAAABAAAAAGDw//n/AAABAAAAAFDw//r/AAAAAAAAAFDw//v/AAAAAAAAAFDw//z/AAAAAAAAAFDw//3/AAAAAAAAAFDw//7/AAAAAAAAAFDw////AAAAAAAAAFDw/wAAAAAAAAAAAFDw/wEAAAAAAAAAAFDw/wIAAAAAAAAAAFDw/wMAAAAAAAAAAFDw/wQAAAAAAAAAAFDw/wUAAAAAAAAAAFDw/wYAAAABAAAAAADx//n/AAAAAAAAADDx/wYAAAAAAAAAAADy//n/AAAAAAAAADDy/wYAAAAAAAAAAADz//n/AAAAAAAAADDz/wYAAAAAAAAAAAD0//n/AAAAAAAAADD0/wYAAAAAAAAAAAD1//n/AAAAAAAAADD1/wYAAAAAAAAAAAD2//n/AAAAAAAAADD2/wYAAAAAAAAAAAD3//n/AAAAAAAAADD3/wYAAAAAAAAAAAD4//n/AAAAAAAAADD4/wYAAAAAAAAAAAD5//n/AAAAAAAAADD5/wYAAAAAAAAAAAD6//n/AAAAAAAAADD6/wYAAAAAAAAAAAD7//n/AAAAAAAAADD7/wYAAAAAAAAAAAD8//n/AAAAAAAAADD8/wYAAAAAAAAAAAAPAPr/AAAAAAAAAGAPAPv/AAAAAAAAAGAPAPz/AAAAAAAAAGAPAP3/AAAAAAAAAGAPAP7/AAAAAAAAAGAPAP//AAAAAAAAAGAPAAAAAAAAAAAAAGAPAAEAAAAAAAAAAGAPAAIAAAAAAAAAAGAPAAMAAAAAAAAAAGAPAAQAAAAAAAAAAGAPAAUAAAAAAAAAAGA=")
+tile_set = SubResource("TileSet_t4psy")

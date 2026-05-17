@@ -71,10 +71,10 @@ func _ready() -> void:
 	player_ship.camera.limit_top = min_y
 	player_ship.camera.limit_bottom = max_y
 	
-	var p_tl = Vector2(min_x + 20, max_y - 20)
-	var p_tr = Vector2(max_x - 20, max_y - 20)
-	var p_br = Vector2(max_x - 20, min_y + 20)
-	var p_bl = Vector2(min_x + 20, min_y + 20)
+	var p_tl = Vector2(min_x, max_y)
+	var p_tr = Vector2(max_x, max_y)
+	var p_br = Vector2(max_x, min_y)
+	var p_bl = Vector2(min_x, min_y)
 	
 	var p_arr = PackedVector2Array([p_tl, p_tr, p_br, p_bl])
 	
