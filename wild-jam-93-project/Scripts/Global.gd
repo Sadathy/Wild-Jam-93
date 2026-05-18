@@ -21,6 +21,9 @@ const LEVEL_ALIEN = preload("res://Scenes/Levels/LEVEL TYPES/level_alien.tscn")
 signal turn_ended
 signal turn_started
 
+# Global level signal for level completion, to fix issues related to retrying
+signal level_complete
+
 # A var so we know whether it's the player's turn or not
 var player_turn: bool = true
 var turn_timer: float = 0.0
@@ -95,6 +98,7 @@ func new_level(level_type) -> void:
 	var new_level_instance = level_type.instantiate()
 	current_level_type = level_type
 	level = new_level_instance
+	level.level_complete.connect(on_level_complete)
 	get_tree().get_root().add_child(new_level_instance)
 	
 func on_press_pause() -> void:
@@ -160,3 +164,7 @@ func get_threat_threshold() -> int:
 	if calculated_bounty > 150: return 8
 	if calculated_bounty > 75: return 9
 	return 10
+
+func on_level_complete() -> void:
+	# Pass through level complete signal so we're aware at the global state
+	emit_signal("level_complete")

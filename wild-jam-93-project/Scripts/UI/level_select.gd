@@ -152,7 +152,7 @@ func start_stage(stage_id) -> void:
 	hide()
 	general_level_ui.hide()
 	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
-	await Global.level.level_complete
+	await Global.level_complete
 	toggle_indicator_fades(stage_id)
 	current_stage = stage_id
 	select_camera.make_current()
