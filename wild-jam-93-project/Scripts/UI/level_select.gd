@@ -7,8 +7,8 @@ extends Node2D
 
 @onready var background: Polygon2D = %Background
 
-var max_x = 1050
-var min_x = -100
+var max_x = 1050 + 75
+var min_x = -100 - 75
 var max_y = 360
 var min_y = -360
 
@@ -152,7 +152,7 @@ func start_stage(stage_id) -> void:
 	hide()
 	general_level_ui.hide()
 	Global.new_level(stage_type_data[stages[stage_id]["type"]]["level"])
-	await Global.level.level_complete
+	await Global.level_complete
 	toggle_indicator_fades(stage_id)
 	current_stage = stage_id
 	select_camera.make_current()
